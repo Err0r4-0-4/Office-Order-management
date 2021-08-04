@@ -1,15 +1,15 @@
-import React from "react";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-createSlice({
+const Authlogin = createSlice({
   name: "auth",
   initialState: { isSignedIn: false },
   reducers: {
-    toggle,
+    toggle(state) {
+      state.isSignedIn = !state.isSignedIn;
+    },
   },
 });
-const Authlogin = () => {
-  return <div></div>;
-};
+const store = configureStore({ reducer: Authlogin.reducer });
 
-export default Auth - login;
+export const Authactions = Authlogin.actions;
+export default store;

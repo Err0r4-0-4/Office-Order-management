@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import Auth from "./Container/Auth/Auth";
+import { Route } from "react-router";
 
 const App = () => {
   return (
     <div>
-      <Auth />
+      <Route path="/">
+        <Auth />
+      </Route>
     </div>
   );
 };

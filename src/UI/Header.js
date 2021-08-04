@@ -1,8 +1,12 @@
 import React from "react";
+import firebase from "firebase";
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 import img1 from ".././Images/inst.png";
-const header = () => {
+import { useSelector, useDispatch } from "react-redux";
+const Header = () => {
+  const con = useSelector((state) => state.isSignedIn);
+  console.log(con);
   return (
     <React.Fragment>
       <div className={styles.pre}></div>
@@ -64,6 +68,7 @@ const header = () => {
               to="#"
               activeClassName={styles.active}
               className={styles.link}
+              onClick={() => firebase.auth().signOut()}
             >
               Signout
             </NavLink>
@@ -74,4 +79,4 @@ const header = () => {
   );
 };
 
-export default header;
+export default Header;

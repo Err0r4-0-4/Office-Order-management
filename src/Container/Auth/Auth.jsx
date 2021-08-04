@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { Authactions } from "../../store/Auth-login";
+import { useSelector, useDispatch } from "react-redux";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import Footer from "../../UI/Footer";
@@ -9,7 +11,9 @@ firebase.initializeApp({
 });
 
 const Auth = () => {
-  const [state, setState] = useState({ isSignedIn: false });
+  // const [state, setState] = useState({ isSignedIn: false });
+  const con = useSelector((state) => state.isSignedIn);
+  const dispatch = useDispatch();
 
   const uiConfig = {
     signInFlow: "popup",
@@ -21,7 +25,8 @@ const Auth = () => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
-      setState({ isSignedIn: !!user });
+      //change
+      dispatch(Authactions.toggle());
       console.log("user", user);
       console.log(firebase.auth().currentUser.token);
     });
@@ -29,7 +34,7 @@ const Auth = () => {
 
   return (
     <div>
-      {state.isSignedIn ? (
+      {con ? (
         <span>
           <Header />
           <div>Signed In!</div>
