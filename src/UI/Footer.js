@@ -39,7 +39,7 @@ const Footer = () => (
       <div className={styles.fitems}>
         <ul className={styles.fitemli}>
           <li>
-            <a href="#">What is an Office Order?</a>
+            <a href="#">Office Order</a>
           </li>
           <li>
             <a href="#">Recent Orders</a>
@@ -50,8 +50,9 @@ const Footer = () => (
         </ul>
       </div>
     </div>
+
+    <div className={styles.last}> ErrOr 4:O4</div>
     <div className={styles.fitemsm}>
-      Reach Us:
       <ul className={styles.fitemli}>
         <li>
           <a href="#">
@@ -76,7 +77,7 @@ const Footer = () => (
         </li>
       </ul>
     </div>
-    <div className={styles.last}> ErrOr 4:O4</div>
+    <br />
     <div className={styles.last2}>...OFFICE ORDER MANAGEMENT...</div>
   </div>
 );

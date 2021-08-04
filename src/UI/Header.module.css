@@ -44,6 +44,11 @@
   -moz-border-radius: 100px;
   -ms-border-radius: 100px;
   -o-border-radius: 100px;
+  transition: all ease-in 0.2s;
+  -webkit-transition: all ease-in 0.2s;
+  -moz-transition: all ease-in 0.2s;
+  -ms-transition: all ease-in 0.2s;
+  -o-transition: all ease-in 0.2s;
 }
 
 .circleimg:hover {
@@ -77,7 +82,18 @@
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
   border-bottom: 2px solid white;
-  padding-bottom: 3px;
+  padding-bottom: 0px;
   cursor: pointer;
   letter-spacing: 4px;
 }
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+/*
+.active {
+  letter-spacing: 5px;
+  border-bottom: 2px solid white;
+}
+*/
