@@ -1,0 +1,47 @@
+.div1 {
+  width: 45vw;
+  margin: 20vh auto;
+  height: 42vh;
+}
+
+.div2 {
+  background-color: aqua;
+  height: 40vh;
+  width: 60%;
+  display: inline-block;
+  margin: 0 5% 0 0;
+  position: relative;
+}
+.google button {
+  border: 2px solid rgb(233, 233, 233);
+  padding: 5px;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+  max-width: 300px;
+}
+.google {
+  width: 100%;
+}
+.div4 {
+  margin: auto;
+  width: 110px;
+}
+.circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  background-color: bisque;
+  color: aquamarine;
+  margin: 20px auto 10px;
+}
+.div3 {
+  background-color: blue;
+  width: 31%;
+  display: inline-block;
+  height: 40vh;
+}

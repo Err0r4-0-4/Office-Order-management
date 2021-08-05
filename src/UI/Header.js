@@ -4,8 +4,15 @@ import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 import img1 from ".././Images/inst.png";
 import { useSelector, useDispatch } from "react-redux";
+import { Authactions } from "../store/Auth-login";
 const Header = () => {
   const con = useSelector((state) => state.isSignedIn);
+  const dispatch = useDispatch();
+  const signout = () => {
+    dispatch(Authactions.toggle());
+
+    firebase.auth().signOut();
+  };
   console.log(con);
   return (
     <React.Fragment>
@@ -42,7 +49,7 @@ const Header = () => {
           </li>
           <li className={styles.circleli}>
             <div className={styles.circle}>
-              <img src={img1} className={styles.circleimg} />
+              <img src={img1} className={styles.circleimg} alt="logo" />
             </div>
           </li>
           <li>
@@ -68,7 +75,7 @@ const Header = () => {
               to="#"
               activeClassName={styles.active}
               className={styles.link}
-              onClick={() => firebase.auth().signOut()}
+              onClick={signout}
             >
               Signout
             </NavLink>
