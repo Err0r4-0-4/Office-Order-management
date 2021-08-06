@@ -64,18 +64,25 @@ const Auth = () => {
           <Footer />
         </span>
       ) : (
-        <div className={styles.div1}>
-          <div className={styles.div2}>
-            <div className={styles.div4}>
-              <FaUserCircle className={styles.circle} />
+        <div className={styles.div0}>
+          <div className={styles.div1}>
+            <div className={styles.div2}>
+              <div className={styles.div4}>
+                <FaUserCircle className={styles.circle} />
+              </div>
+
+              <StyledFirebaseAuth
+                uiConfig={uiConfig}
+                firebaseAuth={firebase.auth()}
+                className={styles.google}
+              />
+
+              <div className={styles.div5}>
+                <a href="#">Trouble Logging In ?</a>
+              </div>
             </div>
-            <StyledFirebaseAuth
-              uiConfig={uiConfig}
-              firebaseAuth={firebase.auth()}
-              className={styles.google}
-            />
+            <div className={styles.div3}></div>
           </div>
-          <div className={styles.div3}></div>
         </div>
       )}
     </div>
