@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Authactions } from "../../store/Auth-login";
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "firebase";
@@ -7,6 +7,10 @@ import Footer from "../../UI/Footer";
 import Header from "../../UI/Header";
 import styles from "./Auth.module.css";
 import { FaUserCircle } from "react-icons/fa";
+import { FcSupport } from "react-icons/fc";
+import { FcAbout } from "react-icons/fc";
+import cx from "classnames";
+import Image from "../../Images/inst.png";
 firebase.initializeApp({
   apiKey: "AIzaSyCHN6FigRX-JqneyPyJ0qgqILlJjogpuJ8",
   authDomain: "office-order-management.firebaseapp.com",
@@ -16,7 +20,20 @@ const Auth = () => {
   // const [state, setState] = useState({ isSignedIn: false });
   const con = useSelector((state) => state.isSignedIn);
   const dispatch = useDispatch();
-
+  const [icon1, setIcon1] = useState(false);
+  const [icon2, setIcon2] = useState(false);
+  const functionover1 = () => {
+    setIcon1(true);
+  };
+  const functionout1 = () => {
+    setIcon1(false);
+  };
+  const functionover2 = () => {
+    setIcon2(true);
+  };
+  const functionout2 = () => {
+    setIcon2(false);
+  };
   const uiConfig = {
     signInFlow: "popup",
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
@@ -65,6 +82,11 @@ const Auth = () => {
         </span>
       ) : (
         <div className={styles.div0}>
+          <div className={styles.upper}>
+            <img src={Image} className={styles.logo} alt="logo" />
+            <p>Indian Institute Of Information Technology Vadodara</p>
+          </div>
+
           <div className={styles.div1}>
             <div className={styles.div2}>
               <div className={styles.div4}>
@@ -83,6 +105,29 @@ const Auth = () => {
             </div>
             <div className={styles.div3}></div>
           </div>
+          <button
+            className={
+              icon1
+                ? cx(styles.visible1, styles.icon1)
+                : cx(styles.invisible1, styles.icon1)
+            }
+            onMouseOver={functionover1}
+            onMouseOut={functionout1}
+          >
+            <FcSupport size={25} />
+          </button>
+
+          <button
+            className={
+              icon2
+                ? cx(styles.visible2, styles.icon2)
+                : cx(styles.invisible2, styles.icon2)
+            }
+            onMouseOver={functionover2}
+            onMouseOut={functionout2}
+          >
+            <FcAbout size={25} />
+          </button>
         </div>
       )}
     </div>

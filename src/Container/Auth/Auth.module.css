@@ -12,9 +12,45 @@
   background-position: top;
   background-size: cover;
 }
+.upper {
+  border-bottom: 5px solid rgb(116, 62, 202);
+  border-top: none;
+  position: absolute;
+  top: 0;
+  border-radius: 0 0 10px 10px;
+  text-align: center;
+  left: 50%;
+  width: 45%;
+  background-color: rgb(230, 231, 231);
+  transform: translate(-52%, 0);
+  -webkit-transform: translate(-52%, 0);
+  -moz-transform: translate(-52%, 0);
+  -ms-transform: translate(-52%, 0);
+  -o-transform: translate(-52%, 0);
+  -webkit-border-radius: 0 0 10px 10px;
+  -moz-border-radius: 0 0 10px 10px;
+  -ms-border-radius: 0 0 10px 10px;
+  -o-border-radius: 0 0 10px 10px;
+}
+.upper p {
+  color: rgb(0, 0, 0);
+  letter-spacing: 1px;
+  margin: 10px 0;
+  transform: translateX(-20px);
+  -webkit-transform: translateX(-20px);
+  -moz-transform: translateX(-20px);
+  -ms-transform: translateX(-20px);
+  -o-transform: translateX(-20px);
+}
+.upper .logo {
+  height: 50px;
+  width: 50px;
+  margin: 0 0 0 30px;
+  float: left;
+}
 .div1 {
   position: absolute;
-  top: 40%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 45vw;
@@ -33,11 +69,12 @@
   display: inline-block;
   margin: 0 5% 0 0;
   position: relative;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-bottom: 5px solid rgb(116, 62, 202);
 }
 .google ul {
   margin: 15px 0 5px;
@@ -79,11 +116,12 @@
   display: inline-block;
   height: 40vh;
   min-width: 210px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-bottom: 5px solid white;
 }
 
 .div5 {
@@ -97,10 +135,67 @@
 .div5 a:link,
 .div5 a:visited {
   color: rgb(116, 62, 202);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .div5 a:hover,
 .div5 a:active {
   color: rgb(104, 31, 221);
+}
+
+.icon1,
+.icon2 {
+  height: 45px;
+  width: 45px;
+  padding: 8px;
+  overflow: hidden;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+}
+
+.icon1 {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.icon2 {
+  position: absolute;
+  right: 20px;
+  bottom: 80px;
+}
+
+.icon3 {
+  bottom: 150px;
+}
+
+.visible1 {
+  display: inline-block;
+  width: 140px;
+}
+.visible1::after {
+  content: "Support";
+  float: right;
+  padding: 0 10px;
+}
+.invisible1 {
+  display: hidden;
+  width: 45px;
+}
+
+.visible2 {
+  display: inline-block;
+  width: 120px;
+}
+.visible2::after {
+  content: "About";
+  float: right;
+  padding: 0 10px;
+}
+.invisible2 {
+  display: hidden;
+  width: 45px;
 }
