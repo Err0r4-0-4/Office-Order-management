@@ -11,6 +11,8 @@ import { FcSupport } from "react-icons/fc";
 import { FcAbout } from "react-icons/fc";
 import cx from "classnames";
 import Image from "../../Images/inst.png";
+import Image2 from "../../Images/office.png";
+
 firebase.initializeApp({
   apiKey: "AIzaSyCHN6FigRX-JqneyPyJ0qgqILlJjogpuJ8",
   authDomain: "office-order-management.firebaseapp.com",
@@ -19,6 +21,8 @@ firebase.initializeApp({
 const Auth = () => {
   // const [state, setState] = useState({ isSignedIn: false });
   const con = useSelector((state) => state.isSignedIn);
+  const role = useSelector((state) => state.member);
+
   const dispatch = useDispatch();
   const [icon1, setIcon1] = useState(false);
   const [icon2, setIcon2] = useState(false);
@@ -54,7 +58,21 @@ const Auth = () => {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           dispatch(Authactions.toggle());
-          console.log("user", user);
+          console.log("user", user.email);
+          if (user.emailVerified) {
+            if (
+              user.email.includes("@iiitvadodara.ac.in") ||
+              user.email.includes("@iiitv.ac.in")
+            ) {
+              if (user.email.includes("registrar"))
+                dispatch(Authactions.allocation("Registrar"));
+              else if (user.email.includes("director"))
+                dispatch(Authactions.allocation("Director"));
+              else if (user.email.includes("20"))
+                dispatch(Authactions.allocation("Student"));
+              else dispatch(Authactions.allocation("Faculty"));
+            }
+          }
           console.log(firebase.auth().currentUser.token);
         }
       });
@@ -103,7 +121,12 @@ const Auth = () => {
                 <a href="#">Trouble Logging In ?</a>
               </div>
             </div>
-            <div className={styles.div3}></div>
+            <div className={styles.div3}>
+              <img src={Image2} alt="Office Order" className={styles.office} />
+              <h1>Office</h1>
+              <h1>Order</h1>
+              <h1>Management</h1>
+            </div>
           </div>
           <button
             className={

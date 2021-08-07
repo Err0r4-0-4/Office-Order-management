@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Authactions } from "../store/Auth-login";
 const Header = () => {
   const con = useSelector((state) => state.isSignedIn);
+  const role = useSelector((state) => state.member);
   const dispatch = useDispatch();
   const signout = () => {
     dispatch(Authactions.toggle());
@@ -67,7 +68,7 @@ const Header = () => {
               activeClassName={styles.active}
               className={styles.link}
             >
-              Faculty
+              {role}
             </NavLink>
           </li>
           <li>
