@@ -123,9 +123,9 @@ const Auth = () => {
             </div>
             <div className={styles.div3}>
               <img src={Image2} alt="Office Order" className={styles.office} />
-              <h1>Office</h1>
-              <h1>Order</h1>
-              <h1>Management</h1>
+              <p className={styles.txt}>Office</p>
+              <p className={styles.txt}>Order</p>
+              <p className={styles.txt}>Management</p>
             </div>
           </div>
           <button

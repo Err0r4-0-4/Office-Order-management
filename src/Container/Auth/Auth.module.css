@@ -12,12 +12,13 @@
   background-position: top;
   background-size: cover;
 }
+
 .upper {
-  border-bottom: 5px solid rgb(116, 62, 202);
-  border-top: none;
+  border: 2px solid rgb(116, 62, 202);
   position: absolute;
   top: 0;
-  border-radius: 0 0 10px 10px;
+  border-radius: 10px;
+  margin-top: 10px;
   text-align: center;
   left: 50%;
   width: 44%;
@@ -33,10 +34,13 @@
   -o-border-radius: 0 0 10px 10px;
 }
 .upper p {
-  color: rgb(0, 0, 0);
+  color: rgb(112, 112, 112);
+  font-size: 1.2em;
+  font-weight: bold;
   letter-spacing: 1px;
   margin: 10px 0;
   transform: translateX(-20px);
+  padding: 10px;
   -webkit-transform: translateX(-20px);
   -moz-transform: translateX(-20px);
   -ms-transform: translateX(-20px);
@@ -45,7 +49,7 @@
 .upper .logo {
   height: 50px;
   width: 50px;
-  margin: 0 0 0 30px;
+  margin: 10px 0 0 30px;
   float: left;
 }
 .div1 {
@@ -74,7 +78,7 @@
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
-  border-bottom: 5px solid rgb(116, 62, 202);
+  /* border-bottom: 5px solid rgb(116, 62, 202); */
 }
 
 .google {
@@ -138,8 +142,15 @@
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
-  border-bottom: 5px solid white;
-  /* padding: 15px 0 0 15px;*/
+  /* border-bottom: 5px solid white; */
+  padding: 15px;
+  text-align: center;
+}
+
+.txt{
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .div5 {
