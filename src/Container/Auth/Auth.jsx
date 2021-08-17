@@ -55,6 +55,7 @@ const Auth = () => {
           signInSuccessWithAuthResult: () => false,
         },
       };
+      
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           dispatch(Authactions.toggle());
@@ -123,9 +124,9 @@ const Auth = () => {
             </div>
             <div className={styles.div3}>
               <img src={Image2} alt="Office Order" className={styles.office} />
-              <p className={styles.txt}>Office</p>
-              <p className={styles.txt}>Order</p>
-              <p className={styles.txt}>Management</p>
+              <h1>Office</h1>
+              <h1>Order</h1>
+              <h1>Management</h1>
             </div>
           </div>
           <button
