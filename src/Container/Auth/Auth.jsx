@@ -12,11 +12,22 @@ import { FcAbout } from "react-icons/fc";
 import cx from "classnames";
 import Image from "../../Images/inst.png";
 import Image2 from "../../Images/office.png";
+//import Upload from "../Upload/Upload";
+import "firebase/firestore";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyCHN6FigRX-JqneyPyJ0qgqILlJjogpuJ8",
-  authDomain: "office-order-management.firebaseapp.com",
+  apiKey: "AIzaSyBoh79oHjd51XNoQ9qZcY22xHEkulA75eo",
+  authDomain: "test-817a8.firebaseapp.com",
+  databaseURL: "https://test-817a8-default-rtdb.firebaseio.com",
+  projectId: "test-817a8",
+  storageBucket: "test-817a8.appspot.com",
+  messagingSenderId: "92579505970",
+  appId: "1:92579505970:web:90bd526ee8ac9d2cba192b",
+  measurementId: "G-GPZ1PPRHMF",
 });
+
+var storage = firebase.storage();
+var storageRef = firebase.storage().ref();
 
 const Auth = () => {
   // const [state, setState] = useState({ isSignedIn: false });
@@ -26,6 +37,7 @@ const Auth = () => {
   const dispatch = useDispatch();
   const [icon1, setIcon1] = useState(false);
   const [icon2, setIcon2] = useState(false);
+  const [file, setFile] = useState(null);
   const functionover1 = () => {
     setIcon1(true);
   };
@@ -81,6 +93,23 @@ const Auth = () => {
     console.log("Error");
   }
   console.log(con);
+
+  let uploadFile = (event) => {
+    var mountainsRef = storageRef.child(event.target.files[0].name);
+    mountainsRef
+      .put(event.target.files[0])
+      .then((snapshot) => {
+        console.log();
+        console.log("Uploaded a blob or file!");
+        console.log(
+          `https://firebasestorage.googleapis.com/v0/b/test-817a8.appspot.com/o/${event.target.files[0].name}?alt=media`
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div>
       {con ? (
@@ -96,6 +125,7 @@ const Auth = () => {
             alt="profile picture"
             src={firebase.auth().currentUser.photoURL}
           />
+          <input type="file" onChange={uploadFile} />
           <Footer />
         </span>
       ) : (
