@@ -3,41 +3,84 @@ import firebase from "../util/firebase";
 import UploadImage from "./UploadImage";
 import { v4 as uuid } from "uuid";
 
+const db = firebase.firestore();
+var storageRef = firebase.storage().ref();
 export default function Form() {
   const [title, setTitle] = useState("");
-  const [imageUrl, setImageUrl] = useState([]);
-  const readImages = async (e) => {
-    const file = e.target.files[0];
-    const id = uuid();
-    const storageRef = firebase.storage().ref("images").child(id);
-    const imageRef = firebase.database().ref("images").child("daily").child(id);
-    await storageRef.put(file);
-    storageRef.getDownloadURL().then((url) => {
-      imageRef.set(url);
-      const newState = [...imageUrl, { id, url }];
-      setImageUrl(newState);
-    });
+  const [file, setFile] = useState({});
+  const [orderUploaded, setOrderUploaded] = useState(false);
+  //const [imageUrl, setImageUrl] = useState("");
+
+  const uploadForm = async (e) => {
+    console.log("DownloadURL");
+    try {
+      e.preventDefault();
+      const id = uuid();
+      var mountainsRef = storageRef.child(id);
+      await mountainsRef.put(file);
+      let DownloadURL = await storageRef.child(id).getDownloadURL();
+
+      console.log(DownloadURL);
+      console.log(title);
+      console.log(file);
+      let orders = await db.collection("orders").add({
+        title: title,
+        imageUrl: DownloadURL,
+      });
+      setOrderUploaded(true);
+      setTitle("");
+      setFile({});
+      console.log("order added to ORDER collection");
+    } catch (error) {
+      console.log(error);
+    }
+
+    //console.log(DownloadURL);
+    // let snap = db.collection("orders").add({
+
+    //  })
   };
 
   const handleOnChange = (e) => {
     setTitle(e.target.value);
   };
-  const createTodo = () => {
-    const todoRef = firebase.database().ref("Todo");
-    const todo = {
-      title,
-      complete: false,
-      imageUrl,
-    };
+  // const createTodo = () => {
+  //   const todoRef = firebase.database().ref("Todo");
+  //   const todo = {
+  //     title,
+  //     complete: false,
+  //     imageUrl,
+  //   };
 
-    todoRef.push(todo);
-  };
+  //   todoRef.push(todo);
+  // };
   return (
     <div>
-      <input type="text" onChange={handleOnChange} value={title} />
-      <h1>Upload image</h1>
-      <input type="file" accept="image/*" onChange={readImages} />
-      <button onClick={createTodo}>Upload </button>
+      <form onSubmit={uploadForm}>
+        <h1>Upload image</h1>
+        <input
+          type="text"
+          placeholder="Title"
+          onChange={handleOnChange}
+          value={title}
+        />
+        <br />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+        <br />
+        <br />
+        <button>Upload Order </button>
+      </form>
+      {orderUploaded ? (
+        <p style={{ color: "green", fontWeight: "bold" }}>
+          Order Uploaded Successfully!
+        </p>
+      ) : (
+        <p></p>
+      )}
     </div>
   );
 }

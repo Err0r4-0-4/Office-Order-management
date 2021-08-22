@@ -1,14 +1,13 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCqS53TWX8m1LiksppoJgBKpmV_uf_77aY",
-  authDomain: "office-c622a.firebaseapp.com",
-  projectId: "office-c622a",
-  storageBucket: "office-c622a.appspot.com",
-  messagingSenderId: "615772913822",
-  appId: "1:615772913822:web:aec4b12bdd700ba0517b8f",
-  measurementId: "G-E8LCL28GK5",
-  databaseURL: "https://office-c622a-default-rtdb.firebaseio.com/",
+  apiKey: "AIzaSyARusPln3h1viFDSlg_VjHv-v214rB_ztg",
+  authDomain: "test2-656d0.firebaseapp.com",
+  projectId: "test2-656d0",
+  storageBucket: "test2-656d0.appspot.com",
+  messagingSenderId: "434578848756",
+  appId: "1:434578848756:web:a1d7a694e4971614f817a1",
+  measurementId: "G-ECE7G17P7M",
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
