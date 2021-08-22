@@ -35,9 +35,9 @@ export default function Form() {
   return (
     <div>
       <input type="text" onChange={handleOnChange} value={title} />
-      <h1>Upload imgae</h1>
+      <h1>Upload image</h1>
       <input type="file" accept="image/*" onChange={readImages} />
-      <button onClick={createTodo}>Add Todo</button>
+      <button onClick={createTodo}>Upload </button>
     </div>
   );
 }
