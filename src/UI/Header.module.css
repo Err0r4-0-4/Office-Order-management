@@ -81,15 +81,26 @@
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
   -o-border-radius: 2px;
-  border-bottom: 2px solid white;
-  padding-bottom: 0px;
+  border-bottom: 2px solid rgb(209, 209, 209);
+  padding-bottom: 2px;
   cursor: pointer;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
 }
 
 .link {
   color: white;
   text-decoration: none;
+}
+.role {
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 /*
 .active {

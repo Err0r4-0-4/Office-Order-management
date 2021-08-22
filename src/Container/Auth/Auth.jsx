@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import Footer from "../../UI/Footer";
-import Header from "../../UI/Header";
+import Home from "../../Home/Home";
 import styles from "./Auth.module.css";
 import { FaUserCircle } from "react-icons/fa";
 import { FcSupport } from "react-icons/fc";
@@ -12,24 +12,15 @@ import { FcAbout } from "react-icons/fc";
 import cx from "classnames";
 import Image from "../../Images/inst.png";
 import Image2 from "../../Images/office.png";
+import { Route } from "react-router";
 //import Upload from "../Upload/Upload";
 import "firebase/firestore";
-
-firebase.initializeApp({
-  apiKey: "AIzaSyBoh79oHjd51XNoQ9qZcY22xHEkulA75eo",
-  authDomain: "test-817a8.firebaseapp.com",
-  databaseURL: "https://test-817a8-default-rtdb.firebaseio.com",
-  projectId: "test-817a8",
-  storageBucket: "test-817a8.appspot.com",
-  messagingSenderId: "92579505970",
-  appId: "1:92579505970:web:90bd526ee8ac9d2cba192b",
-  measurementId: "G-GPZ1PPRHMF",
-});
 
 var storage = firebase.storage();
 var storageRef = firebase.storage().ref();
 
 const Auth = () => {
+  const [ok, setOk] = useState(false);
   // const [state, setState] = useState({ isSignedIn: false });
   const con = useSelector((state) => state.isSignedIn);
   const role = useSelector((state) => state.member);
@@ -67,7 +58,7 @@ const Auth = () => {
           signInSuccessWithAuthResult: () => false,
         },
       };
-      
+
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           dispatch(Authactions.toggle());
@@ -77,13 +68,23 @@ const Auth = () => {
               user.email.includes("@iiitvadodara.ac.in") ||
               user.email.includes("@iiitv.ac.in")
             ) {
-              if (user.email.includes("registrar"))
+              setOk(true);
+              // if (user.email.includes("registrar"))
+              //   dispatch(Authactions.allocation("Registrar"));
+              // else if (user.email.includes("director"))
+              //   dispatch(Authactions.allocation("Director"));
+              // else if (user.email.includes("20"))
+              //   dispatch(Authactions.allocation("Student"));
+              // else dispatch(Authactions.allocation("Faculty"));
+
+              if (user.email.includes("201952202"))
                 dispatch(Authactions.allocation("Registrar"));
-              else if (user.email.includes("director"))
+              else if (user.email.includes("201951054"))
                 dispatch(Authactions.allocation("Director"));
-              else if (user.email.includes("20"))
+              else if (user.email.includes("201952233"))
                 dispatch(Authactions.allocation("Student"));
-              else dispatch(Authactions.allocation("Faculty"));
+              else if (user.email.includes("2019521073"))
+                dispatch(Authactions.allocation("Faculty"));
             }
           }
           console.log(firebase.auth().currentUser.token);
@@ -93,30 +94,13 @@ const Auth = () => {
   } catch (e) {
     console.log("Error");
   }
-  console.log(con);
-
-  let uploadFile = (event) => {
-    var mountainsRef = storageRef.child(event.target.files[0].name);
-    mountainsRef
-      .put(event.target.files[0])
-      .then((snapshot) => {
-        console.log();
-        console.log("Uploaded a blob or file!");
-        console.log(
-          `https://firebasestorage.googleapis.com/v0/b/test-817a8.appspot.com/o/${event.target.files[0].name}?alt=media`
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   return (
     <div>
       {con ? (
         <span>
-          <Header />
-          <div>Signed In!</div>
+          <Home />
+          {/* <div>Signed In!</div>
           <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
           <h1>
             Welcome
@@ -126,8 +110,8 @@ const Auth = () => {
             alt="profile picture"
             src={firebase.auth().currentUser.photoURL}
           />
-          <input type="file" onChange={uploadFile} />
-          <Footer />
+          <br />
+           */}
         </span>
       ) : (
         <div className={styles.div0}>

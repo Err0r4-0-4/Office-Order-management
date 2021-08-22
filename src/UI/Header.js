@@ -22,7 +22,7 @@ const Header = () => {
         <ul>
           <li>
             <NavLink
-              to="#"
+              to="/home"
               activeClassName={styles.active}
               className={styles.link}
             >
@@ -31,21 +31,21 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              to="#"
+              to="/neworder"
               activeClassName={styles.active}
               className={styles.link}
             >
-              Orders
+              New
             </NavLink>
           </li>
 
           <li>
             <NavLink
-              to="#"
+              to="/prevorder"
               activeClassName={styles.active}
               className={styles.link}
             >
-              IIIT V
+              Previous
             </NavLink>
           </li>
           <li className={styles.circleli}>
@@ -68,7 +68,7 @@ const Header = () => {
               activeClassName={styles.active}
               className={styles.link}
             >
-              {role}
+              IIIT V
             </NavLink>
           </li>
           <li>
@@ -82,6 +82,7 @@ const Header = () => {
             </NavLink>
           </li>
         </ul>
+        <div className={styles.role}> {role}</div>
       </div>
     </React.Fragment>
   );
