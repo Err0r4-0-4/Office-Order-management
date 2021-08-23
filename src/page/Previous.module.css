@@ -1,0 +1,42 @@
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly start;
+}
+.box {
+  width: 100%;
+  border: 1px solid black;
+  margin: 20px 10px;
+  height: 120px;
+  overflow: hidden;
+}
+.img {
+  float: left;
+  height: 119px;
+  width: 120px;
+  overflow: hidden;
+  margin-right: 50px;
+}
+
+.title {
+  text-align: left;
+  margin: 5px 20px;
+  text-transform: capitalize;
+  font-size: 24px;
+  font-weight: 300;
+}
+.link {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  background-color: rgb(9, 9, 119);
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  max-width: 160px;
+  text-align: center;
+  margin: 5px 60px;
+}
