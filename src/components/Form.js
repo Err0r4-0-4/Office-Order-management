@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import firebase from "../util/firebase";
 import UploadImage from "./UploadImage";
 import { v4 as uuid } from "uuid";
-
+import styles from "./Form.module.css";
 const db = firebase.firestore();
 var storageRef = firebase.storage().ref();
 export default function Form() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState({});
+  const [addons, setAddons] = useState([]);
   const [orderUploaded, setOrderUploaded] = useState(false);
   //const [imageUrl, setImageUrl] = useState("");
 
@@ -69,9 +70,30 @@ export default function Form() {
           type="file"
           accept="image/*"
           onChange={(e) => setFile(e.target.files[0])}
+          className={styles.drag}
+          placeholder="Drop files here"
         />
+
         <br />
+        {/* <input
+          type="text"
+          placeholder="Addons"
+          onChange={handleOnChange}
+          value={title}
+        /> */}
+
+        <div className={styles.add}>
+          <ul className={styles.flexadd}>
+            <li className={styles.addons}>Private</li>
+            <li className={styles.addons}>Public</li>
+            <li className={styles.addons}>Mandatory</li>
+            <li className={styles.addons}>Hidden</li>
+            <li className={styles.addons}>Student</li>
+            <li className={styles.addons}>Abcd</li>
+          </ul>
+        </div>
         <br />
+
         <button>Upload Order </button>
       </form>
       {orderUploaded ? (

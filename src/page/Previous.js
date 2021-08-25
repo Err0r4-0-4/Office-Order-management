@@ -7,13 +7,14 @@ let db = firebase.firestore();
 const Previous = () => {
   const [orders, setOrders] = useState([]);
   const [showorders, setshoworders] = useState(null);
-  const search = useRef("");
+  const [search, setsearch] = useState("");
+
   const submitHandler = (e) => {
-    e.preventDefault();
+    setsearch(e.target.value);
+    let ser = e.target.value;
+    console.log(e.target.value);
     setshoworders(
-      orders.filter((e) =>
-        e.props.children[1].props.children.includes(search.current.value)
-      )
+      orders.filter((e) => e.props.children[1].props.children.includes(ser))
     );
   };
   useEffect(() => {
@@ -26,7 +27,7 @@ const Previous = () => {
           <img src={doc.data().imageUrl} className={styles.img}></img>
 
           <h2 className={styles.title}>{doc.data().title}</h2>
-          <a href={doc.data().imageUrl} target="_blank" className={styles.link}>
+          <a href={doc.data().imageUrl} target="_top" className={styles.link}>
             Jump to Link
           </a>
         </div>
@@ -41,10 +42,9 @@ const Previous = () => {
     <div>
       <div className={styles.search}>
         <h1></h1>
-        <form onSubmit={submitHandler}>
-          <input type="text" ref={search} />
-          <button>Search</button>
-        </form>
+
+        <input type="text" value={search} onChange={submitHandler} />
+
         <h1>Previous Orders</h1>
       </div>
       <div className={styles.flex}>
