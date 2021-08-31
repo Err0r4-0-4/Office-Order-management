@@ -28,7 +28,7 @@ export default function Form() {
       let orders = await db.collection("orders").add({
         title: title,
         imageUrl: DownloadURL,
-        addons: addons
+        addons: addons,
       });
       setOrderUploaded(true);
       setTitle("");
@@ -64,7 +64,7 @@ export default function Form() {
         <input
           type="text"
           placeholder="Title"
-          onChange={handleOnChange}
+          onChanqge={handleOnChange}
           value={title}
         />
         <br />
@@ -86,12 +86,33 @@ export default function Form() {
 
         <div className={styles.add}>
           <ul className={styles.flexadd}>
-            <li className={styles.addons}  onClick={() => addons.push("Private")}>Private</li>
-            <li className={styles.addons} onClick={() => addons.push("Public")}>Public</li>
-            <li className={styles.addons} onClick={() => addons.push("Mandatory")}>Mandatory</li>
-            <li className={styles.addons} onClick={() => addons.push("Hidden")}>Hidden</li>
-            <li className={styles.addons} onClick={() => addons.push("Student")}>Student</li>
-            <li className={styles.addons} onClick={() => addons.push("Abcd")}>Abcd</li>
+            <li
+              className={styles.addons}
+              onClick={() => addons.push("Private")}
+            >
+              Private
+            </li>
+            <li className={styles.addons} onClick={() => addons.push("Public")}>
+              Public
+            </li>
+            <li
+              className={styles.addons}
+              onClick={() => addons.push("Mandatory")}
+            >
+              Mandatory
+            </li>
+            <li className={styles.addons} onClick={() => addons.push("Hidden")}>
+              Hidden
+            </li>
+            <li
+              className={styles.addons}
+              onClick={() => addons.push("Student")}
+            >
+              Student
+            </li>
+            <li className={styles.addons} onClick={() => addons.push("Abcd")}>
+              Abcd
+            </li>
           </ul>
         </div>
         <br />

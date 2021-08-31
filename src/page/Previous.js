@@ -11,12 +11,14 @@ const Previous = () => {
   const [order, setorder] = useState([]);
 
   const submitHandler = (e) => {
-    console.log(order)
+    console.log(orders);
     setsearch(e.target.value);
     let ser = e.target.value;
     console.log(e.target.value);
     setshoworders(
-      orders.filter((e) => e.props.children[1].props.children.includes(ser))
+      orders.filter((e) =>
+        e.props.children[3].props.children.filter((e) => e.includes(ser))
+      )
     );
   };
   useEffect(() => {
@@ -32,12 +34,13 @@ const Previous = () => {
           <a href={doc.data().imageUrl} target="_top" className={styles.link}>
             Jump to Link
           </a>
+          <span className={styles.addons}>{doc.data().addons}</span>
         </div>
       ));
       let a = await db.collection("orders").get();
-      a.docs.map(d=>order.push(d.data()));
+      a.docs.map((d) => order.push(d.data()));
       // console.log(docSnap);
-      setorder(docSnap);
+      setOrders(docSnap);
     }
     getData();
   }, []);
@@ -53,7 +56,7 @@ const Previous = () => {
       </div>
       <div className={styles.flex}>
         {/* <Showimage /> */}
-        {showorders ? showorders : order}
+        {showorders ? showorders : orders}
       </div>
     </div>
   );
