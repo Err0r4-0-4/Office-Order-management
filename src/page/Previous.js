@@ -16,9 +16,7 @@ const Previous = () => {
     let ser = e.target.value;
     console.log(e.target.value);
     setshoworders(
-      orders.filter((e) =>
-        e.props.children[3].props.children.filter((e) => e.includes(ser))
-      )
+      orders.filter((e) => e.props.children[3].props.children.includes(ser))
     );
   };
   useEffect(() => {
