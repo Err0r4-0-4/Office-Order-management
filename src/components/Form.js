@@ -8,9 +8,10 @@ var storageRef = firebase.storage().ref();
 export default function Form() {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState({});
-  const [addons, setAddons] = useState([]);
   const [orderUploaded, setOrderUploaded] = useState(false);
   //const [imageUrl, setImageUrl] = useState("");
+
+  const [addons, setAddons] = useState([]);
 
   const uploadForm = async (e) => {
     console.log("DownloadURL");
@@ -27,6 +28,7 @@ export default function Form() {
       let orders = await db.collection("orders").add({
         title: title,
         imageUrl: DownloadURL,
+        addons: addons
       });
       setOrderUploaded(true);
       setTitle("");
@@ -84,12 +86,12 @@ export default function Form() {
 
         <div className={styles.add}>
           <ul className={styles.flexadd}>
-            <li className={styles.addons}>Private</li>
-            <li className={styles.addons}>Public</li>
-            <li className={styles.addons}>Mandatory</li>
-            <li className={styles.addons}>Hidden</li>
-            <li className={styles.addons}>Student</li>
-            <li className={styles.addons}>Abcd</li>
+            <li className={styles.addons}  onClick={() => addons.push("Private")}>Private</li>
+            <li className={styles.addons} onClick={() => addons.push("Public")}>Public</li>
+            <li className={styles.addons} onClick={() => addons.push("Mandatory")}>Mandatory</li>
+            <li className={styles.addons} onClick={() => addons.push("Hidden")}>Hidden</li>
+            <li className={styles.addons} onClick={() => addons.push("Student")}>Student</li>
+            <li className={styles.addons} onClick={() => addons.push("Abcd")}>Abcd</li>
           </ul>
         </div>
         <br />

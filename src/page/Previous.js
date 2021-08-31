@@ -8,8 +8,10 @@ const Previous = () => {
   const [orders, setOrders] = useState([]);
   const [showorders, setshoworders] = useState(null);
   const [search, setsearch] = useState("");
+  const [order, setorder] = useState([]);
 
   const submitHandler = (e) => {
+    console.log(order)
     setsearch(e.target.value);
     let ser = e.target.value;
     console.log(e.target.value);
@@ -32,8 +34,10 @@ const Previous = () => {
           </a>
         </div>
       ));
-      console.log(docSnap);
-      setOrders(docSnap);
+      let a = await db.collection("orders").get();
+      a.docs.map(d=>order.push(d.data()));
+      // console.log(docSnap);
+      setorder(docSnap);
     }
     getData();
   }, []);
@@ -49,7 +53,7 @@ const Previous = () => {
       </div>
       <div className={styles.flex}>
         {/* <Showimage /> */}
-        {showorders ? showorders : orders}
+        {showorders ? showorders : order}
       </div>
     </div>
   );
