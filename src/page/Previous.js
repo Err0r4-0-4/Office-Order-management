@@ -11,7 +11,7 @@ const Previous = () => {
   const [order, setorder] = useState([]);
 
   const submitHandler = (e) => {
-    console.log(order)
+    console.log()
     setsearch(e.target.value);
     let ser = e.target.value;
     console.log(e.target.value);
@@ -36,8 +36,8 @@ const Previous = () => {
       ));
       let a = await db.collection("orders").get();
       a.docs.map(d=>order.push(d.data()));
-      // console.log(docSnap);
-      setorder(docSnap);
+      console.log(docSnap);
+      setOrders(docSnap);
     }
     getData();
   }, []);
@@ -53,7 +53,7 @@ const Previous = () => {
       </div>
       <div className={styles.flex}>
         {/* <Showimage /> */}
-        {showorders ? showorders : order}
+        {showorders ? showorders : orders}
       </div>
     </div>
   );
