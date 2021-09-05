@@ -16,7 +16,7 @@ const App = () => {
     token();
   }, []);
   return (
-    <div>
+    <div className="App">
       <Route path="/">
         <Auth />
       </Route>

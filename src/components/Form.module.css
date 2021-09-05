@@ -1,0 +1,70 @@
+.form {
+  box-sizing: border-box;
+  border: 1px solid rgb(230, 230, 230);
+  box-shadow: 2px 2px 5px rgb(151, 151, 151);
+  width: 60%;
+  margin: auto;
+  padding-top: 30px;
+  font-family: "Montserrat", sans-serif;
+}
+.one {
+  width: 80%;
+  margin: 5px 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.form h3 {
+  margin: 20px 10% 0;
+}
+.hundred {
+  width: 100%;
+}
+
+.drag {
+  height: 20vh;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.drag::after {
+  content: "Drag files here";
+  position: relative;
+  margin: auto;
+  border-top: 1px solid black;
+  display: block;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.add {
+  border: 1px solid black;
+  width: 100%;
+  margin-top: 20px;
+}
+.flexadd {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: stretch;
+}
+.addons,
+.added {
+  padding: 5px;
+  border: 1px solid rgb(168, 168, 168);
+  background-color: rgb(231, 231, 231);
+  margin: 5px;
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.added {
+  background-color: rgb(169, 241, 169);
+  border: 1px solid rgb(70, 206, 70);
+}
+
+.button {
+  width: 80%;
+  margin: 10px 10% 20px;
+}

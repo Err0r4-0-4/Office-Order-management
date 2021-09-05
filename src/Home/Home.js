@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Home.module.css";
+import firebase from "firebase";
 import { Route, Switch } from "react-router";
 import Footer from "../UI/Footer";
 import Header from "../UI/Header";
@@ -11,7 +12,12 @@ const Home = () => {
       <Header />
       <Switch>
         <Route path="/home">
-          <p>Home</p>
+          <p>{firebase.auth().currentUser.displayName}</p>
+
+          <img
+            alt="profile picture"
+            src={firebase.auth().currentUser.photoURL}
+          />
         </Route>
         <Route path="/neworder">
           <New />

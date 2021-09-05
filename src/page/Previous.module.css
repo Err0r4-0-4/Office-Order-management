@@ -7,12 +7,12 @@
   width: 100%;
   border: 1px solid black;
   margin: 20px 10px;
-  height: 120px;
+  height: 140px;
   overflow: hidden;
 }
 .img {
   float: left;
-  height: 119px;
+  height: 139px;
   width: 120px;
   overflow: hidden;
   margin-right: 50px;
@@ -39,4 +39,9 @@
   max-width: 160px;
   text-align: center;
   margin: 5px 60px;
+}
+
+.addons {
+  display: block;
+  padding-right: 10px;
 }
