@@ -6,11 +6,13 @@ import styles from "./Form.module.css";
 const db = firebase.firestore();
 var storageRef = firebase.storage().ref();
 export default function Form() {
+  let a = [];
   const [title, setTitle] = useState("");
+  const [type, setType] = useState("");
   const [file, setFile] = useState({});
   const [orderUploaded, setOrderUploaded] = useState(false);
   //const [imageUrl, setImageUrl] = useState("");
-
+  const [visibility, setVisibility] = useState([]);
   const [addons, setAddons] = useState([]);
 
   const uploadForm = async (e) => {
@@ -20,6 +22,8 @@ export default function Form() {
       const id = uuid();
       var mountainsRef = storageRef.child(id);
       await mountainsRef.put(file);
+      //setVisibility(a);
+      console.log(visibility);
       let DownloadURL = await storageRef.child(id).getDownloadURL();
 
       console.log(DownloadURL);
@@ -29,7 +33,10 @@ export default function Form() {
         title: title,
         imageUrl: DownloadURL,
         addons: addons,
+        visibility: visibility,
+        type: type,
       });
+      console.log("Doc Id: ", orders.id);
       setOrderUploaded(true);
       setTitle("");
       setFile({});
@@ -44,9 +51,6 @@ export default function Form() {
     //  })
   };
 
-  const handleOnChange = (e) => {
-    setTitle(e.target.value);
-  };
   // const createTodo = () => {
   //   const todoRef = firebase.database().ref("Todo");
   //   const todo = {
@@ -57,6 +61,24 @@ export default function Form() {
 
   //   todoRef.push(todo);
   // };
+  const checkboxHandler = (e) => {
+    if (e.target.checked) {
+      //console.log(a)
+      setVisibility([...visibility, e.target.value]);
+      a.push(e.target.value);
+    } else {
+      console.log(visibility);
+      let d = [...visibility];
+      let index = d.indexOf(e.target.value);
+      d.splice(index, 1);
+      setVisibility([...d]);
+      //a.pop(e.target.value);
+    }
+    console.log(visibility);
+  };
+  const radioHandler = (e) => {
+    setType(e.target.value);
+  };
   return (
     <div>
       <form onSubmit={uploadForm} className={styles.form}>
@@ -65,8 +87,8 @@ export default function Form() {
           <input
             type="text"
             placeholder="Title"
-            onChanqge={handleOnChange}
-            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            //value={title}
             className={styles.hundred}
           />
           <br />
@@ -84,11 +106,24 @@ export default function Form() {
         <h3>Internal/External</h3>
         <div className={styles.one}>
           <span>
-            <input type="radio" id="internal" name="ie" value="internal" /> 
-            <label for="internal">Internal</label>
+            <input
+              type="radio"
+              id="internal"
+              name="ie"
+              value="internal"
+              onChange={radioHandler}
+            />
+             <label for="internal">Internal</label>
           </span>
           <span>
-              <input type="radio" id="external" name="ie" value="external" />
+             {" "}
+            <input
+              type="radio"
+              id="external"
+              name="ie"
+              value="external"
+              onChange={radioHandler}
+            />
             <label for="external">External</label>
           </span>
           <br></br>
@@ -101,6 +136,7 @@ export default function Form() {
               id="registrar"
               name="registrar"
               value="registrar"
+              onChange={checkboxHandler}
             />
             <label for="registrar"> Registrar</label>
           </span>
@@ -110,11 +146,18 @@ export default function Form() {
               id="faculty"
               name="faculty"
               value="faculty"
+              onChange={checkboxHandler}
             />
             <label for="faculty"> Faculty</label>
           </span>
           <span>
-            <input type="checkbox" id="staff" name="staff" value="staff" />
+            <input
+              type="checkbox"
+              id="staff"
+              name="staff"
+              value="staff"
+              onChange={checkboxHandler}
+            />
             <label for="staff"> Staff</label>
           </span>
           <span>
@@ -123,6 +166,7 @@ export default function Form() {
               id="student"
               name="student"
               value="student"
+              onChange={checkboxHandler}
             />
             <label for="student"> Student</label>
           </span>
