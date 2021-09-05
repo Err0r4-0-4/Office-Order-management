@@ -4,7 +4,7 @@ import { Route } from "react-router";
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
       <Route path="/">
         <Auth />
       </Route>

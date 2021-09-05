@@ -13,10 +13,10 @@ const Previous = () => {
   const submitHandler = (e) => {
     console.log(orders);
     setsearch(e.target.value);
-    let ser = e.target.value;
+    let ser = e.target.value.toLowerCase();
     console.log(e.target.value);
     setshoworders(
-      orders.filter((e) => e.props.children[3].props.children.includes(ser))
+      orders.filter((e) => e.props.children[1].props.children.includes(ser))
     );
   };
   useEffect(() => {
