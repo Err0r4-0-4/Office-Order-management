@@ -56,7 +56,7 @@
   background-color: rgb(231, 231, 231);
   margin: 5px;
   cursor: pointer;
-  min-width: 100px;
+  width: 120px;
 }
 
 .added {
@@ -67,4 +67,7 @@
 .button {
   width: 80%;
   margin: 10px 10% 20px;
+}
+li {
+  list-style-type: none;
 }

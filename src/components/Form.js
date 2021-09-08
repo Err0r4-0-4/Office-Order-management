@@ -13,7 +13,8 @@ export default function Form() {
   const [orderUploaded, setOrderUploaded] = useState(false);
   //const [imageUrl, setImageUrl] = useState("");
   const [visibility, setVisibility] = useState([]);
-  const [addons, setAddons] = useState([]);
+  const [addons, setAddons] = useState(["test"]);
+  const [addonError, setAddonError] = useState("");
 
   const uploadForm = async (e) => {
     console.log("DownloadURL");
@@ -78,6 +79,35 @@ export default function Form() {
   };
   const radioHandler = (e) => {
     setType(e.target.value);
+  };
+  const removeAddon = (e) => {
+    console.log(e.target.id);
+    let p = addons;
+    let index = p.indexOf(e.target.id);
+    p.splice(index, 1);
+    setAddonError("");
+    setAddons([...p]);
+  };
+  let options = addons.map((addon) => (
+    <li className={styles.addons}>
+      {addon}
+      <span id={addon} className={styles.cross} onClick={removeAddon}>
+        x
+      </span>
+    </li>
+  ));
+  let addonHandler = (e) => {
+    console.log(e.target.value);
+    let p = addons;
+    if (addons.includes(e.target.value)) {
+      console.log("addonError");
+      setAddonError("**This option is already Added!");
+      return;
+    }
+    setAddonError("");
+    setAddons([...p, e.target.value]);
+    var dropDown = document.getElementById("dropdown");
+    dropDown.selectedIndex = 0;
   };
   return (
     <div>
@@ -178,7 +208,27 @@ export default function Form() {
           onChange={handleOnChange}
           value={title}
         /> */}
+        <select
+          name="addons"
+          className={styles.one}
+          id="dropdown"
+          onChange={addonHandler}
+        >
+          <option disabled selected value>
+            {" "}
+            -- select --{" "}
+          </option>
+          <option value="Private">Private</option>
+          <option value="Public">Public</option>
+          <option value="Mandatory">Mandatory</option>
+          <option value="Hidden">Hidden</option>
+          <option value="Student">Student</option>
+        </select>
         <div className={styles.one}>
+          {options}
+          <p style={{ color: "red" }}>{addonError}</p>
+        </div>
+        {/* <div className={styles.one}>
           <div className={styles.add}>
             <ul className={styles.flexadd}>
               <li
@@ -217,7 +267,7 @@ export default function Form() {
             </ul>
           </div>
           <br />
-        </div>
+        </div> */}
         <button className={styles.button}>Upload Order </button>
       </form>
       {orderUploaded ? (
