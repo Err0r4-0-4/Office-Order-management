@@ -9,6 +9,7 @@ const Previous = () => {
   const [showorders, setshoworders] = useState(null);
   const [search, setsearch] = useState("");
   const [order, setorder] = useState([]);
+  const [previewURL, setPreviewURL] = useState("");
 
   const submitHandler = (e) => {
     console.log(orders);
@@ -18,6 +19,10 @@ const Previous = () => {
     setshoworders(
       orders.filter((e) => e.props.children[1].props.children.includes(ser))
     );
+  };
+  const preViewHandler = (e) => {
+    console.log(e);
+    setPreviewURL(e);
   };
   useEffect(() => {
     async function getData(params) {
@@ -29,9 +34,13 @@ const Previous = () => {
           <img src={doc.data().imageUrl} className={styles.img}></img>
 
           <h2 className={styles.title}>{doc.data().title}</h2>
-          <a href={doc.data().imageUrl} target="_top" className={styles.link}>
+          <button
+            onClick={() => preViewHandler(doc.data().imageUrl)}
+            target="_top"
+            className={styles.link}
+          >
             Jump to Link
-          </a>
+          </button>
           <span className={styles.addons}>{doc.data().addons}</span>
         </div>
       ));
@@ -44,17 +53,24 @@ const Previous = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       <div className={styles.search}>
-        <h1></h1>
-
         <input type="text" value={search} onChange={submitHandler} />
 
         <h1>Previous Orders</h1>
+        <div className={styles.flex}>
+          {/* <Showimage /> */}
+          {showorders ? showorders : orders}
+        </div>
       </div>
-      <div className={styles.flex}>
-        {/* <Showimage /> */}
-        {showorders ? showorders : orders}
+
+      <div className={styles.previewMain}>
+        <iframe
+          className={styles.preview}
+          src={previewURL}
+          title="test"
+          style={{ border: "1px solid black" }}
+        />
       </div>
     </div>
   );
