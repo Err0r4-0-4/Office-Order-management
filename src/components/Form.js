@@ -13,7 +13,8 @@ export default function Form() {
   const [orderUploaded, setOrderUploaded] = useState(false);
   //const [imageUrl, setImageUrl] = useState("");
   const [visibility, setVisibility] = useState([]);
-  const [addons, setAddons] = useState(["test"]);
+  const [addons, setAddons] = useState([]);
+  const [keywords, setKeywords] = useState([]);
   const [addonError, setAddonError] = useState("");
 
   const uploadForm = async (e) => {
@@ -36,11 +37,22 @@ export default function Form() {
         addons: addons,
         visibility: visibility,
         type: type,
+        keywords: keywords,
+      });
+      let keywordDoc = await db
+        .collection("keywords")
+        .doc("1sKJt3XpeYiOyQgFcFaj")
+        .get();
+      let allKeywords = keywordDoc.data().keywords;
+      allKeywords = [...allKeywords, ...keywords];
+      await db.collection("keywords").doc("1sKJt3XpeYiOyQgFcFaj").update({
+        keywords: allKeywords,
       });
       console.log("Doc Id: ", orders.id);
       setOrderUploaded(true);
       setTitle("");
       setFile({});
+      setKeywords([]);
       console.log("order added to ORDER collection");
     } catch (error) {
       console.log(error);
@@ -108,6 +120,14 @@ export default function Form() {
     setAddons([...p, e.target.value]);
     var dropDown = document.getElementById("dropdown");
     dropDown.selectedIndex = 0;
+  };
+
+  let keywordsHandler = () => {
+    let input = document.getElementById("keywordsInput");
+    let newKeywords = [...keywords, input.value];
+    setKeywords(newKeywords);
+    input.value = "";
+    console.log(newKeywords);
   };
   return (
     <div>
@@ -224,9 +244,14 @@ export default function Form() {
           <option value="Hidden">Hidden</option>
           <option value="Student">Student</option>
         </select>
+
         <div className={styles.one}>
           {options}
           <p style={{ color: "red" }}>{addonError}</p>
+        </div>
+        <div>
+          <input type="text" id="keywordsInput" placeholder="Add Keywords" />{" "}
+          <span onClick={keywordsHandler}>ADD</span>
         </div>
         {/* <div className={styles.one}>
           <div className={styles.add}>
