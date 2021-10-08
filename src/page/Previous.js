@@ -11,10 +11,17 @@ const Previous = () => {
   const [order, setorder] = useState([]);
 
   const submitHandler = (e) => {
-    console.log(orders);
+    //  console.log(showorders);
     setsearch(e.target.value);
-    let ser = e.target.value.toLowerCase();
-    console.log(e.target.value);
+    let ser = e.target.value.toLowerCase().trim();
+
+    console.log(
+      orders.map((e) =>
+        e.props.children[3].props.children.map((e) =>
+          e.toLowerCase().includes(ser)
+        )
+      )
+    );
     setshoworders(
       orders.filter((e) => e.props.children[1].props.children.includes(ser))
     );
