@@ -1,31 +1,120 @@
 .form {
   box-sizing: border-box;
   border: 1px solid rgb(230, 230, 230);
-  box-shadow: 2px 2px 5px rgb(151, 151, 151);
-  width: 60%;
-  margin: auto;
-  padding-top: 30px;
+  width: 100%;
   font-family: "Montserrat", sans-serif;
+  padding: 30px 20px;
+  font-size: 18px;
+  z-index: -2;
+}
+
+.h1 {
+  font-size: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  position: relative;
+  text-transform: uppercase;
+}
+.h1:after {
+  display: block;
+  content: " ";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 3px;
+  background-color: rgb(139, 139, 139);
+  width: 150px;
+  bottom: -10px;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+.h2 {
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  flex: 100%;
+  margin: 15px 0;
+  padding-top: 20px;
+  border-top: 0.5px solid rgb(216, 216, 216);
+  position: relative;
 }
 .one {
   width: 80%;
-  margin: 5px 10%;
+  margin: 15px 10%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
 }
-.form h3 {
-  margin: 20px 10% 0;
+.name {
+  width: 100%;
+  position: relative;
+}
+.iiit {
+  background-color: transparent;
+  position: absolute;
+  left: 0;
+  width: 30%;
+  text-align: center;
+  padding: 6.5px;
+  font-size: 18px;
+  color: black;
+  font-weight: 400;
+  border-bottom: 1px solid grey;
+}
+.namei {
+  background-color: transparent;
+  left: 32%;
+  position: absolute;
+  width: 68%;
+  padding: 7.4px;
+  font-size: 18px;
+  border: none;
+  border-bottom: 1px solid grey;
+  outline: none;
+}
+
+.namei:focus {
+  border-bottom: 2px solid grey;
+  padding-bottom: 6.4px;
+  outline: none;
+}
+.namei::placeholder {
+  font-size: 17px;
+  color: rgb(155, 155, 155);
 }
 .hundred {
   width: 100%;
+  padding: 7px;
+  font-size: 18px;
+  letter-spacing: 1px;
 }
-
+.hundred::placeholder {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
 .drag {
   height: 20vh;
   width: 100%;
-  border: 1px solid black;
+  font-size: 18px;
+  border: 1px solid rgb(117, 117, 117);
+  background-color: #f3f3f3;
+}
+
+input[type="file"]::file-selector-button {
+  border: 1px solid #585858;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+  margin: 5px;
+  padding: 5px 25px;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #d4d3d3;
 }
 
 .drag::after {
@@ -35,7 +124,7 @@
   border-top: 1px solid black;
   display: block;
   text-align: center;
-  padding-top: 10%;
+  padding-top: 8%;
 }
 
 .add {
@@ -67,7 +156,84 @@
 .button {
   width: 80%;
   margin: 10px 10% 20px;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background-color: #f1f1f1;
+  outline: none;
+  border: 0.5px solid #bdbcbc;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+}
+.button:hover {
+  background-color: #e9e9e9;
 }
 li {
   list-style-type: none;
+}
+
+.tagsel {
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-wrap: wrap;
+  padding: 10px;
+  border: 0.5px solid #d4d3d3;
+  background-color: #f5f5f5;
+  min-height: 160px;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.tagsselli {
+  margin: 10px;
+  background-color: white;
+  padding: 10px;
+  flex: 15%;
+  border: 0.5px solid #d1d1d1;
+  flex-grow: 0;
+  text-align: center;
+  position: relative;
+}
+
+.cross {
+  position: absolute;
+  right: -5px;
+  top: -15px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.err {
+  color: rgb(212, 55, 55);
+  position: absolute;
+  bottom: -20px;
+}
+
+.btn {
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  letter-spacing: 1px;
+  background-color: #f1f1f1;
+  outline: none;
+  border: 0.5px solid #bdbcbc;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.btn:hover {
+  background-color: #e9e9e9;
 }

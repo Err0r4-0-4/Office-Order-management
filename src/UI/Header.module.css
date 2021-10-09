@@ -1,5 +1,7 @@
 .pre {
-  height: 150px;
+  height: 80px;
+  margin-bottom: 20px;
+  z-index: 1000;
 }
 .header {
   position: fixed;
@@ -14,6 +16,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 20px 18px;
+  z-index: 1000;
 }
 .name h1 {
   font-size: 24px;

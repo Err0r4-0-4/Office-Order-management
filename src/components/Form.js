@@ -45,9 +45,12 @@ export default function Form() {
         .get();
       let allKeywords = keywordDoc.data().keywords;
       allKeywords = [...allKeywords, ...keywords];
-      await db.collection("keywords").doc("1sKJt3XpeYiOyQgFcFaj").update({
-        keywords: allKeywords,
-      });
+      await db
+        .collection("keywords")
+        .doc("1sKJt3XpeYiOyQgFcFaj")
+        .update({
+          keywords: allKeywords,
+        });
       console.log("Doc Id: ", orders.id);
       setOrderUploaded(true);
       setTitle("");
@@ -101,7 +104,7 @@ export default function Form() {
     setAddons([...p]);
   };
   let options = addons.map((addon) => (
-    <li className={styles.addons}>
+    <li className={styles.addons} className={styles.tagsselli}>
       {addon}
       <span id={addon} className={styles.cross} onClick={removeAddon}>
         x
@@ -132,18 +135,25 @@ export default function Form() {
   return (
     <div>
       <form onSubmit={uploadForm} className={styles.form}>
+        <h1 className={styles.h1}>Upload a order</h1>
         <div className={styles.one}>
-          <h1>Upload image</h1>
-          <input
-            type="text"
-            placeholder="Title"
-            onChange={(e) => setTitle(e.target.value)}
-            //value={title}
-            className={styles.hundred}
-          />
+          <h1 className={styles.h2}>Order number</h1>
+          <div className={styles.name}>
+            <div className={styles.iiit}>IIITV/21-22/</div>
+            <input
+              type="text"
+              placeholder="Next Order"
+              onChange={(e) => setTitle(e.target.value)}
+              //value={title}
+              className={styles.namei}
+            />
+          </div>
           <br />
         </div>
+
         <div className={styles.one}>
+          <h1 className={styles.h2}>Upload image</h1>
+
           <input
             type="file"
             accept="image/*"
@@ -153,8 +163,9 @@ export default function Form() {
           />
           <br />
         </div>
-        <h3>Internal/External</h3>
         <div className={styles.one}>
+          <h3 className={styles.h2}>Internal/External</h3>
+
           <span>
             <input
               type="radio"
@@ -178,8 +189,9 @@ export default function Form() {
           </span>
           <br></br>
         </div>
-        <h3>Visibility</h3>
         <div className={styles.one}>
+          <h3 className={styles.h2}>Visibility</h3>
+
           <span>
             <input
               type="checkbox"
@@ -228,30 +240,43 @@ export default function Form() {
           onChange={handleOnChange}
           value={title}
         /> */}
-        <select
-          name="addons"
-          className={styles.one}
-          id="dropdown"
-          onChange={addonHandler}
-        >
-          <option disabled selected value>
-            {" "}
-            -- select --{" "}
-          </option>
-          <option value="Private">Private</option>
-          <option value="Public">Public</option>
-          <option value="Mandatory">Mandatory</option>
-          <option value="Hidden">Hidden</option>
-          <option value="Student">Student</option>
-        </select>
-
         <div className={styles.one}>
-          {options}
-          <p style={{ color: "red" }}>{addonError}</p>
+          <h2 className={styles.h2}>Tags along</h2>
+          <select
+            name="addons"
+            id="dropdown"
+            onChange={addonHandler}
+            className={styles.hundred}
+          >
+            <option disabled selected value>
+              {" "}
+              -- select --{" "}
+            </option>
+            <option value="Private">Private</option>
+            <option value="Public">Public</option>
+            <option value="Mandatory">Mandatory</option>
+            <option value="Hidden">Hidden</option>
+            <option value="Student">Student</option>
+            <option value="Student2">Student2</option>
+            <option value="Student3">Student3</option>
+            <option value="Student4">Student4</option>
+          </select>
         </div>
-        <div>
-          <input type="text" id="keywordsInput" placeholder="Add Keywords" />{" "}
-          <span onClick={keywordsHandler}>ADD</span>
+        <div className={styles.tagsel}>
+          {options}
+          <p className={styles.err}>{addonError}</p>
+        </div>
+        <div className={styles.one}>
+          <h2 className={styles.h2}>Add keywords</h2>
+          <input
+            type="text"
+            id="keywordsInput"
+            placeholder="Add Keywords"
+            className={styles.hundred}
+          />{" "}
+          <button onClick={keywordsHandler} className={styles.btn}>
+            ADD
+          </button>
         </div>
         {/* <div className={styles.one}>
           <div className={styles.add}>
@@ -293,6 +318,7 @@ export default function Form() {
           </div>
           <br />
         </div> */}
+
         <button className={styles.button}>Upload Order </button>
       </form>
       {orderUploaded ? (
