@@ -1,30 +1,31 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Cambay", sans-serif;
-  overflow-x: hidden;
-}
 .pre {
   height: 150px;
 }
 .header {
   position: fixed;
   top: 0px;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.884);
+  width: 100%;
+  background-color: #2c2c2c;
   color: white;
   margin: 0;
   padding: 0;
   font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px 18px;
 }
-
+.name h1 {
+  font-size: 24px;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
 .header ul {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
 }
-.circle {
+/* .circle {
   cursor: pointer;
   height: 100px;
   width: 100px;
@@ -58,39 +59,58 @@
   -ms-transform: scale(1.15);
   -o-transform: scale(1.15);
   padding: 0px;
-}
+} */
 .header ul li {
-  width: 105px;
+  font-weight: 400;
+  font-size: 22px;
   text-align: center;
   list-style-type: none;
-  padding: 5px 2px 10px;
+
   margin: 0px 10px;
-  font-weight: 500;
   letter-spacing: 2px;
-  border-bottom: 0px solid rgba(0, 0, 0, 0.521);
   transition: all ease-in-out 0.2s;
   -webkit-transition: all ease-in-out 0.2s;
   -moz-transition: all ease-in-out 0.2s;
   -ms-transition: all ease-in-out 0.2s;
   -o-transition: all ease-in-out 0.2s;
-}
-
-.header ul li:hover:not(.circleli) {
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-bottom: 2px solid rgb(209, 209, 209);
-  padding-bottom: 2px;
-  cursor: pointer;
-  letter-spacing: 3px;
+  color: white;
 }
 
 .link {
+  border-bottom: 2px solid #2c2c2c;
+
   color: white;
   text-decoration: none;
+  font-size: 20px;
+  display: inline-block;
+  position: relative;
+  padding: 10px 2px 3px;
 }
+
+.link:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #f5f5f5;
+  transform-origin: bottom right;
+  transition: transform 0.4s ease;
+  -webkit-transition: transform 0.4s ease;
+  -moz-transition: transform 0.4s ease;
+  -ms-transition: transform 0.4s ease;
+  -o-transition: transform 0.4s ease;
+  transition-delay: 0.1s;
+  margin-top: 5px;
+}
+
+.link:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom right;
+}
+
 .role {
   display: inline-block;
   text-align: center;
@@ -102,9 +122,7 @@
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
 }
-/*
+
 .active {
-  letter-spacing: 5px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid white !important;
 }
-*/

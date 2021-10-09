@@ -19,6 +19,9 @@ const Header = () => {
     <React.Fragment>
       <div className={styles.pre}></div>
       <div className={styles.header}>
+        <div className={styles.name}>
+          <h1>Office Order Manager</h1>
+        </div>
         <ul>
           <li>
             <NavLink
@@ -48,14 +51,14 @@ const Header = () => {
               Previous
             </NavLink>
           </li>
-          <li className={styles.circleli}>
+          {/* <li className={styles.circleli}>
             <div className={styles.circle}>
               <img src={img1} className={styles.circleimg} alt="logo" />
             </div>
-          </li>
+          </li> */}
           <li>
             <NavLink
-              to="#"
+              to="/about"
               activeClassName={styles.active}
               className={styles.link}
             >
@@ -64,7 +67,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              to="#"
+              to="/iiitv"
               activeClassName={styles.active}
               className={styles.link}
             >
@@ -73,7 +76,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              to="#"
+              to="/out"
               activeClassName={styles.active}
               className={styles.link}
               onClick={signout}
@@ -82,7 +85,7 @@ const Header = () => {
             </NavLink>
           </li>
         </ul>
-        <div className={styles.role}> {role}</div>
+        {/* <div className={styles.role}> {role}</div> */}
       </div>
     </React.Fragment>
   );
