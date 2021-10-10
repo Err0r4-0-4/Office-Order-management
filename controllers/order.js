@@ -74,3 +74,17 @@ exports.uploadOrder = async (req, res, next) => {
     res.status(400).send({ message: error.message });
   }
 };
+
+exports.getKeywords = async (req, res, next) => {
+  try {
+    let keywords = await db.collection("keywords").get();
+    let data = [];
+    keywords.forEach((doc) => {
+      data.push(doc.data());
+    });
+    res.status(200).send({ keywords: data[0].keywords });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ message: error.message });
+  }
+};
