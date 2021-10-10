@@ -28,18 +28,42 @@
   min-width: 200px;
   max-width: 250px;
   margin: 10px;
-  height: 420px;
+  height: 320px;
+  position: relative;
 }
 
-.img {
-  padding: 10px;
-  margin: auto;
-  width: 90%;
+.back {
+  height: 60px;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.315),
+      rgba(255, 255, 255, 0.493)
+    ),
+    url("../Images/back.jpg");
+  background-position: center;
   border-radius: 6px 6px 0 0;
   -webkit-border-radius: 6px 6px 0 0;
   -moz-border-radius: 6px 6px 0 0;
   -ms-border-radius: 6px 6px 0 0;
   -o-border-radius: 6px 6px 0 0;
+  margin-bottom: 40px;
+}
+.img {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  margin: auto;
+  width: 80px;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 
 .personal {
@@ -51,7 +75,8 @@
   font-size: 14px;
   font-weight: 300;
   letter-spacing: 0;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .nameroll {
@@ -100,4 +125,10 @@
 
 .link ul li a:hover {
   text-decoration: underline;
+}
+
+@media all and (max-width: 1200px) {
+  .new {
+    margin: 30px;
+  }
 }

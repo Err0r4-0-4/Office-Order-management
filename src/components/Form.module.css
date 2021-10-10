@@ -6,6 +6,7 @@
   padding: 30px 20px;
   font-size: 18px;
   z-index: -2;
+  min-width: 640px;
 }
 
 .h1 {

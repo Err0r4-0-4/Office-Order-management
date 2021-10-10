@@ -10,6 +10,7 @@ const New = () => {
     <div className={styles.new}>
       <div>
         <div className={styles.per}>
+          <div className={styles.back}></div>
           <img
             alt="profile picture"
             src={firebase.auth().currentUser.photoURL}

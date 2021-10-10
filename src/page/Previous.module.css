@@ -69,11 +69,11 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 .box {
-  width: 45%;
-  flex: 45%;
+  width: 47%;
+  flex: 47%;
   border: 1px solid black;
   margin: 20px 10px;
   overflow: hidden;
@@ -81,6 +81,7 @@
   justify-content: space-evenly;
   align-items: center;
   flex-grow: 0;
+  min-width: 500px;
 }
 /* .box2 {
   width: 470%;
@@ -131,7 +132,7 @@
   margin: 15px;
   border: 0.5px solid rgb(201, 201, 201);
   font-size: 16px;
-  min-width: 180px;
+  min-width: 120px;
 }
 
 .addons {
@@ -156,8 +157,8 @@
 }
 .previewMain {
   animation-name: slideopen;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-in;
+  animation-duration: 0.3s;
+  animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
 .hid {
@@ -170,7 +171,7 @@
 .closebut,
 .closebut2 {
   position: fixed;
-  left: calc(50% - 25px);
+  right: calc(50% - 20px);
   top: 55%;
   z-index: 10;
   height: 40px;
@@ -185,8 +186,12 @@
   cursor: pointer;
   z-index: 10;
 }
+.closebut {
+  animation-name: slidebuto;
+  animation-duration: 0.3s;
+  animation-timing-function: linear;
+}
 .closebut2 {
-  left: auto;
   right: -10px;
 }
 .preview {
@@ -207,5 +212,98 @@
   100% {
     overflow: hidden;
     width: 50%;
+  }
+}
+
+@keyframes slidebuto {
+  0% {
+    right: -10px;
+  }
+
+  100% {
+    right: calc(50% - 20px);
+  }
+}
+
+@keyframes slidebutc {
+  0% {
+    right: -10px;
+  }
+
+  100% {
+    right: calc(50% - 20px);
+  }
+}
+
+@media all and (max-width: 1300px) {
+  .link {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    min-width: 220px;
+  }
+  .box {
+    min-width: 200px;
+  }
+  .flex {
+    justify-content: space-between;
+  }
+}
+
+@media all and (max-width: 1050px) {
+  .link {
+    display: inline-block;
+    width: 40%;
+    margin: 10px 5%;
+    padding: 5px 10px;
+    min-width: 150px;
+    max-width: none;
+  }
+  .inner {
+    flex-grow: 1;
+  }
+  .box {
+    min-width: 200px;
+    flex: 80%;
+    width: 80%;
+    margin: 10px auto;
+    flex-grow: 0;
+  }
+  .flex {
+    justify-content: space-between;
+  }
+
+  .img {
+    height: 100px;
+    width: 80px;
+  }
+}
+
+@media all and (max-width: 1050px) {
+  .link {
+    display: block;
+    width: 80%;
+    padding: 8px;
+    margin: 10px 10%;
+    min-width: 150px;
+    max-width: none;
+  }
+  .inner {
+    flex-grow: 1;
+  }
+  .box {
+    min-width: 200px;
+    flex: 80%;
+    width: 80%;
+    margin: 10px auto;
+    flex-grow: 0;
+  }
+  .flex {
+    justify-content: space-between;
+  }
+
+  .img {
+    height: 100px;
+    width: 80px;
   }
 }

@@ -130,3 +130,356 @@
 .active {
   border-bottom: 2px solid white !important;
 }
+
+/**/
+
+.burger {
+  margin-right: 20px;
+  cursor: pointer;
+  display: none;
+  padding: 10px 20px;
+  max-width: 30px;
+}
+
+@keyframes openl1 {
+  0% {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    margin-bottom: -8px;
+  }
+  100% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    margin-bottom: 4px;
+  }
+}
+@keyframes closel1 {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    margin-bottom: 4px;
+  }
+  100% {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    margin-bottom: -8px;
+  }
+}
+
+@keyframes openl2 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 20px;
+  }
+}
+@keyframes closel2 {
+  0% {
+    opacity: 1;
+    width: 20px;
+  }
+  100% {
+    opacity: 0;
+    width: 20px;
+  }
+}
+
+@keyframes openl3 {
+  0% {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    margin-top: -8px;
+  }
+  100% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    margin-top: 4px;
+  }
+}
+@keyframes closel3 {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    margin-top: 4px;
+  }
+  100% {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    margin-top: -8px;
+  }
+}
+.lines1 {
+  width: 20px;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 4px 0;
+  animation-name: openl1;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.lines2 {
+  height: 2px;
+  background-color: #ffffff;
+  margin: 4px 0;
+  animation-name: openl2;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.lines3 {
+  width: 20px;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 4px 0;
+  animation-name: openl3;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.lines4 {
+  width: 20px;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 4px 0;
+  animation-name: closel1;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  padding: 1px;
+}
+.lines5 {
+  animation-name: closel2;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  height: 2px;
+  margin: 4px 0;
+  width: 0px;
+}
+.lines6 {
+  width: 20px;
+  height: 2px;
+  background-color: #ffffff;
+  margin: 4px 0;
+  animation-name: closel3;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.burgermenuo {
+  position: absolute;
+  top: 5vh;
+  left: 0%;
+  z-index: 1001;
+  font-family: "Montserrat", sans-serif;
+  min-height: 76px;
+  position: fixed;
+  display: none;
+  width: 80vw;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  animation-name: open;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.burgermenuc {
+  position: absolute;
+  top: 5vh;
+  left: 0%;
+  z-index: 1001;
+  font-family: "Montserrat", sans-serif;
+  min-height: 76px;
+  position: fixed;
+  display: none;
+  width: 0vw;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  animation-name: close;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes open {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 80vw;
+  }
+}
+@keyframes opent {
+  0% {
+    width: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    width: 80vw;
+    opacity: 1;
+  }
+}
+@keyframes close {
+  0% {
+    width: 80vw;
+  }
+  100% {
+    width: 0vw;
+  }
+}
+.menuc {
+  animation-name: close;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  z-index: 10001;
+  background-color: #2c2c2c;
+}
+.menuc ul {
+  width: 0vw;
+  height: 90vh;
+  opacity: 0;
+}
+
+.menuc ul li {
+  display: none;
+}
+.menuo {
+  background-color: #2c2c2c;
+  z-index: 10001;
+  animation-name: open;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  width: 80vw;
+}
+.menuo ul {
+  opacity: 0;
+
+  animation-name: opent;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  height: 90vh;
+}
+
+/**/
+
+.flex2 {
+  display: block;
+  padding: 0;
+  padding-top: 20px;
+  margin: 0;
+  list-style-type: none;
+  background-color: #2c2c2c;
+}
+
+.flex2 li {
+  width: 80%;
+  margin: 5px 10%;
+  border-bottom: 0.5px solid #636363;
+}
+.flex2 li a {
+  text-decoration: none;
+  display: block;
+  width: 90%;
+  margin: 15px 5%;
+  color: white;
+  padding: 15px;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-left: 25px;
+}
+.flex2 li a:hover,
+.flex2 li a:active {
+  border-left: 3px solid #808080;
+  padding-left: 22px;
+}
+.active2 {
+  border-left: 5px solid #808080 !important;
+  padding-left: 20px !important;
+}
+.botc {
+  display: none;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+.bot {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  z-index: 110001;
+  width: 100%;
+  animation-name: open;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.bot ul {
+  list-style-type: none;
+  width: 90%;
+  margin: 10px 5% 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0;
+}
+
+.bot ul li a:link,
+.bot ul li a:visited {
+  color: white;
+  border-bottom: 0px solid white;
+  padding: 5px;
+  padding-bottom: 5px;
+  transition: all ease 0.4s;
+  -webkit-transition: all ease 0.4s;
+  -moz-transition: all ease 0.4s;
+  -ms-transition: all ease 0.4s;
+  -o-transition: all ease 0.4s;
+}
+
+.bot ul li a:hover,
+.bot ul li a:active {
+  border-bottom: 2px solid white;
+}
+/**/
+
+@media all and (max-width: 1000px) {
+  .header ul {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .burgermenuo,
+  .burgermenuc,
+  .bot {
+    display: block;
+    display: flex;
+  }
+}
