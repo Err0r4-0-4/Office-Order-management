@@ -38,7 +38,7 @@ const Header = () => {
               activeClassName={styles.active}
               className={styles.link}
             >
-              New
+              New Order
             </NavLink>
           </li>
 

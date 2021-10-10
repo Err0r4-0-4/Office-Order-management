@@ -9,75 +9,13 @@ import { AiFillLinkedin } from "react-icons/ai";
 const Footer = () => (
   <div className={styles.footer}>
     <div className={styles.flex}>
-      <div className={styles.fitems}>
-        <ul className={styles.fitemli}>
-          <li>
-            <a href="#">Query</a>
-          </li>
-
-          <li>
-            <a href="#">Bug Report</a>
-          </li>
-          <li>
-            <a href="#">IIIT Vadodara</a>
-          </li>
-        </ul>
+      <div className={styles.sign}>
+        You are signed in as:
+        <p className={styles.signed}>201952202@iiitvadodara.ac.in</p>
+        <p className={styles.signed}>Aditya Singh</p>
       </div>
-      <div className={styles.fitems}>
-        <ul className={styles.fitemli}>
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#">SignOut</a>
-          </li>
-        </ul>
-      </div>
-      <div className={styles.fitems}>
-        <ul className={styles.fitemli}>
-          <li>
-            <a href="#">Office Order</a>
-          </li>
-          <li>
-            <a href="#">Recent Orders</a>
-          </li>
-          <li>
-            <a href="#">FAQs</a>
-          </li>
-        </ul>
-      </div>
+      <div className={styles.signed}>Report a Bug</div>
     </div>
-
-    <div className={styles.last}> ErrOr 4:O4</div>
-    <div className={styles.fitemsm}>
-      <ul className={styles.fitemli}>
-        <li>
-          <a href="#">
-            <AiFillGitlab />
-          </a>
-        </li>
-
-        <li>
-          <a href="#">
-            <AiFillInstagram />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <AiFillMail />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <AiFillLinkedin />
-          </a>
-        </li>
-      </ul>
-    </div>
-    <br />
     <div className={styles.last2}>...OFFICE ORDER MANAGEMENT...</div>
   </div>
 );

@@ -1,56 +1,211 @@
+.page {
+  margin: 30px 100px;
+  min-height: 50vh;
+  overflow-x: hidden;
+}
+.search {
+  background-color: rgb(250, 250, 250);
+  border: 0.5px solid rgb(224, 224, 224);
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  box-shadow: 0 0 10px rgb(248, 248, 248);
+  padding: 30px 10px;
+  min-height: 30vh;
+}
+
+.select {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0px 15px;
+  margin: 0 auto;
+  border-bottom: 0.5px solid rgb(197, 197, 197);
+}
+
+.sel {
+  padding: 8px 40px;
+  border-radius: 6px;
+  outline: none;
+  font-size: 17px;
+  min-width: 250px;
+  border-color: rgb(194, 194, 194);
+  letter-spacing: 0.5px;
+  font-weight: 300;
+}
+
+.h1 {
+  font-size: 28px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  position: relative;
+  text-transform: uppercase;
+  margin: 20px 0 30px;
+}
+.h1:after {
+  display: block;
+  content: " ";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 3px;
+  background-color: rgb(139, 139, 139);
+  width: 150px;
+  bottom: -10px;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+.big {
+  font-size: 20px;
+  font-weight: 600;
+}
 .flex {
   display: flex;
   flex-wrap: wrap;
-  width: 100rem;
-  justify-content: space-evenly start;
+  width: 100%;
+  justify-content: space-evenly;
 }
 .box {
-  width: 100%;
+  width: 45%;
+  flex: 45%;
   border: 1px solid black;
   margin: 20px 10px;
-  height: 140px;
   overflow: hidden;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-grow: 0;
 }
+/* .box2 {
+  width: 470%;
+  flex: 47%;
+  border: 1px solid black;
+  margin: 20px 10px;
+  margin-right: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+} */
 .img {
   float: left;
-  height: 139px;
-  width: 120px;
+  height: 110px;
+  width: 110px;
   overflow: hidden;
-  margin-right: 50px;
+  margin: 15px;
+  min-width: 110px;
+  flex: 110px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+.inner {
+  margin: 10px;
 }
 
 .title {
-  text-align: left;
-  margin: 5px 20px;
+  text-align: center;
+  margin: 10px 0;
   text-transform: capitalize;
   font-size: 24px;
   font-weight: 300;
 }
 .link {
-  display: block;
+  cursor: pointer;
+  display: inline-block;
   text-decoration: none;
-  color: white;
-  padding: 10px;
-  background-color: rgb(9, 9, 119);
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  max-width: 160px;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  background-color: rgb(216, 216, 216);
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
   text-align: center;
-  margin: 5px 60px;
+  margin: 15px;
+  border: 0.5px solid rgb(201, 201, 201);
+  font-size: 16px;
+  min-width: 180px;
 }
 
 .addons {
   display: block;
   padding-right: 10px;
 }
+
+.date {
+  font-weight: 300;
+  text-align: right;
+}
+
+.previewMain,
+.hid {
+  align-items: center;
+  position: fixed;
+  top: 10vh;
+  right: 0;
+  width: 50%;
+  height: 90vh;
+  background-color: rgb(32, 32, 32);
+}
 .previewMain {
-  margin: 80px;
-  width: 250%;
+  animation-name: slideopen;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+.hid {
+  width: 10px;
+}
+.close {
+  height: 90vh;
+  position: relative;
+}
+.closebut,
+.closebut2 {
+  position: fixed;
+  left: calc(50% - 25px);
+  top: 55%;
+  z-index: 10;
+  height: 40px;
+  width: 40px;
+  padding: 8px;
+  background-color: rgb(32, 32, 32);
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  cursor: pointer;
+  z-index: 10;
+}
+.closebut2 {
+  left: auto;
+  right: -10px;
 }
 .preview {
-  width: 100%;
-  height: 400px;
+  width: calc(100% - 10px);
+  height: 100%;
+  align-items: center;
+  margin: 0 10px 10px;
+  overflow: scroll;
+}
+@keyframes slideopen {
+  0% {
+    width: 10px;
+    overflow: hidden;
+  }
+  99% {
+    overflow: hidden;
+  }
+  100% {
+    overflow: hidden;
+    width: 50%;
+  }
 }

@@ -1,5 +1,5 @@
 .pre {
-  height: 80px;
+  height: 10vh;
   margin-bottom: 20px;
   z-index: 1000;
 }
@@ -17,6 +17,7 @@
   align-items: center;
   padding: 12px 20px 18px;
   z-index: 1000;
+  height: 10vh;
 }
 .name h1 {
   font-size: 24px;
@@ -80,7 +81,7 @@
 }
 
 .link {
-  border-bottom: 2px solid #2c2c2c;
+  border-bottom: 3px solid #2c2c2c;
 
   color: white;
   text-decoration: none;
@@ -95,7 +96,7 @@
   position: absolute;
   width: 100%;
   transform: scaleX(0);
-  height: 2px;
+  height: 1px;
   bottom: -2px;
   left: 0;
   background-color: #f5f5f5;
