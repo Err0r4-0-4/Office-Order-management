@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./New.module.css";
 import firebase from "firebase";
-
+import img from "../Images/a.png";
 import Form from "../components/Form";
 //import TodoList from "../components/TodoList";
 //import UploadImage from "../components/UploadImage";
@@ -11,11 +11,7 @@ const New = () => {
       <div>
         <div className={styles.per}>
           <div className={styles.back}></div>
-          <img
-            alt="profile picture"
-            src={firebase.auth().currentUser.photoURL}
-            className={styles.img}
-          />
+          <img alt="profile picture" src={img} className={styles.img} />
           <div className={styles.personal}>
             <p className={styles.nameroll}>
               {firebase
