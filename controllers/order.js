@@ -88,3 +88,18 @@ exports.getKeywords = async (req, res, next) => {
     res.status(400).send({ message: error.message });
   }
 };
+
+exports.auth = (req, res, next) => {
+  admin
+    .auth()
+    .verifyIdToken(req.body.idToken)
+    .then((decodedToken) => {
+      console.log(decodedToken);
+      const uid = decodedToken.uid;
+      // ...
+    })
+    .catch((error) => {
+      // Handle error
+      console.log(error);
+    });
+};
