@@ -71,7 +71,13 @@
   width: 100%;
   justify-content: space-between;
 }
-.box {
+.flex2 {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+.flex .box {
   width: 47%;
   flex: 47%;
   border: 1px solid rgb(189, 186, 186);
@@ -84,7 +90,22 @@
   min-width: 500px;
   background-color: rgb(248, 248, 248);
 }
-.box2 {
+
+.flex2 .box {
+  width: 47%;
+  flex: 47%;
+  border: 1px solid rgb(189, 186, 186);
+  margin: 20px 40% 10px 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-grow: 0;
+  min-width: 500px;
+  background-color: rgb(248, 248, 248);
+}
+
+/* .box2 {
   width: 470%;
   flex: 47%;
   border: 1px solid black;
@@ -93,7 +114,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-}
+} */
 .img {
   float: left;
   height: 110px;

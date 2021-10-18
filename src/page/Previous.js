@@ -16,6 +16,7 @@ const Previous = () => {
   const f2 = () => {
     setopen(!open);
   };
+
   const [orders, setOrders] = useState([]);
   const [showorders, setshoworders] = useState(null);
   const [search, setsearch] = useState("");
@@ -93,6 +94,7 @@ const Previous = () => {
             </button>
             {/* <span className={styles.addons}>{doc.addons}</span> */}
           </div>
+          {console.log(open)}
         </div>
       ));
 
@@ -116,7 +118,6 @@ const Previous = () => {
         <div className={styles.select}>
           <select onChange={keywordSearch} className={styles.sel}>
             <option selected value>
-              {" "}
               All
             </option>
             {keywords}
@@ -126,7 +127,7 @@ const Previous = () => {
           </p>
         </div>
         <h1 className={styles.h1}>Previous Orders</h1>
-        <div className={styles.flex}>
+        <div className={open ? styles.flex2 : styles.flex}>
           {/* <Showimage /> */}
           {showorders ? showorders : orders}
         </div>

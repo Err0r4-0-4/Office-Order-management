@@ -7,7 +7,7 @@
   position: fixed;
   top: 0px;
   width: 100%;
-  background-color: #2c2c2c;
+  background-color: rgb(32, 32, 32);
   color: white;
   margin: 0;
   padding: 0;
@@ -81,7 +81,7 @@
 }
 
 .link {
-  border-bottom: 3px solid #2c2c2c;
+  border-bottom: 3px solid rgb(32, 32, 32);
 
   color: white;
   text-decoration: none;
