@@ -23,6 +23,7 @@ exports.uploadOrder = async (req, res, next) => {
     let visibility = req.body.visibility;
     let type = req.body.type;
     let keywords = req.body.keywords;
+    console.log(req.body);
     let file = req.files.file;
     console.log(file);
     //let id = uuidv4();
