@@ -67,6 +67,7 @@ const Previous = () => {
   const preViewHandler = (e) => {
     console.log(e);
     setPreviewURL(e);
+    setopen(true);
   };
   useEffect(() => {
     async function getData(params) {
@@ -94,7 +95,6 @@ const Previous = () => {
             </button>
             {/* <span className={styles.addons}>{doc.addons}</span> */}
           </div>
-          {console.log(open)}
         </div>
       ));
 

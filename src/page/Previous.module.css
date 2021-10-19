@@ -95,7 +95,7 @@
   width: 47%;
   flex: 47%;
   border: 1px solid rgb(189, 186, 186);
-  margin: 20px 40% 10px 20px;
+  margin: 20px 40% 20px 10px;
   overflow: hidden;
   display: flex;
   justify-content: space-evenly;
@@ -239,6 +239,20 @@
   }
 }
 
+@keyframes slideopen2 {
+  0% {
+    width: 10px;
+    overflow: hidden;
+  }
+  99% {
+    overflow: hidden;
+  }
+  100% {
+    overflow: hidden;
+    width: 95%;
+  }
+}
+
 @keyframes slidebuto {
   0% {
     right: -10px;
@@ -259,6 +273,26 @@
   }
 }
 
+@keyframes slidebuto2 {
+  0% {
+    right: -10px;
+  }
+
+  100% {
+    right: calc(95% - 20px);
+  }
+}
+
+@keyframes slidebutc2 {
+  0% {
+    right: -10px;
+  }
+
+  100% {
+    right: calc(95% - 20px);
+  }
+}
+
 @media all and (max-width: 1300px) {
   .link {
     display: block;
@@ -266,7 +300,8 @@
     margin: 10px auto;
     min-width: 220px;
   }
-  .box {
+  .flex .box,
+  .flex2 .box {
     min-width: 200px;
   }
   .flex {
@@ -274,7 +309,7 @@
   }
 }
 
-@media all and (max-width: 1050px) {
+@media all and (max-width: 1150px) {
   .link {
     display: inline-block;
     width: 40%;
@@ -286,7 +321,53 @@
   .inner {
     flex-grow: 1;
   }
-  .box {
+  .flex .box,
+  .flex2 .box {
+    min-width: 200px;
+    flex: 80%;
+    width: 80%;
+    margin: 10px auto;
+    flex-grow: 0;
+  }
+  .flex {
+    justify-content: space-between;
+  }
+
+  .img {
+    height: 100px;
+    width: 80px;
+  }
+
+  .previewMain {
+    animation-name: slideopen2;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  .closebut {
+    animation-name: slidebuto2;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+    right: calc(95% - 20px);
+  }
+}
+
+@media all and (max-width: 1050px) {
+  .link {
+    display: block;
+    width: 80%;
+    padding: 6px;
+    margin: 15px 10%;
+    min-width: 150px;
+    max-width: none;
+    font-size: 14px;
+  }
+  .inner {
+    flex-grow: 1;
+  }
+  .flex .box,
+  .flex2 .box {
     min-width: 200px;
     flex: 80%;
     width: 80%;
@@ -303,31 +384,66 @@
   }
 }
 
-@media all and (max-width: 1050px) {
-  .link {
-    display: block;
-    width: 80%;
-    padding: 8px;
-    margin: 10px 10%;
-    min-width: 150px;
-    max-width: none;
+@media all and (max-width: 900px) {
+  .page {
+    margin: 30px;
   }
-  .inner {
-    flex-grow: 1;
-  }
-  .box {
+}
+
+@media all and (max-width: 700px) {
+  .flex .box,
+  .flex2 .box {
     min-width: 200px;
-    flex: 80%;
-    width: 80%;
+    flex: 90%;
+    width: 90%;
     margin: 10px auto;
     flex-grow: 0;
   }
-  .flex {
-    justify-content: space-between;
+}
+
+@media all and (max-width: 600px) {
+  .flex .box,
+  .flex2 .box {
+    min-width: 200px;
+    flex: 95%;
+    width: 95%;
+    margin: 10px auto;
+    flex-grow: 0;
+  }
+}
+
+@media all and (max-width: 550px) {
+  .page {
+    margin: 20px 15px 30px 10px;
+    padding: 0;
+  }
+  .hid {
+    width: 5px;
+  }
+
+  .search {
+    padding: 15px 2px;
+  }
+  .select {
+    width: 90%;
+    flex-wrap: wrap;
+    justify-content: end;
+  }
+  .select p {
+    margin-right: 5px;
+    font-size: 12px;
+  }
+  .select .big {
+    font-size: 16px;
+  }
+  .sel {
+    width: 100%;
+    padding: 3px 20px;
   }
 
   .img {
     height: 100px;
-    width: 80px;
+    width: 20px;
+    margin: 0;
   }
 }

@@ -350,12 +350,41 @@
     width: 0vw;
   }
 }
+
+@keyframes open2 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100vw;
+  }
+}
+/* @keyframes opent2 {
+  0% {
+    width: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    width: 100vw;
+    opacity: 1;
+  }
+} */
+@keyframes close2 {
+  0% {
+    width: 100vw;
+  }
+  100% {
+    width: 0vw;
+  }
+}
 .menuc {
   animation-name: close;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
   z-index: 10001;
-  background-color: #2c2c2c;
+  background-color: #242424;
 }
 .menuc ul {
   width: 0vw;
@@ -367,7 +396,7 @@
   display: none;
 }
 .menuo {
-  background-color: #2c2c2c;
+  background-color: #242424;
   z-index: 10001;
   animation-name: open;
   animation-duration: 0.5s;
@@ -376,7 +405,6 @@
 }
 .menuo ul {
   opacity: 0;
-
   animation-name: opent;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
@@ -391,7 +419,7 @@
   padding-top: 20px;
   margin: 0;
   list-style-type: none;
-  background-color: #2c2c2c;
+  background-color: #242424;
 }
 
 .flex2 li {
@@ -481,5 +509,27 @@
   .bot {
     display: block;
     display: flex;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .burgermenuc,
+  .menuc {
+    animation-name: close2;
+  }
+
+  .burgermenuo,
+  .menuo {
+    animation-name: open2;
+  }
+
+  .flex2 li {
+    width: 100%;
+    transition: width ease-in 0.2s;
+    -webkit-transition: width ease-in 0.2s;
+    -moz-transition: width ease-in 0.2s;
+    -ms-transition: width ease-in 0.2s;
+    -o-transition: width ease-in 0.2s;
+    transition-delay: 0.2s;
   }
 }
