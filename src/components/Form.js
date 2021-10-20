@@ -3,8 +3,11 @@ import firebase from "../util/firebase";
 import UploadImage from "./UploadImage";
 import { v4 as uuid } from "uuid";
 import styles from "./Form.module.css";
+import axios from "axios";
 const db = firebase.firestore();
 var storageRef = firebase.storage().ref();
+
+
 export default function Form() {
   let a = [];
   const [title, setTitle] = useState("");
@@ -21,37 +24,31 @@ export default function Form() {
     console.log("DownloadURL");
     try {
       e.preventDefault();
-      const id = uuid();
-      var mountainsRef = storageRef.child(id);
-      await mountainsRef.put(file);
-      //setVisibility(a);
-      console.log(visibility);
-      let DownloadURL = await storageRef.child(id).getDownloadURL();
 
-      console.log(DownloadURL);
-      console.log(title);
-      console.log(file);
-      let orders = await db.collection("orders").add({
-        title: title,
-        imageUrl: DownloadURL,
-        addons: addons,
-        visibility: visibility,
-        type: type,
-        keywords: keywords,
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("visibility", visibility);
+      formData.append("addons", addons);
+      formData.append("type", type);
+      formData.append("keywords", keywords);
+      formData.append("file", file);
+
+
+
+      console.log(formData);
+
+      axios
+      .post("https://office-order-backend.herokuapp.com/office/upload", formData)
+      .then( async (res) => {
+  
+        console.log(res);
+ 
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      let keywordDoc = await db
-        .collection("keywords")
-        .doc("1sKJt3XpeYiOyQgFcFaj")
-        .get();
-      let allKeywords = keywordDoc.data().keywords;
-      allKeywords = [...allKeywords, ...keywords];
-      await db
-        .collection("keywords")
-        .doc("1sKJt3XpeYiOyQgFcFaj")
-        .update({
-          keywords: allKeywords,
-        });
-      console.log("Doc Id: ", orders.id);
+      
+      // console.log("Doc Id: ", orders.id);
       setOrderUploaded(true);
       setTitle("");
       setFile({});
@@ -132,6 +129,7 @@ export default function Form() {
     input.value = "";
     console.log(newKeywords);
   };
+  
   return (
     <div>
       <form onSubmit={uploadForm} className={styles.form}>
@@ -274,9 +272,9 @@ export default function Form() {
             placeholder="Add Keywords"
             className={styles.hundred}
           />{" "}
-          <button onClick={keywordsHandler} className={styles.btn}>
+          <div onClick={keywordsHandler} className={styles.btn}>
             ADD
-          </button>
+          </div>
         </div>
         {/* <div className={styles.one}>
           <div className={styles.add}>
