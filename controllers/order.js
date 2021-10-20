@@ -138,7 +138,7 @@ exports.getLastMember = async (req, res, next) => {
   }
 };
 
-exports.getParentOrder = (req, res, next) => {
+exports.getParentOrder = async (req, res, next) => {
   try {
     let members = await db
       .collection("Families")
