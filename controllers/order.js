@@ -96,7 +96,7 @@ exports.uploadOrder = async (req, res, next) => {
           .collection("Families")
           .doc(req.body.familyId)
           .update({ lastOrder: order });
-        await db.collection("orders").doc(req.body.familyId).update({
+        await db.collection("orders").doc(orderDoc.id).update({
           familyId: req.body.familyId,
         });
         await db
