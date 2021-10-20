@@ -48,6 +48,17 @@ exports.uploadOrder = async (req, res, next) => {
         bucket.name
       }/o/${encodeURI(blob.name)}?alt=media`;
 
+      let order = {
+        title: title,
+        imageUrl: publicUrl,
+        addons: addons,
+        visibility: visibility,
+        type: type,
+        keywords: keywords,
+        familyId: "",
+      };
+      let orderDoc = await db.collection("orders").add(order);
+
       let keywordDoc = await db
         .collection("keywords")
         .doc("1sKJt3XpeYiOyQgFcFaj")
@@ -67,17 +78,9 @@ exports.uploadOrder = async (req, res, next) => {
           .collection("members")
           .doc(orderDoc.id)
           .set(order);
-
-        let order = {
-          title: title,
-          imageUrl: publicUrl,
-          addons: addons,
-          visibility: visibility,
-          type: type,
-          keywords: keywords,
+        await db.collection("orders").doc(orderDoc.id).update({
           familyId: newOrder.id,
-        };
-        let orderDoc = await db.collection("orders").add(order);
+        });
       } else {
         await db
           .collection("Families")
