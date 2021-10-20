@@ -75,6 +75,17 @@ exports.uploadOrder = async (req, res, next) => {
           .collection("members")
           .doc(orderDoc.id)
           .set(order);
+
+        let order = {
+          title: title,
+          imageUrl: publicUrl,
+          addons: addons,
+          visibility: visibility,
+          type: type,
+          keywords: keywords,
+          familyId: newOrder.id,
+        };
+        let orderDoc = await db.collection("orders").add(order);
       } else {
         await db
           .collection("Families")
@@ -86,6 +97,16 @@ exports.uploadOrder = async (req, res, next) => {
           .collection("Families")
           .doc(req.body.familyId)
           .update({ lastOrder: order });
+        let order = {
+          title: title,
+          imageUrl: publicUrl,
+          addons: addons,
+          visibility: visibility,
+          type: type,
+          keywords: keywords,
+          familyId: req.body.familyId,
+        };
+        let orderDoc = await db.collection("orders").add(order);
       }
       res.status(200).send({ message: "upload successfull" });
     });
@@ -119,6 +140,30 @@ exports.getLastMember = async (req, res, next) => {
       results.push(doc.data());
     });
     res.status(200).send({ keywords: results });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ message: error.message });
+  }
+};
+
+exports.getParentOrder = (req, res, next) => {
+  try {
+    let members = await db
+      .collection("Families")
+      .doc(req.body.familyId)
+      .collection("members")
+      .get();
+    let temp = [];
+    members.forEach((doc) => {
+      temp.push(doc.data());
+    });
+    let result;
+    if (temp.length === 1) {
+      result = temp[0];
+    } else {
+      result = temp[temp.length - 2];
+    }
+    res.status(200).send({ data: res });
   } catch (error) {
     console.log(error);
     res.status(400).send({ message: error.message });
