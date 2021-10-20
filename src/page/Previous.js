@@ -45,6 +45,27 @@ const Previous = () => {
 
   }, []);
 
+  const getParentHandler = (doc) => {
+
+    console.log(doc.familyId);
+
+    const data = {
+      familyId : doc.familyId
+    };
+
+    axios
+    .post("https://office-order-backend.herokuapp.com/office/getParentOrder", data)
+    .then( async (res) => {
+
+      console.log(res);
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }
+
   const keywordSearch = (e) => {
     console.log(e.target.value);
     console.log(ordersD);
@@ -66,8 +87,8 @@ const Previous = () => {
             >
               Preview Order
             </button>
-            <button target="_top" className={styles.link}>
-              Parent Order
+            <button target="_top" className={styles.link} onClick={(doc) => getParentHandler()}>
+              Parent Order.
             </button>
           </div>
 
@@ -101,7 +122,7 @@ const Previous = () => {
             >
               Preview Order
             </button>
-            <button target="_top" className={styles.link}>
+            <button target="_top" className={styles.link} onClick={() => getParentHandler(doc)}>
               Parent Order
             </button>
             {/* <span className={styles.addons}>{doc.addons}</span> */}
