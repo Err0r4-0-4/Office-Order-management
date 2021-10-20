@@ -81,6 +81,10 @@ exports.uploadOrder = async (req, res, next) => {
         await db.collection("orders").doc(orderDoc.id).update({
           familyId: newOrder.id,
         });
+        await db
+          .collection("Families")
+          .doc(newOrder.id)
+          .update({ lastOrder: { ...order, familyId: newOrder.id } });
       } else {
         await db
           .collection("Families")
@@ -92,16 +96,9 @@ exports.uploadOrder = async (req, res, next) => {
           .collection("Families")
           .doc(req.body.familyId)
           .update({ lastOrder: order });
-        let order = {
-          title: title,
-          imageUrl: publicUrl,
-          addons: addons,
-          visibility: visibility,
-          type: type,
-          keywords: keywords,
+        await db.collection("orders").doc(req.body.familyId).update({
           familyId: req.body.familyId,
-        };
-        let orderDoc = await db.collection("orders").add(order);
+        });
       }
       res.status(200).send({ message: "upload successfull" });
     });
