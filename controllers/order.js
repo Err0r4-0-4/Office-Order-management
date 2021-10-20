@@ -47,15 +47,15 @@ exports.uploadOrder = async (req, res, next) => {
       const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${
         bucket.name
       }/o/${encodeURI(blob.name)}?alt=media`;
-
-      await db.collection("orders").add({
+      let order = {
         title: title,
         imageUrl: publicUrl,
         addons: addons,
         visibility: visibility,
         type: type,
         keywords: keywords,
-      });
+      };
+      let orderDoc = await db.collection("orders").add(order);
       let keywordDoc = await db
         .collection("keywords")
         .doc("1sKJt3XpeYiOyQgFcFaj")
@@ -65,7 +65,28 @@ exports.uploadOrder = async (req, res, next) => {
       await db.collection("keywords").doc("1sKJt3XpeYiOyQgFcFaj").update({
         keywords: allKeywords,
       });
-
+      if (res.body.newFamily) {
+        let newOrder = await db
+          .collection("Families")
+          .add({ lastOrder: order });
+        await db
+          .collection("Families")
+          .doc(newOrder.id)
+          .collection("members")
+          .doc(orderDoc.id)
+          .set(order);
+      } else {
+        await db
+          .collection("Families")
+          .doc(req.body.familyId)
+          .collection("members")
+          .doc(orderDoc.id)
+          .set(order);
+        await db
+          .collection("Families")
+          .doc(req.body.familyId)
+          .update({ lastOrder: order });
+      }
       res.status(200).send({ message: "upload successfull" });
     });
 
@@ -84,6 +105,20 @@ exports.getKeywords = async (req, res, next) => {
       data.push(doc.data());
     });
     res.status(200).send({ keywords: data[0].keywords });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ message: error.message });
+  }
+};
+
+exports.getLastMember = async (req, res, next) => {
+  try {
+    let members = await db.collection("Families").get();
+    let results = [];
+    members.forEach((doc) => {
+      results.push(doc.data());
+    });
+    res.status(200).send({ keywords: results });
   } catch (error) {
     console.log(error);
     res.status(400).send({ message: error.message });
