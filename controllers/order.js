@@ -47,15 +47,7 @@ exports.uploadOrder = async (req, res, next) => {
       const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${
         bucket.name
       }/o/${encodeURI(blob.name)}?alt=media`;
-      let order = {
-        title: title,
-        imageUrl: publicUrl,
-        addons: addons,
-        visibility: visibility,
-        type: type,
-        keywords: keywords,
-      };
-      let orderDoc = await db.collection("orders").add(order);
+
       let keywordDoc = await db
         .collection("keywords")
         .doc("1sKJt3XpeYiOyQgFcFaj")
