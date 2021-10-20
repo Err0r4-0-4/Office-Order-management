@@ -99,6 +99,10 @@ exports.uploadOrder = async (req, res, next) => {
         await db.collection("orders").doc(req.body.familyId).update({
           familyId: req.body.familyId,
         });
+        await db
+          .collection("Families")
+          .doc(req.body.familyId)
+          .update({ lastOrder: { ...order, familyId: req.body.familyId } });
       }
       res.status(200).send({ message: "upload successfull" });
     });
