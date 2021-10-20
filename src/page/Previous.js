@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState, useRef } from "react";
 import Showimage from "../components/Showimage";
 import styles from "./Previous.module.css";
@@ -45,7 +44,6 @@ const Previous = () => {
     });
 
   }, []);
-
 
   const keywordSearch = (e) => {
     console.log(e.target.value);
