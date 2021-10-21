@@ -149,17 +149,22 @@ exports.getParentOrder = async (req, res, next) => {
       .doc(req.body.familyId)
       .collection("members")
       .get();
+    console.log(members);
     let temp = [];
     members.forEach((doc) => {
       temp.push(doc.data());
     });
     let result;
     if (temp.length === 1) {
+      console.log("in if");
+      console.log(temp);
       result = temp[0];
     } else {
+      console.log("in else");
       result = temp[temp.length - 2];
     }
-    res.status(200).send({ data: res });
+    console.log("result", result);
+    res.status(200).send({ data: result });
   } catch (error) {
     console.log(error);
     res.status(400).send({ message: error.message });
