@@ -56,8 +56,8 @@ exports.uploadOrder = async (req, res, next) => {
         type: type,
         keywords: keywords,
       };
-      let orderDoc = await db.collection("orders");
-
+      let orderDoc = await db.collection("orders").doc();
+      console.log(orderDoc.id);
       let keywordDoc = await db
         .collection("keywords")
         .doc("1sKJt3XpeYiOyQgFcFaj")
