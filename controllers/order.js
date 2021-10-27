@@ -109,9 +109,11 @@ exports.uploadOrder = async (req, res, next) => {
           .collection("Families")
           .doc(req.body.familyId)
           .update({
-            lastOrder: order,
-            familyId: newOrder.id,
-            familyName: req.body.familyName,
+            lastOrder: {
+              ...order,
+              familyId: newOrder.id,
+              familyName: req.body.familyName,
+            },
           });
         await db
           .collection("orders")
