@@ -111,7 +111,7 @@ exports.uploadOrder = async (req, res, next) => {
           .update({
             lastOrder: {
               ...order,
-              familyId: newOrder.id,
+              familyId: req.body.familyId,
               familyName: req.body.familyName,
             },
           });
