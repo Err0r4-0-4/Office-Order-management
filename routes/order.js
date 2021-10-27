@@ -8,5 +8,6 @@ route.post("/upload", orderController.uploadOrder);
 route.post("/keywords", orderController.getKeywords);
 route.post("/getLastMember", orderController.getLastMember);
 route.post("/getParentOrder", orderController.getParentOrder);
+route.post("/getOtherOrder", orderController.getOtherOrder);
 route.post("/auth", orderController.auth);
 module.exports = route;

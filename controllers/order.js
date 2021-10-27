@@ -234,3 +234,31 @@ exports.auth = (req, res, next) => {
       console.log(error);
     });
 };
+
+exports.getOtherOrder = async (req, res, next) => {
+  try {
+    let count = req.body.count;
+    let familyId = req.body.familyId;
+    let familyMember = await db
+      .collection("Families")
+      .doc(familyId)
+      .collection("members")
+      .get();
+    if (count > familyMember.size - 1 && count < 0) {
+      res.status(400).send({ message: "Order not Found!" });
+      return;
+    }
+    familyMember = await db
+      .collection("Families")
+      .doc(familyId)
+      .collection("members")
+      .where("count", "==", count)
+      .get();
+    familyMember = familyMember.docs[0].data();
+    console.log(familyMember);
+    res.status(200).send({ data: familyMember });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ message: error.message });
+  }
+};
