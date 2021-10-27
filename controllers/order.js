@@ -68,7 +68,7 @@ exports.uploadOrder = async (req, res, next) => {
         keywords: allKeywords,
       });
       if (req.body.newFamily === "true") {
-        let newOrder = await db.collection("Families");
+        let newOrder = await db.collection("Families").doc();
 
         await db
           .collection("Families")
