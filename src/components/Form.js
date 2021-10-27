@@ -83,6 +83,7 @@ export default function Form() {
       formData.append("keywords", keywords);
       formData.append("file", file);
       formData.append("newFamily", false);
+      formData.append("familyName", "xyz");
       formData.append("familyId", familyName)
 
       console.log(formData);
@@ -129,13 +130,14 @@ export default function Form() {
   };
   const removeAddon = (e) => {
     console.log(e.target.id);
-    let p = addons;
+    let p = keywords;
     let index = p.indexOf(e.target.id);
     p.splice(index, 1);
     setAddonError("");
-    setAddons([...p]);
+    setKeywords([...p]);
   };
-  let options = addons.map((addon) => (
+
+  let options = keywords.map((addon) => (
     <li className={styles.addons} className={styles.tagsselli}>
       {addon}
       <span id={addon} className={styles.cross} onClick={removeAddon}>
@@ -143,6 +145,7 @@ export default function Form() {
       </span>
     </li>
   ));
+
   let addonHandler = (e) => {
     console.log(e.target.value);
     let p = addons;
@@ -166,7 +169,9 @@ export default function Form() {
   };
 
   const addKeyWords = (event) => {
-    keywords.push(event.target.value);
+    console.log(keywords);
+    let t = keywords;
+    setKeywords([...t, event.target.value]);
     console.log(keywords);
   }
   
@@ -278,7 +283,7 @@ export default function Form() {
           onChange={handleOnChange}
           value={title}
         /> */}
-        <div className={styles.one}>
+        {/* <div className={styles.one}>
           <h2 className={styles.h2}>Tags along</h2>
           <select
             name="addons"
@@ -299,11 +304,11 @@ export default function Form() {
             <option value="Student3">Student3</option>
             <option value="Student4">Student4</option>
           </select>
-        </div>
-        <div className={styles.tagsel}>
+        </div> */}
+        {/* <div className={styles.tagsel}>
           {options}
           <p className={styles.err}>{addonError}</p>
-        </div>
+        </div> */}
         <div className={styles.one}>
           <h2 className={styles.h2}>Add keywords</h2>
           <input
@@ -322,13 +327,17 @@ export default function Form() {
             {keywordList}
           </select>
 
+          <div className={styles.tagsel}>
+            {options}
+            <p className={styles.err}>{addonError}</p>
+          </div>
+
           <div onClick={keywordsHandler} className={styles.btn}>
             ADD
           </div>
         </div>
 
-        {memberArray}
-        
+        {memberArray} 
 
         <button className={styles.button}>Upload Order </button>
       </form>
