@@ -68,29 +68,33 @@ exports.uploadOrder = async (req, res, next) => {
         keywords: allKeywords,
       });
       if (req.body.newFamily === "true") {
-        let newOrder = await db.collection("Families").doc();
-
+        let newFamilyId = await db.collection("Families").doc();
+        console.log(newFamilyId.id);
         await db
           .collection("Families")
-          .doc(newOrder.id)
+          .doc(newFamilyId.id)
           .collection("members")
           .doc(orderDoc.id)
-          .set(order);
+          .set({
+            ...order,
+            familyId: newFamilyId.id,
+            familyName: req.body.familyName,
+          });
         await db
           .collection("orders")
           .doc(orderDoc.id)
           .set({
             ...order,
-            familyId: newOrder.id,
+            familyId: newFamilyId.id,
             familyName: req.body.familyName,
           });
         await db
           .collection("Families")
-          .doc(newOrder.id)
+          .doc(newFamilyId.id)
           .set({
             lastOrder: {
               ...order,
-              familyId: newOrder.id,
+              familyId: newFamilyId.id,
               familyName: req.body.familyName,
             },
           });
