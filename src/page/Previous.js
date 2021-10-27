@@ -26,45 +26,40 @@ const Previous = () => {
   const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
-
     console.log("fetch");
 
     axios
-    .post("https://office-order-backend.herokuapp.com/office/keywords")
-    .then( async (res) => {
+      .post("https://office-order-backend.herokuapp.com/office/keywords")
+      .then(async (res) => {
+        console.log(res.data.keywords);
+        setKeywords(res.data.keywords.map((k) => <option>{k}</option>));
 
-      console.log(res.data.keywords);
-      setKeywords(res.data.keywords.map(k=><option>{k}</option>));
-
-      console.log(keywords);
-
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
+        console.log(keywords);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const getParentHandler = (doc) => {
-
     console.log(doc.familyId);
 
     const data = {
-      familyId : doc.familyId
+      familyId: doc.familyId,
     };
 
     axios
-    .post("https://office-order-backend.herokuapp.com/office/getParentOrder", data)
-    .then( async (res) => {
-
-      console.log(res);
-
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
-  }
+      .post(
+        "https://office-order-backend.herokuapp.com/office/getParentOrder",
+        data
+      )
+      .then(async (res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const keywordSearch = (e) => {
     console.log(e.target.value);
@@ -87,11 +82,14 @@ const Previous = () => {
             >
               Preview Order
             </button>
-            <button target="_top" className={styles.link} onClick={(doc) => getParentHandler()}>
+            <button
+              target="_top"
+              className={styles.link}
+              onClick={(doc) => getParentHandler()}
+            >
               Parent Order.
             </button>
           </div>
-
         </div>
       ))
     );
@@ -122,7 +120,11 @@ const Previous = () => {
             >
               Preview Order
             </button>
-            <button target="_top" className={styles.link} onClick={() => getParentHandler(doc)}>
+            <button
+              target="_top"
+              className={styles.link}
+              onClick={() => getParentHandler(doc)}
+            >
               Parent Order
             </button>
             {/* <span className={styles.addons}>{doc.addons}</span> */}
@@ -132,7 +134,6 @@ const Previous = () => {
 
       setOrders(docDataRender);
       setordersD(data);
-      
     }
     getData();
   }, []);
