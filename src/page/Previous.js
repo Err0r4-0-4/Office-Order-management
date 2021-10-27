@@ -1,9 +1,9 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState, useRef } from "react";
 import Showimage from "../components/Showimage";
 import styles from "./Previous.module.css";
 import firebase from "../util/firebase";
 import img from "../Images/pdf.png";
+import axios from "axios";
 import { AiOutlineClose, AiOutlineLeft } from "react-icons/ai";
 
 let db = firebase.firestore();
@@ -25,15 +25,47 @@ const Previous = () => {
   const [previewURL, setPreviewURL] = useState("");
   const [keywords, setKeywords] = useState([]);
 
-  // const submitHandler = (e) => {
-  //   console.log(orders);
-  //   setsearch(e.target.value);
-  //   let ser = e.target.value.toLowerCase();
-  //   console.log(e.target.value);
-  //   setshoworders(
-  //     orders.filter((e) => e.props.children[1].props.children.includes(ser))
-  //   );
-  // };
+  useEffect(() => {
+
+    console.log("fetch");
+
+    axios
+    .post("https://office-order-backend.herokuapp.com/office/keywords")
+    .then( async (res) => {
+
+      console.log(res.data.keywords);
+      setKeywords(res.data.keywords.map(k=><option>{k}</option>));
+
+      console.log(keywords);
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }, []);
+
+  const getParentHandler = (doc) => {
+
+    console.log(doc.familyId);
+
+    const data = {
+      familyId : doc.familyId
+    };
+
+    axios
+    .post("https://office-order-backend.herokuapp.com/office/getParentOrder", data)
+    .then( async (res) => {
+
+      console.log(res);
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }
+
   const keywordSearch = (e) => {
     console.log(e.target.value);
     console.log(ordersD);
@@ -55,11 +87,11 @@ const Previous = () => {
             >
               Preview Order
             </button>
-            <button target="_top" className={styles.link}>
-              Parent Order
+            <button target="_top" className={styles.link} onClick={(doc) => getParentHandler()}>
+              Parent Order.
             </button>
           </div>
-          {/* <span className={styles.addons}>{doc.addons}</span> */}
+
         </div>
       ))
     );
@@ -90,7 +122,7 @@ const Previous = () => {
             >
               Preview Order
             </button>
-            <button target="_top" className={styles.link}>
+            <button target="_top" className={styles.link} onClick={() => getParentHandler(doc)}>
               Parent Order
             </button>
             {/* <span className={styles.addons}>{doc.addons}</span> */}
@@ -100,15 +132,7 @@ const Previous = () => {
 
       setOrders(docDataRender);
       setordersD(data);
-      let keywords = await (
-        await db
-          .collection("keywords")
-          .doc("1sKJt3XpeYiOyQgFcFaj")
-          .get()
-      ).data().keywords;
-      setKeywords(
-        keywords.map((keyword) => <option value={keyword}>{keyword}</option>)
-      );
+      
     }
     getData();
   }, []);

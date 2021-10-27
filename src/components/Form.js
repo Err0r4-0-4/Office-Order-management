@@ -1,57 +1,104 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import firebase from "../util/firebase";
 import UploadImage from "./UploadImage";
 import { v4 as uuid } from "uuid";
 import styles from "./Form.module.css";
+import axios from "axios";
+import Member from "../Cards/LastMember/LastMember";
+
 const db = firebase.firestore();
 var storageRef = firebase.storage().ref();
+
 export default function Form() {
   let a = [];
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [file, setFile] = useState({});
   const [orderUploaded, setOrderUploaded] = useState(false);
-  //const [imageUrl, setImageUrl] = useState("");
   const [visibility, setVisibility] = useState([]);
   const [addons, setAddons] = useState([]);
   const [keywords, setKeywords] = useState([]);
+  const [keywordList, setkeywordList] = useState("");
   const [addonError, setAddonError] = useState("");
+  const [members, setMembers] = useState([]);
+  const [familyName, setFamilyName] = useState("");
+
+  useEffect(() => {
+
+    console.log("fetch");
+
+    axios
+    .post("https://office-order-backend.herokuapp.com/office/keywords")
+    .then( async (res) => {
+
+      console.log(res.data.keywords);
+      setkeywordList(res.data.keywords.map(k=><option>{k}</option>));
+
+      console.log(keywords);
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+
+    axios
+    .post("https://office-order-backend.herokuapp.com/office/getLastMember")
+    .then( async (res) => {
+
+      console.log(res.data.keywords);
+      setMembers(res.data.keywords);
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }, []);
+
+  const setFamilyHandler = (familyId) => {
+    setFamilyName(familyId);
+    console.log(familyId); 
+  }
+
+  let memberArray = (
+    <div>
+      {members.map((m) => (
+        <Member
+        id={m.lastOrder.familyId} setFamily={setFamilyHandler}/>
+      ))}
+    </div>
+  );
 
   const uploadForm = async (e) => {
     console.log("DownloadURL");
     try {
       e.preventDefault();
-      const id = uuid();
-      var mountainsRef = storageRef.child(id);
-      await mountainsRef.put(file);
-      //setVisibility(a);
-      console.log(visibility);
-      let DownloadURL = await storageRef.child(id).getDownloadURL();
 
-      console.log(DownloadURL);
-      console.log(title);
-      console.log(file);
-      let orders = await db.collection("orders").add({
-        title: title,
-        imageUrl: DownloadURL,
-        addons: addons,
-        visibility: visibility,
-        type: type,
-        keywords: keywords,
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("visibility", visibility);
+      formData.append("addons", addons);
+      formData.append("type", type);
+      formData.append("keywords", keywords);
+      formData.append("file", file);
+      formData.append("newFamily", false);
+      formData.append("familyId", familyName)
+
+      console.log(formData);
+
+      axios
+      .post("https://office-order-backend.herokuapp.com/office/upload", formData)
+      .then( async (res) => {
+  
+        console.log(res);
+ 
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      let keywordDoc = await db
-        .collection("keywords")
-        .doc("1sKJt3XpeYiOyQgFcFaj")
-        .get();
-      let allKeywords = keywordDoc.data().keywords;
-      allKeywords = [...allKeywords, ...keywords];
-      await db
-        .collection("keywords")
-        .doc("1sKJt3XpeYiOyQgFcFaj")
-        .update({
-          keywords: allKeywords,
-        });
-      console.log("Doc Id: ", orders.id);
+      
+      // console.log("Doc Id: ", orders.id);
       setOrderUploaded(true);
       setTitle("");
       setFile({});
@@ -60,23 +107,8 @@ export default function Form() {
     } catch (error) {
       console.log(error);
     }
-
-    //console.log(DownloadURL);
-    // let snap = db.collection("orders").add({
-
-    //  })
   };
 
-  // const createTodo = () => {
-  //   const todoRef = firebase.database().ref("Todo");
-  //   const todo = {
-  //     title,
-  //     complete: false,
-  //     imageUrl,
-  //   };
-
-  //   todoRef.push(todo);
-  // };
   const checkboxHandler = (e) => {
     if (e.target.checked) {
       //console.log(a)
@@ -132,6 +164,12 @@ export default function Form() {
     input.value = "";
     console.log(newKeywords);
   };
+
+  const addKeyWords = (event) => {
+    keywords.push(event.target.value);
+    console.log(keywords);
+  }
+  
   return (
     <div>
       <form onSubmit={uploadForm} className={styles.form}>
@@ -273,51 +311,24 @@ export default function Form() {
             id="keywordsInput"
             placeholder="Add Keywords"
             className={styles.hundred}
-          />{" "}
-          <button onClick={keywordsHandler} className={styles.btn}>
+          />
+          
+          {" "}
+
+          <select className={styles.sel} onChange = {addKeyWords}>
+            <option selected value>
+              All
+            </option>
+            {keywordList}
+          </select>
+
+          <div onClick={keywordsHandler} className={styles.btn}>
             ADD
-          </button>
-        </div>
-        {/* <div className={styles.one}>
-          <div className={styles.add}>
-            <ul className={styles.flexadd}>
-              <li
-                className={styles.addons}
-                onClick={() => addons.push("Private")}
-              >
-                Private
-              </li>
-              <li
-                className={styles.addons}
-                onClick={() => addons.push("Public")}
-              >
-                Public
-              </li>
-              <li
-                className={styles.addons}
-                onClick={() => addons.push("Mandatory")}
-              >
-                Mandatory
-              </li>
-              <li
-                className={styles.addons}
-                onClick={() => addons.push("Hidden")}
-              >
-                Hidden
-              </li>
-              <li
-                className={styles.addons}
-                onClick={() => addons.push("Student")}
-              >
-                Student
-              </li>
-              <li className={styles.addons} onClick={() => addons.push("Abcd")}>
-                Abcd
-              </li>
-            </ul>
           </div>
-          <br />
-        </div> */}
+        </div>
+
+        {memberArray}
+        
 
         <button className={styles.button}>Upload Order </button>
       </form>
