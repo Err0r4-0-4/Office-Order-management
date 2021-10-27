@@ -22,6 +22,7 @@ export default function Form() {
   const [addonError, setAddonError] = useState("");
   const [members, setMembers] = useState([]);
   const [familyName, setFamilyName] = useState("");
+  const [name, setName] = useState("");
 
   useEffect(() => {
 
@@ -82,8 +83,8 @@ export default function Form() {
       formData.append("type", type);
       formData.append("keywords", keywords);
       formData.append("file", file);
-      formData.append("newFamily", false);
-      formData.append("familyName", "xyz");
+      formData.append("newFamily", "false");
+      formData.append("familyName", name);
       formData.append("familyId", familyName)
 
       console.log(formData);
@@ -338,6 +339,9 @@ export default function Form() {
         </div>
 
         {memberArray} 
+
+        <input placeholder="new family" 
+         onChange={(e) => setName(e.target.value)}/>
 
         <button className={styles.button}>Upload Order </button>
       </form>

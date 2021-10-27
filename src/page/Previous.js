@@ -24,6 +24,9 @@ const Previous = () => {
   const [ordersD, setordersD] = useState([]);
   const [previewURL, setPreviewURL] = useState("");
   const [keywords, setKeywords] = useState([]);
+  const [familyId, setFamilyId] = useState([]);
+  const [count, setCount] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
 
@@ -47,7 +50,11 @@ const Previous = () => {
 
   const getParentHandler = (doc) => {
 
-    console.log(doc.familyId);
+    console.log(doc);
+
+    setFamilyId(doc.familyId);
+    setCount(doc.count);
+    setImage(doc.imageUrl);
 
     const data = {
       familyId : doc.familyId
@@ -59,11 +66,49 @@ const Previous = () => {
 
       console.log(res);
 
+      preViewHandler(res.data.data.imageUrl);
+
     })
     .catch((err) => {
       console.log(err);
     });
 
+  }
+
+  const navigateHandler = (e) => {
+    console.log(count);
+
+    let c = +count+1;
+
+    if(e==="prev"){
+      
+      c = +count-1;
+    }
+
+    console.log(c);
+
+    const data = {
+      familyId : familyId,
+      count : c
+    };
+
+    console.log(data);
+
+
+    axios
+    .post("https://office-order-backend.herokuapp.com/office/getOtherOrder", data)
+    .then( async (res) => {
+
+      console.log(res);
+
+      setImage(res.data.data.imageUrl);
+
+      // preViewHandler(res.data.data.imageUrl);
+
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   const keywordSearch = (e) => {
@@ -97,6 +142,7 @@ const Previous = () => {
     );
   };
   const preViewHandler = (e) => {
+    setImage(e);
     console.log(e);
     setPreviewURL(e);
     setopen(true);
@@ -122,7 +168,8 @@ const Previous = () => {
             >
               Preview Order
             </button>
-            <button target="_top" className={styles.link} onClick={() => getParentHandler(doc)}>
+            {console.log(doc.familyId, doc.count)}
+            <button  target="_top" className={styles.link} onClick={() => getParentHandler(doc)}>
               Parent Order
             </button>
             {/* <span className={styles.addons}>{doc.addons}</span> */}
@@ -160,7 +207,7 @@ const Previous = () => {
         <div className={styles.close}>
           <iframe
             className={styles.preview}
-            src={previewURL}
+            src={image}
             title="test"
             style={{ border: "1px solid black" }}
           />
@@ -177,6 +224,9 @@ const Previous = () => {
           </div>
         </div>
       </div>
+
+      <button onClick={() => navigateHandler("prev")}>previous</button >
+      <button onClick={() => navigateHandler("next")}>next</button>
     </div>
   );
 };
