@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./New.module.css";
 import firebase from "firebase";
-import img from "../Images/a.png";
 import Form from "../components/Form";
 //import TodoList from "../components/TodoList";
 //import UploadImage from "../components/UploadImage";
@@ -11,7 +10,11 @@ const New = () => {
       <div>
         <div className={styles.per}>
           <div className={styles.back}></div>
-          <img alt="profile picture" src={img} className={styles.img} />
+          <img
+            alt="profile picture"
+            src={firebase.auth().currentUser.photoURL}
+            className={styles.img}
+          />
           <div className={styles.personal}>
             <p className={styles.nameroll}>
               {firebase
@@ -31,7 +34,7 @@ const New = () => {
                 .toLocaleLowerCase()}
             </p>
             <p className={styles.small}>
-              Student at Indian Institute Of Information Technology Vadodara.
+              Student at Indian Institute of Information Technology Vadodara.
             </p>
             <p className={styles.small}>201952202@iiitvadodara.ac.in</p>
             <p className={styles.small}>2019 Batch</p>
