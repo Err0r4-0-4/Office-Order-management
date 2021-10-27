@@ -55,9 +55,8 @@ exports.uploadOrder = async (req, res, next) => {
         visibility: visibility,
         type: type,
         keywords: keywords,
-        familyId: "",
       };
-      let orderDoc = await db.collection("orders").add(order);
+      let orderDoc = await db.collection("orders");
 
       let keywordDoc = await db
         .collection("keywords")
@@ -69,40 +68,47 @@ exports.uploadOrder = async (req, res, next) => {
         keywords: allKeywords,
       });
       if (req.body.newFamily === "true") {
-        let newOrder = await db
-          .collection("Families")
-          .add({ lastOrder: order });
+        let newOrder = await db.collection("Families");
+
         await db
           .collection("Families")
           .doc(newOrder.id)
           .collection("members")
           .doc(orderDoc.id)
           .set(order);
-        await db.collection("orders").doc(orderDoc.id).update({
-          familyId: newOrder.id,
-        });
+        await db
+          .collection("orders")
+          .doc(orderDoc.id)
+          .set({
+            ...order,
+            familyId: newOrder.id,
+          });
         await db
           .collection("Families")
           .doc(newOrder.id)
-          .update({ lastOrder: { ...order, familyId: newOrder.id } });
+          .set({ lastOrder: { ...order, familyId: newOrder.id } });
       } else {
         await db
           .collection("Families")
           .doc(req.body.familyId)
           .collection("members")
           .doc(orderDoc.id)
-          .set(order);
+          .set({ ...order, familyId: req.body.familyId });
         await db
           .collection("Families")
           .doc(req.body.familyId)
-          .update({ lastOrder: order });
-        await db.collection("orders").doc(orderDoc.id).update({
-          familyId: req.body.familyId,
-        });
+          .update({ lastOrder: order, familyId: newOrder.id });
+        await db
+          .collection("orders")
+          .doc(orderDoc.id)
+          .set({
+            ...order,
+            familyId: req.body.familyId,
+          });
         await db
           .collection("Families")
           .doc(req.body.familyId)
-          .update({ lastOrder: { ...order, familyId: req.body.familyId } });
+          .set({ lastOrder: { ...order, familyId: req.body.familyId } });
       }
       res.status(200).send({ message: "upload successfull" });
     });
