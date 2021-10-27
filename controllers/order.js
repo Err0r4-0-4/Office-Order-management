@@ -70,6 +70,7 @@ exports.uploadOrder = async (req, res, next) => {
       if (req.body.newFamily === "true") {
         let newFamilyId = await db.collection("Families").doc();
         console.log(newFamilyId.id);
+        let count = 0;
         await db
           .collection("Families")
           .doc(newFamilyId.id)
@@ -77,6 +78,7 @@ exports.uploadOrder = async (req, res, next) => {
           .doc(orderDoc.id)
           .set({
             ...order,
+            count: count,
             familyId: newFamilyId.id,
             familyName: req.body.familyName,
           });
@@ -85,6 +87,7 @@ exports.uploadOrder = async (req, res, next) => {
           .doc(orderDoc.id)
           .set({
             ...order,
+            count: count,
             familyId: newFamilyId.id,
             familyName: req.body.familyName,
           });
@@ -94,11 +97,20 @@ exports.uploadOrder = async (req, res, next) => {
           .set({
             lastOrder: {
               ...order,
+              count: count,
               familyId: newFamilyId.id,
               familyName: req.body.familyName,
             },
           });
       } else {
+        let lenght = await db
+          .collection("Families")
+          .doc(req.body.familyId)
+          .collection("members")
+          .get();
+
+        lenght = lenght.size - 1;
+        console.log(lenght);
         await db
           .collection("Families")
           .doc(req.body.familyId)
@@ -106,6 +118,7 @@ exports.uploadOrder = async (req, res, next) => {
           .doc(orderDoc.id)
           .set({
             ...order,
+            count: lenght + 1,
             familyId: req.body.familyId,
             familyName: req.body.familyName,
           });
@@ -115,6 +128,7 @@ exports.uploadOrder = async (req, res, next) => {
           .update({
             lastOrder: {
               ...order,
+              count: lenght + 1,
               familyId: req.body.familyId,
               familyName: req.body.familyName,
             },
@@ -124,6 +138,7 @@ exports.uploadOrder = async (req, res, next) => {
           .doc(orderDoc.id)
           .set({
             ...order,
+            count: lenght + 1,
             familyId: req.body.familyId,
           });
         await db
@@ -132,6 +147,7 @@ exports.uploadOrder = async (req, res, next) => {
           .set({
             lastOrder: {
               ...order,
+              count: lenght + 1,
               familyId: req.body.familyId,
               familyName: req.body.familyName,
             },
