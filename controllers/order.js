@@ -82,22 +82,37 @@ exports.uploadOrder = async (req, res, next) => {
           .set({
             ...order,
             familyId: newOrder.id,
+            familyName: req.body.familyName,
           });
         await db
           .collection("Families")
           .doc(newOrder.id)
-          .set({ lastOrder: { ...order, familyId: newOrder.id } });
+          .set({
+            lastOrder: {
+              ...order,
+              familyId: newOrder.id,
+              familyName: req.body.familyName,
+            },
+          });
       } else {
         await db
           .collection("Families")
           .doc(req.body.familyId)
           .collection("members")
           .doc(orderDoc.id)
-          .set({ ...order, familyId: req.body.familyId });
+          .set({
+            ...order,
+            familyId: req.body.familyId,
+            familyName: req.body.familyName,
+          });
         await db
           .collection("Families")
           .doc(req.body.familyId)
-          .update({ lastOrder: order, familyId: newOrder.id });
+          .update({
+            lastOrder: order,
+            familyId: newOrder.id,
+            familyName: req.body.familyName,
+          });
         await db
           .collection("orders")
           .doc(orderDoc.id)
@@ -108,7 +123,13 @@ exports.uploadOrder = async (req, res, next) => {
         await db
           .collection("Families")
           .doc(req.body.familyId)
-          .set({ lastOrder: { ...order, familyId: req.body.familyId } });
+          .set({
+            lastOrder: {
+              ...order,
+              familyId: req.body.familyId,
+              familyName: req.body.familyName,
+            },
+          });
       }
       res.status(200).send({ message: "upload successfull" });
     });
