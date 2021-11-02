@@ -5,6 +5,7 @@ import firebase from "../util/firebase";
 import img from "../Images/pdf.png";
 import axios from "axios";
 import { AiOutlineClose, AiOutlineLeft } from "react-icons/ai";
+import  Spinner from '../UI/Spinner';
 
 let db = firebase.firestore();
 
@@ -20,17 +21,20 @@ const Previous = () => {
   const [orders, setOrders] = useState([]);
   const [showorders, setshoworders] = useState(null);
   const [search, setsearch] = useState("");
-  //const [order, setorder] = useState([]);
   const [ordersD, setordersD] = useState([]);
   const [previewURL, setPreviewURL] = useState("");
   const [keywords, setKeywords] = useState([]);
   const [familyId, setFamilyId] = useState([]);
   const [count, setCount] = useState("");
   const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [orderCount, setOrdersCount] = useState([]);
 
   useEffect(() => {
 
     console.log("fetch");
+
+    setLoading(true);
 
     axios
     .post("https://office-order-backend.herokuapp.com/office/keywords")
@@ -41,9 +45,12 @@ const Previous = () => {
 
       console.log(keywords);
 
+      setLoading(false);
+
     })
     .catch((err) => {
       console.log(err);
+      setLoading(false);
     });
 
   }, []);
@@ -60,6 +67,8 @@ const Previous = () => {
       familyId : doc.familyId
     };
 
+    setLoading(true);
+
     axios
     .post("https://office-order-backend.herokuapp.com/office/getParentOrder", data)
     .then( async (res) => {
@@ -68,9 +77,12 @@ const Previous = () => {
 
       preViewHandler(res.data.data.imageUrl);
 
+      setLoading(false);
+
     })
     .catch((err) => {
       console.log(err);
+      setLoading(false);
     });
 
   }
@@ -94,6 +106,8 @@ const Previous = () => {
 
     console.log(data);
 
+    setLoading(true);
+
 
     axios
     .post("https://office-order-backend.herokuapp.com/office/getOtherOrder", data)
@@ -104,10 +118,12 @@ const Previous = () => {
       setImage(res.data.data.imageUrl);
 
       // preViewHandler(res.data.data.imageUrl);
+      setLoading(false);
 
     })
     .catch((err) => {
       console.log(err);
+      setLoading(false);
     });
   }
 
@@ -123,14 +139,14 @@ const Previous = () => {
         <div className={styles.box}>
           <img src={img} className={styles.img}></img>
           <div className={styles.inner}>
-            <h4 className={styles.date}>26th, June 2021</h4>
+            <h4 className={styles.date}>{doc.date}</h4>
             <h2 className={styles.title}>{doc.title}</h2>
             <button
               onClick={() => preViewHandler(doc.imageUrl)}
               target="_top"
               className={styles.link}
             >
-              Preview Order
+              Preview Orde
             </button>
             <button target="_top" className={styles.link} onClick={(doc) => getParentHandler()}>
               Parent Order.
@@ -141,35 +157,43 @@ const Previous = () => {
       ))
     );
   };
+
   const preViewHandler = (e) => {
     setImage(e);
     console.log(e);
     setPreviewURL(e);
     setopen(true);
   };
+
   useEffect(() => {
     async function getData(params) {
       console.log("in Use Effect!");
       let docData = await db.collection("orders").get();
-      let data = [];
-      docData.forEach((d) => data.push(d.data()));
+
+      let a = await axios.post("https://office-order-backend.herokuapp.com/office/getLastMember")
+      
+      setOrdersCount(a.data.keywords.length);
+      
+      let data = a.data.keywords;
+      console.log(data);
+      // docData.forEach((d) => data.push(d.data()));
       //data.map((doc) => doc.data());
       let docDataRender = data.map((doc) => (
         <div className={styles.box}>
           <img src={img} className={styles.img}></img>
           <div className={styles.inner}>
-            <h4 className={styles.date}>26th, June 2021</h4>
+            <h4 className={styles.date}>{doc.lastOrder.date}</h4>
 
-            <h2 className={styles.title}>{doc.title}</h2>
+            <h2 className={styles.title}>{doc.lastOrder.title}</h2>
             <button
-              onClick={() => preViewHandler(doc.imageUrl)}
+              onClick={() => preViewHandler(doc.lastOrder.imageUrl)}
               target="_top"
               className={styles.link}
             >
               Preview Order
             </button>
-            {console.log(doc.familyId, doc.count)}
-            <button  target="_top" className={styles.link} onClick={() => getParentHandler(doc)}>
+            {console.log(doc.lastOrder.familyId, doc.lastOrder.count)}
+            <button  target="_top" className={styles.link} onClick={() => getParentHandler(doc.lastOrder)}>
               Parent Order
             </button>
             {/* <span className={styles.addons}>{doc.addons}</span> */}
@@ -185,6 +209,7 @@ const Previous = () => {
   }, []);
   return (
     <div className={styles.page}>
+      {loading ? <Spinner/> : null}
       <div className={styles.search}>
         <div className={styles.select}>
           <select onChange={keywordSearch} className={styles.sel}>
@@ -194,7 +219,7 @@ const Previous = () => {
             {keywords}
           </select>
           <p>
-            <span className={styles.big}>3</span> test results
+            <span className={styles.big}>{orderCount}</span> test results
           </p>
         </div>
         <h1 className={styles.h1}>Previous Orders</h1>

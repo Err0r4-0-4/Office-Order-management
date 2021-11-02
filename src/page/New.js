@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./New.module.css";
 import firebase from "firebase";
 import Form from "../components/Form";
-//import TodoList from "../components/TodoList";
-//import UploadImage from "../components/UploadImage";
+import Spinner from "../UI/Spinner"
+
 const New = () => {
+
   return (
     <div className={styles.new}>
       <div>
