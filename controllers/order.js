@@ -23,6 +23,7 @@ exports.uploadOrder = async (req, res, next) => {
     let visibility = req.body.visibility;
     let type = req.body.type;
     let keywords = req.body.keywords;
+    let date = req.body.date;
     console.log(req.body);
     let file = req.files.file;
     console.log(file);
@@ -55,6 +56,7 @@ exports.uploadOrder = async (req, res, next) => {
         visibility: visibility,
         type: type,
         keywords: keywords,
+        date: date,
       };
       let orderDoc = await db.collection("orders").doc();
       console.log(orderDoc.id);
