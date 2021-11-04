@@ -3,7 +3,7 @@ import styles from "./New.module.css";
 import firebase from "firebase";
 import Form from "../components/Form";
 import Spinner from "../UI/Spinner";
-
+import img from "../Images/R.jpg";
 const New = () => {
   let s = "Student";
   //   if (role == "student") s = "Student";
@@ -11,23 +11,12 @@ const New = () => {
   //   if (role == "registrar") s = "Registrar";
   return (
     <div className={styles.new}>
-      <div>
+      <div className={styles.div1}>
         <div className={styles.per}>
           <div className={styles.back}></div>
-          <img
-            alt="profile picture"
-            src={firebase.auth().currentUser.photoURL}
-            className={styles.img}
-          />
+          <img alt="profile picture" src={img} className={styles.img} />
           <div className={styles.personal}>
-            <p className={styles.nameroll}>
-              {firebase
-                .auth()
-                .currentUser.displayName.substring(
-                  0,
-                  firebase.auth().currentUser.displayName.indexOf(" ")
-                )}
-            </p>
+            <p className={styles.nameroll}>Registrar</p>
             <p className={styles.nameroll}>
               {firebase
                 .auth()
@@ -38,12 +27,12 @@ const New = () => {
                 .toLocaleLowerCase()}
             </p>
             <p className={styles.small}>
-              {s} at Indian Institute of Information Technology Vadodara.
+              Registrar at Indian Institute of Information Technology Vadodara.
             </p>
             <p className={styles.small}>{firebase.auth().currentUser.email}</p>
-            <p className={styles.small}>
+            {/* <p className={styles.small}>
               {firebase.auth().currentUser.email.substring(0, 4)} Batch
-            </p>
+            </p> */}
           </div>
         </div>
         <div className={styles.link}>

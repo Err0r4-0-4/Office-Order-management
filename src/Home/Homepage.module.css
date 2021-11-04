@@ -15,7 +15,7 @@
 .per,
 .link {
   background-color: rgb(255, 255, 255);
-  border: 0.5px solid rgb(199, 199, 199);
+  border: 0.5px solid #c7c7c7;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -159,7 +159,10 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.header h2 {
+  font-weight: 600;
+  color: rgb(58, 58, 58);
+}
 .recent {
   display: flex;
   justify-content: space-between;
@@ -182,7 +185,7 @@
 .name {
   font-size: 20px;
   letter-spacing: 0;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .view,

@@ -6,7 +6,7 @@ import styles from "./Form.module.css";
 import axios from "axios";
 import Member from "../Cards/LastMember/LastMember";
 import Spinner from "../UI/Spinner";
-
+import { AiOutlineClose } from "react-icons/ai";
 const db = firebase.firestore();
 var storageRef = firebase.storage().ref();
 
@@ -27,54 +27,48 @@ export default function Form() {
   const [loading, setLoding] = useState(false);
   const [newFamily, setNewFamily] = useState(false);
   const [date, setDate] = useState("");
-
+  const [family, setfamily] = useState("");
   useEffect(() => {
-
     setLoding(true);
 
     console.log("fetch");
 
     axios
-    .post("https://office-order-backend.herokuapp.com/office/keywords")
-    .then( async (res) => {
+      .post("https://office-order-backend.herokuapp.com/office/keywords")
+      .then(async (res) => {
+        console.log(res.data.keywords);
+        setkeywordList(res.data.keywords.map((k) => <option>{k}</option>));
 
-      console.log(res.data.keywords);
-      setkeywordList(res.data.keywords.map(k=><option>{k}</option>));
+        console.log(keywords);
 
-      console.log(keywords);
-
-      setLoding(false);
-
-    })
-    .catch((err) => {
-      console.log(err);
-      setLoding(false);
-    });
+        setLoding(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoding(false);
+      });
 
     setLoding(true);
 
     axios
-    .post("https://office-order-backend.herokuapp.com/office/getLastMember")
-    .then( async (res) => {
+      .post("https://office-order-backend.herokuapp.com/office/getLastMember")
+      .then(async (res) => {
+        console.log(res.data.keywords);
+        setMembers(res.data.keywords);
 
-      console.log(res.data.keywords);
-      setMembers(res.data.keywords);
-
-      setLoding(false);
-
-    })
-    .catch((err) => {
-      console.log(err);
-      setLoding(false);
-    });
-
+        setLoding(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoding(false);
+      });
   }, []);
 
   const setNew = (n) => {
     setFamilyName(n);
     setNewFamily(true);
     console.log(n);
-  }
+  };
 
   const setFamilyHandler = (familyName, familyId) => {
     setFamilyName(familyName);
@@ -82,14 +76,17 @@ export default function Form() {
     setName(familyId);
     setNewFamily(false);
 
-    console.log(familyName); 
-  }
+    console.log(familyName);
+  };
 
   let memberArray = (
     <div>
       {members.map((m) => (
         <Member
-        name={m.lastOrder.familyName} id={m.lastOrder.familyId} setFamily={setFamilyHandler}/>
+          name={m.lastOrder.familyName}
+          id={m.lastOrder.familyId}
+          setFamily={setFamilyHandler}
+        />
       ))}
     </div>
   );
@@ -100,13 +97,13 @@ export default function Form() {
       e.preventDefault();
 
       var today = new Date();
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
       var yyyy = today.getFullYear();
 
-      today = mm + '/' + dd + '/' + yyyy;
+      today = mm + "/" + dd + "/" + yyyy;
 
-    console.log(today);
+      console.log(today);
 
       const formData = new FormData();
       formData.append("title", title);
@@ -124,33 +121,34 @@ export default function Form() {
       // if(newFamily)
       formData.append("familyName", familyName);
 
-      if(!newFamily)
-      formData.append("familyId", name);
+      if (!newFamily) formData.append("familyId", name);
 
       console.log(formData);
 
       setLoding(true);
 
       axios
-      .post("https://office-order-backend.herokuapp.com/office/upload", formData)
-      .then( async (res) => {
-  
-        console.log(res);
+        .post(
+          "https://office-order-backend.herokuapp.com/office/upload",
+          formData
+        )
+        .then(async (res) => {
+          console.log(res);
 
-        setLoding(false);
- 
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoding(false);
-      });
-      
+          setLoding(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoding(false);
+        });
+
       // console.log("Doc Id: ", orders.id);
       setOrderUploaded(true);
       setTitle("");
       setFile({});
       setKeywords([]);
       console.log("order added to ORDER collection");
+      window.alert("Order Uploaded Successfully");
     } catch (error) {
       console.log(error);
     }
@@ -189,7 +187,7 @@ export default function Form() {
     <li className={styles.addons} className={styles.tagsselli}>
       {addon}
       <span id={addon} className={styles.cross} onClick={removeAddon}>
-        x
+        <AiOutlineClose />
       </span>
     </li>
   ));
@@ -208,7 +206,8 @@ export default function Form() {
     dropDown.selectedIndex = 0;
   };
 
-  let keywordsHandler = () => {
+  let keywordsHandler = (e) => {
+    e.preventDefault();
     let input = document.getElementById("keywordsInput");
     let newKeywords = [...keywords, input.value];
     setKeywords(newKeywords);
@@ -221,17 +220,19 @@ export default function Form() {
     let t = keywords;
     setKeywords([...t, event.target.value]);
     console.log(keywords);
-  }
-  
+  };
+
   return (
     <div>
-      {loading ? <Spinner/> : null}
+      {loading ? <Spinner /> : null}
       <form onSubmit={uploadForm} className={styles.form}>
         <h1 className={styles.h1}>Upload a order</h1>
+
+        <div className={styles.line}></div>
         <div className={styles.one}>
           <h1 className={styles.h2}>Order number</h1>
           <div className={styles.name}>
-            <div className={styles.iiit}>IIITV/21-22/</div>
+            <div className={styles.iiit}>IIITV/2019-20/</div>
             <input
               type="text"
               placeholder="Next Order"
@@ -242,6 +243,132 @@ export default function Form() {
           </div>
           <br />
         </div>
+
+        <div className={styles.line}></div>
+
+        <div className={styles.one}>
+          <h3 className={styles.h2}>Internal/External</h3>
+
+          <span>
+            <input
+              type="radio"
+              id="internal"
+              name="ie"
+              value="internal"
+              onChange={radioHandler}
+              className={styles.radio}
+            />
+             <label for="internal">Internal</label>
+          </span>
+          <span>
+            <input
+              type="radio"
+              id="external"
+              name="ie"
+              value="external"
+              className={styles.radio}
+              onChange={radioHandler}
+            />
+            <label for="external">External</label>
+          </span>
+          <br></br>
+        </div>
+
+        <div className={styles.line}></div>
+
+        <div className={styles.one}>
+          <h3 className={styles.h2}>Visibility</h3>
+
+          <span>
+            <input
+              type="checkbox"
+              id="registrar"
+              name="registrar"
+              value="registrar"
+              className={styles.radio}
+              onChange={checkboxHandler}
+            />
+            <label for="registrar"> Registrar</label>
+          </span>
+          <span>
+            <input
+              type="checkbox"
+              id="faculty"
+              name="faculty"
+              value="faculty"
+              className={styles.radio}
+              onChange={checkboxHandler}
+            />
+            <label for="faculty"> Faculty</label>
+          </span>
+          <span>
+            <input
+              type="checkbox"
+              id="staff"
+              name="staff"
+              value="staff"
+              className={styles.radio}
+              onChange={checkboxHandler}
+            />
+            <label for="staff"> Staff</label>
+          </span>
+          <span>
+            <input
+              type="checkbox"
+              id="student"
+              name="student"
+              value="student"
+              className={styles.radio}
+              onChange={checkboxHandler}
+            />
+            <label for="student"> Student</label>
+          </span>
+          <br></br>
+        </div>
+        <div className={styles.line}></div>
+
+        <div className={styles.one}>
+          <h2 className={styles.h2}>Add keywords</h2>
+          <div className={styles.hundred1}>
+            <input
+              type="text"
+              id="keywordsInput"
+              placeholder="Add Keywords"
+              className={styles.namei}
+            />
+
+            <button onClick={keywordsHandler} className={styles.btn}>
+              Manually Add
+            </button>
+          </div>
+
+          <select className={styles.sel} onChange={addKeyWords}>
+            <option selected value>
+              --Select Keywords--
+            </option>
+            {keywordList}
+          </select>
+          <div className={styles.tagsel}>
+            {options ? options : <p>Keywords will be added</p>}
+            <p className={styles.err}>{addonError}</p>
+          </div>
+        </div>
+        <div className={styles.line}></div>
+
+        <div className={styles.one}>
+          <select className={styles.sel} onChange={addKeyWords}>
+            <option selected value>
+              --Family --
+            </option>
+            {memberArray}
+          </select>
+          <input
+            placeholder="Add a New Family"
+            onChange={(e) => setNew(e.target.value)}
+            className={styles.inp}
+          />
+        </div>
+        <div className={styles.line}></div>
 
         <div className={styles.one}>
           <h1 className={styles.h2}>Upload image</h1>
@@ -255,122 +382,19 @@ export default function Form() {
           />
           <br />
         </div>
-        <div className={styles.one}>
-          <h3 className={styles.h2}>Internal/External</h3>
-
-          <span>
-            <input
-              type="radio"
-              id="internal"
-              name="ie"
-              value="internal"
-              onChange={radioHandler}
-            />
-             <label for="internal">Internal</label>
-          </span>
-          <span>
-             {" "}
-            <input
-              type="radio"
-              id="external"
-              name="ie"
-              value="external"
-              onChange={radioHandler}
-            />
-            <label for="external">External</label>
-          </span>
-          <br></br>
-        </div>
-        <div className={styles.one}>
-          <h3 className={styles.h2}>Visibility</h3>
-
-          <span>
-            <input
-              type="checkbox"
-              id="registrar"
-              name="registrar"
-              value="registrar"
-              onChange={checkboxHandler}
-            />
-            <label for="registrar"> Registrar</label>
-          </span>
-          <span>
-            <input
-              type="checkbox"
-              id="faculty"
-              name="faculty"
-              value="faculty"
-              onChange={checkboxHandler}
-            />
-            <label for="faculty"> Faculty</label>
-          </span>
-          <span>
-            <input
-              type="checkbox"
-              id="staff"
-              name="staff"
-              value="staff"
-              onChange={checkboxHandler}
-            />
-            <label for="staff"> Staff</label>
-          </span>
-          <span>
-            <input
-              type="checkbox"
-              id="student"
-              name="student"
-              value="student"
-              onChange={checkboxHandler}
-            />
-            <label for="student"> Student</label>
-          </span>
-          <br></br>
-        </div>
-
-        
-        
-        <div className={styles.one}>
-          <h2 className={styles.h2}>Add keywords</h2>
-          <input
-            type="text"
-            id="keywordsInput"
-            placeholder="Add Keywords"
-            className={styles.hundred}
-          />
-          
-          {" "}
-
-          <select className={styles.sel} onChange = {addKeyWords}>
-            <option selected value>
-              All
-            </option>
-            {keywordList}
-          </select>
-
-          <div className={styles.tagsel}>
-            {options}
-            <p className={styles.err}>{addonError}</p>
-          </div>
-
-          <div onClick={keywordsHandler} className={styles.btn}>
-            ADD
-          </div>
-        </div>
-
-        {memberArray} 
-
-        <input placeholder="new family" 
-         onChange={(e) => setNew(e.target.value)}/>
+        <div className={styles.line}></div>
 
         <button className={styles.button}>Upload Order </button>
       </form>
-      {orderUploaded ? (
-        <p style={{ color: "green", fontWeight: "bold" }}>
-          Order Uploaded Successfully!
-        </p>
-      ) : (
-        <p></p>
-      )}
+      {/* {orderUploaded && window.alert("Order Uploaded Successfully")
+      // (
+      //   <p style={{ color: "green", fontWeight: "bold" }}>
+      //     Order Uploaded Successfully!
+      //   </p>
+      // ) : (
+      //   <p></p>
+      // )
+      } */}
     </div>
   );
 }

@@ -2,6 +2,7 @@
   margin: 30px 100px;
   min-height: 50vh;
   overflow-x: hidden;
+  font-family: "Montserrat", sans-serif;
 }
 .search {
   background-color: rgb(243, 243, 243);
@@ -38,13 +39,13 @@
 }
 
 .h1 {
-  font-size: 28px;
+  font-size: 24px;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
   text-align: center;
   position: relative;
   text-transform: uppercase;
-  margin: 20px 0 30px;
+  margin: 20px 0;
 }
 .h1:after {
   display: block;
@@ -52,10 +53,10 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 3px;
-  background-color: rgb(139, 139, 139);
-  width: 150px;
-  bottom: -10px;
+  height: 1px;
+  background-color: rgb(87, 87, 87);
+  width: 260px;
+  bottom: -5px;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
