@@ -7,8 +7,8 @@ const Member = (props) => {
   };
 
   return (
-    <div onClick={() => props.setFamily(props.id)}>
-        {props.id}
+    <div onClick={() => props.setFamily(props.name, props.id)}>
+        {props.name}
     </div>
   );
 };
