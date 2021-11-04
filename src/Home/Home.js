@@ -6,18 +6,15 @@ import Footer from "../UI/Footer";
 import Header from "../UI/Header";
 import New from "../page/New";
 import Previous from "../page/Previous";
+import Homepage from "./Homepage";
 const Home = () => {
+  console.log(firebase.auth().currentUser);
   return (
     <React.Fragment>
       <Header />
       <Switch>
         <Route path="/home" exact>
-          <p>{firebase.auth().currentUser.displayName}</p>
-
-          <img
-            alt="profile picture"
-            src={firebase.auth().currentUser.photoURL}
-          />
+          <Homepage />
         </Route>
         <Route path="/neworder" exact>
           <New />

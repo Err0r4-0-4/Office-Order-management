@@ -14,7 +14,7 @@ const Footer = () => (
         <p className={styles.signed}>201952202@iiitvadodara.ac.in</p>
         <p className={styles.signed}>Aditya Singh</p>
       </div>
-      <div className={styles.signed}>Report a Bug</div>
+      <div className={styles.report}>Report a Bug</div>
     </div>
     <div className={styles.last2}>...OFFICE ORDER MANAGEMENT...</div>
   </div>

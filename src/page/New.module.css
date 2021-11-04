@@ -1,9 +1,11 @@
 .new {
-  margin: 30px 100px;
+  padding: 30px 50px;
+  margin: 0;
   display: flex;
   justify-content: start;
   align-items: flex-start;
   flex-wrap: wrap;
+  background-color: #f3f2ef;
 }
 
 .per,
@@ -129,6 +131,6 @@
 
 @media all and (max-width: 1200px) {
   .new {
-    margin: 30px;
+    margin: 0px;
   }
 }

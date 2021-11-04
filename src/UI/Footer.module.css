@@ -4,7 +4,6 @@
   padding: 30px;
   width: 100%;
   z-index: 500;
-  margin-top: 50px;
   font-size: 16px;
   overflow-x: hidden;
 }
@@ -13,12 +12,15 @@
   justify-content: space-between;
   align-items: flex-start;
   margin: 10px 40px;
+  border-bottom: 1px solid rgb(90, 90, 90);
+  padding-bottom: 10px;
 }
 .sign {
   font-size: 18px;
   line-height: 1.2;
 }
-.signed {
+.signed,
+.report {
   font-size: 14px;
   letter-spacing: 1px;
   font-weight: 300;
@@ -43,13 +45,30 @@
   .last2 {
     font-size: 110%;
   }
+
+  .footer {
+    padding: 30px 10px;
+  }
 }
 @media (max-width: 557px) {
   .last2 {
-    font-size: 100%;
+    font-size: 80%;
+  }
+  .flex {
+    flex-wrap: wrap;
+    margin: 15px 10px;
+  }
+  .sign {
+    font-size: 18px;
   }
 
-  .footer {
-    min-height: 432px;
+  .signed {
+    font-size: 15px;
+  }
+
+  .report {
+    font-size: 16px;
+    text-align: right;
+    font-weight: 500;
   }
 }
