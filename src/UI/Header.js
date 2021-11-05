@@ -82,13 +82,13 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/iiitv"
-              activeClassName={styles.active}
+            <a
+              href="http://www.iiitvadodara.ac.in/"
               className={styles.link}
+              target="_blank"
             >
               IIIT V
-            </NavLink>
+            </a>
           </li>
           <li>
             <NavLink
@@ -150,13 +150,9 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/iiitv"
-                activeClassName={styles.active2}
-                onClick={clickhandler}
-              >
-                IIIT Vadodara
-              </NavLink>
+              <a href="http://www.iiitvadodara.ac.in/" target="_blank">
+                IIIT V
+              </a>
             </li>
 
             <li>
