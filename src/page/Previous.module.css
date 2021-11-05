@@ -1,22 +1,35 @@
 .page {
-  margin: 30px 100px;
+  padding: 50px 80px 60px;
+  margin: 0;
   min-height: 50vh;
   overflow-x: hidden;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Nunito", sans-serif;
+  background-color: #f3f2ef;
 }
-.search {
-  background-color: rgb(243, 243, 243);
-  border: 0.5px solid rgb(224, 224, 224);
+.search,
+.search2,
+.search2o {
+  background-color: rgb(248, 248, 248);
+  border: 1px solid rgb(175, 174, 174);
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
   box-shadow: 0 0 10px rgb(248, 248, 248);
-  padding: 30px 10px;
+  padding: 0px 10px 20px;
   min-height: 30vh;
 }
 
+.search2o {
+  width: 50%;
+}
+.search {
+  background-color: white;
+  min-height: auto;
+  padding: 20px 10px 10px;
+  margin-bottom: 20px;
+}
 .select {
   width: 95%;
   display: flex;
@@ -24,27 +37,53 @@
   align-items: center;
   padding: 5px 0px 15px;
   margin: 0 auto;
-  border-bottom: 0.5px solid rgb(197, 197, 197);
 }
 
 .sel {
-  padding: 8px 40px;
+  cursor: pointer;
+  padding: 5px 20px;
   border-radius: 6px;
   outline: none;
   font-size: 17px;
   min-width: 250px;
-  border-color: rgb(194, 194, 194);
+  border-color: rgb(70, 70, 70);
   letter-spacing: 0.5px;
   font-weight: 300;
 }
-
-.h1 {
-  font-size: 24px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
+.sel:hover {
+  outline: 3px solid #acd6f8;
+  border-color: #8d8d8d;
+}
+.h2 {
+  font-size: 30px;
+  font-weight: 200;
   text-align: center;
   position: relative;
-  text-transform: uppercase;
+  margin: 20px 0;
+  width: 50%;
+  margin-right: 50%;
+}
+
+.h2::after {
+  display: block;
+  content: " ";
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 1px;
+  background-color: rgb(139, 139, 139);
+  width: 260px;
+  bottom: -5px;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+.h1 {
+  font-size: 30px;
+  font-weight: 200;
+  text-align: center;
+  position: relative;
   margin: 20px 0;
 }
 .h1:after {
@@ -54,7 +93,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   height: 1px;
-  background-color: rgb(87, 87, 87);
+  background-color: rgb(167, 167, 167);
   width: 260px;
   bottom: -5px;
   -webkit-transform: translate(-50%, -50%);
@@ -89,10 +128,18 @@
   align-items: center;
   flex-grow: 0;
   min-width: 500px;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
+
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
 }
 
 .flex2 .box {
+  border-radius: 6px;
+
   width: 47%;
   flex: 47%;
   border: 1px solid rgb(189, 186, 186);
@@ -103,7 +150,7 @@
   align-items: center;
   flex-grow: 0;
   min-width: 500px;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
 }
 
 /* .box2 {
@@ -192,6 +239,49 @@
 .close {
   height: 90vh;
   position: relative;
+}
+
+.arrow {
+  position: absolute;
+  margin: 0 2%;
+  bottom: 10px;
+  width: 96%;
+  display: flex;
+  justify-content: space-between;
+}
+.hid .arr {
+  display: none;
+}
+.arr {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  border-radius: 100px;
+  border: 1px solid black;
+  transition: all ease 0.3s;
+  -webkit-transition: all ease 0.3s;
+  -moz-transition: all ease 0.3s;
+  -ms-transition: all ease 0.3s;
+  -o-transition: all ease 0.3s;
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  background-color: #c6dcee;
+  border: 2px solid transparent;
+}
+
+.arr:hover {
+  box-shadow: 0 0 20px #c6dcee;
+  transform: translateY(-5px);
+  -webkit-transform: translateY(-5px);
+  -moz-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+  -o-transform: translateY(-5px);
+  color: white;
+  background-color: rgb(32, 32, 32);
+  border: 2px solid white;
 }
 .closebut,
 .closebut2 {
@@ -352,6 +442,10 @@
     animation-timing-function: linear;
     right: calc(95% - 20px);
   }
+
+  .h2 {
+    width: 100%;
+  }
 }
 
 @media all and (max-width: 1050px) {
@@ -422,7 +516,8 @@
     width: 5px;
   }
 
-  .search {
+  .search,
+  .search2 {
     padding: 15px 2px;
   }
   .select {

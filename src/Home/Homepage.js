@@ -89,8 +89,8 @@ const Homepage = () => {
 
           <div className={styles.recent}>
             <div className={styles.rec1}>
-              <div className={styles.order}>IIITV/2019-20/12</div>
-              <div className={styles.name}>Order 1</div>
+              <div className={styles.order}>IIITV/2019-20/14</div>
+              <div className={styles.name}>Order 2</div>
             </div>
             <div className={styles.rec2}>
               <div className={styles.date}>22 Jan 2019</div>
@@ -104,11 +104,11 @@ const Homepage = () => {
 
           <div className={styles.recent}>
             <div className={styles.rec1}>
-              <div className={styles.order}>IIITV/2019-20/12</div>
-              <div className={styles.name}>Order 1</div>
+              <div className={styles.order}>IIITV/2019-20/15</div>
+              <div className={styles.name}>Order 3</div>
             </div>
             <div className={styles.rec2}>
-              <div className={styles.date}>22 Jan 2019</div>
+              <div className={styles.date}>14 Jan 2019</div>
               <div className={styles.button}>
                 <Link className={styles.previewo} to="/prevorder">
                   Preview
@@ -119,11 +119,11 @@ const Homepage = () => {
 
           <div className={styles.recent}>
             <div className={styles.rec1}>
-              <div className={styles.order}>IIITV/2019-20/12</div>
-              <div className={styles.name}>Order 1</div>
+              <div className={styles.order}>IIITV/2019-20/16</div>
+              <div className={styles.name}>Order 4</div>
             </div>
             <div className={styles.rec2}>
-              <div className={styles.date}>22 Jan 2019</div>
+              <div className={styles.date}>11 Jan 2019</div>
               <div className={styles.button}>
                 <Link className={styles.previewo} to="/prevorder">
                   Preview
@@ -134,11 +134,11 @@ const Homepage = () => {
 
           <div className={styles.recent}>
             <div className={styles.rec1}>
-              <div className={styles.order}>IIITV/2019-20/12</div>
-              <div className={styles.name}>Order 1</div>
+              <div className={styles.order}>IIITV/2019-20/17</div>
+              <div className={styles.name}>Order 5</div>
             </div>
             <div className={styles.rec2}>
-              <div className={styles.date}>22 Jan 2019</div>
+              <div className={styles.date}>05 Jan 2019</div>
               <div className={styles.button}>
                 <Link className={styles.previewo} to="/prevorder">
                   Preview

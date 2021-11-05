@@ -4,13 +4,14 @@ import { GoMarkGithub, GoMail } from "react-icons/go";
 import { FaLinkedinIn, FaSearchLocation } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import { MdCall, MdLocationSearching } from "react-icons/md";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useHistory } from "react-router-dom";
 import firebase from "firebase";
 import styles from "./Header.module.css";
 import img1 from ".././Images/inst.png";
 import { useSelector, useDispatch } from "react-redux";
 import { Authactions } from "../store/Auth-login";
 const Header = () => {
+  const history = useHistory();
   const [open, setOpen] = useState(false);
   const clickhandler = () => {
     setOpen(!open);
@@ -25,8 +26,8 @@ const Header = () => {
   const role = useSelector((state) => state.member);
   const dispatch = useDispatch();
   const signout = () => {
+    history.push("/");
     dispatch(Authactions.toggle());
-
     firebase.auth().signOut();
   };
   console.log(con);
@@ -160,7 +161,7 @@ const Header = () => {
 
             <li>
               <NavLink
-                to="/iiitv"
+                to="/out"
                 activeClassName={styles.active2}
                 onClick={signout}
               >

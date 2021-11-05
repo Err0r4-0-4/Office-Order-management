@@ -4,7 +4,12 @@ import styles from "./Previous.module.css";
 import firebase from "../util/firebase";
 import img from "../Images/pdf.png";
 import axios from "axios";
-import { AiOutlineClose, AiOutlineLeft } from "react-icons/ai";
+import {
+  AiOutlineClose,
+  AiOutlineLeft,
+  AiOutlineArrowLeft,
+  AiOutlineArrowRight,
+} from "react-icons/ai";
 import Spinner from "../UI/Spinner";
 
 let db = firebase.firestore();
@@ -140,7 +145,7 @@ const Previous = () => {
               target="_top"
               className={styles.link}
             >
-              Preview Orde
+              Preview Order
             </button>
             <button
               target="_top"
@@ -224,7 +229,9 @@ const Previous = () => {
             <span className={styles.big}>{orderCount}</span> test results
           </p>
         </div>
-        <h1 className={styles.h1}>Previous Orders</h1>
+      </div>
+      <div className={styles.search2}>
+        <h1 className={open ? styles.h2 : styles.h1}>Previous Orders</h1>
         <div className={open ? styles.flex2 : styles.flex}>
           {/* <Showimage /> */}
           {showorders ? showorders : orders}
@@ -249,11 +256,23 @@ const Previous = () => {
               <AiOutlineLeft size={25} color="#fff" />
             )}
           </div>
+
+          <div className={styles.arrow}>
+            <button
+              onClick={() => navigateHandler("prev")}
+              className={styles.arr}
+            >
+              <AiOutlineArrowLeft size={20} />
+            </button>
+            <button
+              onClick={() => navigateHandler("next")}
+              className={styles.arr}
+            >
+              <AiOutlineArrowRight size={20} />
+            </button>
+          </div>
         </div>
       </div>
-
-      <button onClick={() => navigateHandler("prev")}>previous</button>
-      <button onClick={() => navigateHandler("next")}>next</button>
     </div>
   );
 };

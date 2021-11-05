@@ -2,7 +2,7 @@
   box-sizing: border-box;
   border: 0.5px solid rgb(202, 202, 202);
   width: 100%;
-  font-family: "Cambay", sans-serif;
+  font-family: "Nunito", sans-serif;
   padding: 30px 20px;
   font-size: 16px;
   z-index: -2;
@@ -15,12 +15,11 @@
 }
 
 .h1 {
-  font-size: 24px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 400;
+  font-size: 30px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 200;
   text-align: center;
   position: relative;
-  text-transform: uppercase;
   margin-bottom: 20px;
 }
 .h1:after {
@@ -39,11 +38,12 @@
   -o-transform: translate(-50%, -50%);
 }
 .h2 {
-  font-size: 18px;
-  font-family: "Cambay", sans-serif;
-  font-weight: 400;
+  font-size: 20px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 500;
   flex: 100%;
   position: relative;
+  margin-bottom: 5px;
 }
 
 .line {
@@ -86,7 +86,6 @@
 }
 .namei {
   background-color: transparent;
-  left: 32%;
   width: 68%;
   padding: 6.8px;
   font-size: 16px;
@@ -338,7 +337,11 @@ li {
   border-bottom: 2px solid rgb(104, 103, 103);
   padding-bottom: 4px;
 }
-
+@media all and (max-width: 900px) {
+  .iiit {
+    font-size: 16px;
+  }
+}
 @media all and (max-width: 750px) {
   .one {
     width: 95%;
@@ -352,5 +355,55 @@ li {
   .button {
     width: 95%;
     margin: 20px 2.5% 10px;
+  }
+
+  .iiit {
+    font-size: 14px;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .namei {
+    width: 50%;
+    flex: 50%;
+    flex-grow: 0;
+  }
+
+  .iiit {
+    width: 45%;
+    flex: 45%;
+    flex-grow: 0;
+  }
+
+  .btn {
+    width: 40%;
+    flex: 40%;
+    flex-grow: 0;
+    font-size: 12px;
+    padding: 5px;
+  }
+}
+
+/* @media all and (max-width: 550px) {
+} */
+
+@media all and (max-width: 500px) {
+  .hundred1 {
+    flex-wrap: wrap;
+  }
+  .btn {
+    margin: 20px 0;
+    width: 100%;
+    flex: 100%;
+    flex-grow: 0;
+    font-size: 11px;
+    padding: 5px;
+    border-bottom: 1px solid rgb(150, 150, 150);
+  }
+
+  .hundred1 .namei {
+    width: 100%;
+    flex: 100%;
+    flex-grow: 0;
   }
 }

@@ -1,0 +1,167 @@
+.about {
+  padding: 30px 80px 60px;
+  margin: 0;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  font-family: "Nunito", sans-serif;
+}
+
+.div {
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  box-shadow: 0 0 10px rgb(248, 248, 248);
+  padding: 0px 10px 20px;
+  min-height: 30vh;
+  width: 90%;
+  margin: auto;
+}
+.h1 {
+  font-size: 40px;
+  font-weight: 300;
+  text-align: left;
+  position: relative;
+  margin: 0 0 20px;
+  letter-spacing: 2px;
+}
+
+.div1 {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-bottom: 25px;
+}
+
+.six {
+  flex: 60%;
+  width: 60%;
+}
+
+.three {
+  flex: 30%;
+  width: 30%;
+  padding-left: 40px;
+  flex-shrink: 0;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.sec {
+  padding: 10px 0;
+  border-bottom: 0.5px solid rgb(202, 201, 201);
+}
+
+.three .sec {
+  padding: 10px 0 20px;
+}
+.icon {
+  font-size: 24px;
+}
+.icon a {
+  color: black;
+}
+
+.icon a:hover {
+  color: rgb(184, 114, 58);
+}
+
+.h2 {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: left;
+  position: relative;
+  letter-spacing: 1.5px;
+  margin: 0 0 10px;
+}
+
+.six .h2 {
+  margin: 0 0 20px;
+}
+
+.h3 {
+  font-size: 16px;
+  font-weight: 300;
+  text-align: left;
+  position: relative;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px;
+}
+
+.three .h3 {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 25px;
+  font-family: "Nunito", sans-serif;
+  margin: 10px 0 25px;
+  border: none;
+  border-bottom: 1px solid rgb(204, 204, 204);
+  border-top: 1px solid rgb(204, 204, 204);
+  padding: 15px 0;
+}
+
+.ul li {
+  list-style-type: none;
+  font-size: 21px;
+  font-weight: 200;
+}
+
+.ul li a:link,
+.ul li a:visited {
+  color: rgb(145, 145, 145);
+  font-weight: 300;
+
+  text-transform: uppercase;
+  text-decoration: none;
+
+  padding: 10px 15px;
+}
+
+.ul li a:hover {
+  color: rgb(0, 0, 0);
+}
+
+.div2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.fif {
+  flex: 40%;
+  flex-grow: 0;
+  width: 40%;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 150px;
+}
+
+.img {
+  flex: 30%;
+  width: 30%;
+}
+
+.name {
+  flex: 60%;
+  width: 60%;
+}

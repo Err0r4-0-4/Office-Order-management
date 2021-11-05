@@ -226,11 +226,11 @@ export default function Form() {
     <div>
       {loading ? <Spinner /> : null}
       <form onSubmit={uploadForm} className={styles.form}>
-        <h1 className={styles.h1}>Upload a order</h1>
+        <h1 className={styles.h1}>Upload New Order</h1>
 
         <div className={styles.line}></div>
         <div className={styles.one}>
-          <h1 className={styles.h2}>Order number</h1>
+          <h1 className={styles.h2}>Order Number</h1>
           <div className={styles.name}>
             <div className={styles.iiit}>IIITV/2019-20/</div>
             <input
@@ -247,7 +247,7 @@ export default function Form() {
         <div className={styles.line}></div>
 
         <div className={styles.one}>
-          <h3 className={styles.h2}>Internal/External</h3>
+          <h1 className={styles.h2}>Internal/External</h1>
 
           <span>
             <input
@@ -277,7 +277,7 @@ export default function Form() {
         <div className={styles.line}></div>
 
         <div className={styles.one}>
-          <h3 className={styles.h2}>Visibility</h3>
+          <h1 className={styles.h2}>Visibility</h1>
 
           <span>
             <input
@@ -356,6 +356,7 @@ export default function Form() {
         <div className={styles.line}></div>
 
         <div className={styles.one}>
+          <h1 className={styles.h2}>Family</h1>
           <select className={styles.sel} onChange={addKeyWords}>
             <option selected value>
               --Family --
