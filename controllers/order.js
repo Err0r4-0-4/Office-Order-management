@@ -22,7 +22,7 @@ exports.uploadOrder = async (req, res, next) => {
     let addons = req.body.addons;
     let visibility = req.body.visibility;
     let type = req.body.type;
-    let keywords = req.body.keywords;
+    let keywords = req.body.keywords.split(",");
     let date = req.body.date;
     console.log(req.body);
     let file = req.files.file;
