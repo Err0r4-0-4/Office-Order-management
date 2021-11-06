@@ -42,7 +42,8 @@ exports.uploadOrder = async (req, res, next) => {
     blobWriter.on("error", (err) => {
       console.log(err);
     });
-
+    let totalCount = await db.collection("orders").get();
+    totalCount = totalCount.size;
     blobWriter.on("finish", async () => {
       //res.status(200).send("File uploaded.");
       const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${
@@ -57,6 +58,7 @@ exports.uploadOrder = async (req, res, next) => {
         type: type,
         keywords: keywords,
         date: date,
+        serialNo: totalCount + 1,
       };
       let orderDoc = await db.collection("orders").doc();
       console.log(orderDoc.id);
