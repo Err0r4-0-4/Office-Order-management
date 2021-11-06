@@ -214,7 +214,7 @@ exports.getParentOrder = async (req, res, next) => {
       result = temp[0];
     } else {
       console.log("in else");
-      result = temp[temp.length - 2];
+      result = temp[temp.length - 1];
     }
     console.log("result", result);
     res.status(200).send({ data: result });
