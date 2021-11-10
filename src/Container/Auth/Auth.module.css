@@ -1,13 +1,317 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+.home {
+  height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  display: relative;
+  font-family: "Montserrat", sans-serif;
+  z-index: -1;
 }
+
+.div1 {
+  height: 500px;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  background-image: linear-gradient(#ffffffd8, #ffffffdc),
+    url("../../Images/inst.png");
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 100px auto;
+  position: relative;
+}
+
+.div2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.div4 {
+  font-family: "Mohave", sans-serif;
+  font-size: 120px;
+  font-weight: 400;
+  line-height: 0.7;
+  letter-spacing: 5px;
+  text-shadow: 0 1px 5px rgb(255, 255, 255);
+}
+
+.SignInButton1 button {
+  font-family: "Montserrat", sans-serif !important;
+  max-width: 270px !important;
+  font-weight: 500 !important;
+  border: 1px solid #bebebe !important;
+  width: 353px !important;
+  padding: 12px !important;
+  text-align: center !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 20px !important;
+  color: #353642 !important;
+  background-color: rgba(255, 255, 255, 0.404) !important;
+}
+
+.SignInButton1 button div {
+  font-weight: 200 !important;
+  background-color: transparent !important;
+  padding-top: 6px !important;
+  padding-right: 2px !important;
+}
+
+.SignInButton1 button div img svg g {
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.SignInButton1 button:hover {
+  background: rgb(255, 255, 255) !important;
+  border: 1px solid #797979 !important;
+}
+.div5 {
+  text-align: right;
+  font-size: 14px;
+  padding-right: 15px;
+}
+.div5 a {
+  color: rgb(16, 118, 185);
+  font-weight: 400;
+  text-decoration: none;
+  transition: all ease 0.4s;
+  -webkit-transition: all ease 0.4s;
+  -moz-transition: all ease 0.4s;
+  -ms-transition: all ease 0.4s;
+  -o-transition: all ease 0.4s;
+}
+
+.div5 a:hover {
+  color: rgb(6, 69, 110);
+  font-weight: 400;
+  text-decoration: underline;
+}
+/* }
+.google div {
+  margin: 0;
+  width: 120%;
+  max-width: 400px;
+}
+.google form {
+  max-width: 400px;
+}
+.google ul {
+  margin: 15px 0 5px;
+  width: 110%;
+  max-width: 420px;
+}
+.google li {
+  margin: 0;
+  width: 120%;
+  max-width: 420px;
+}
+.google button {
+  border: 0.5px solid rgb(207, 207, 207);
+  box-shadow: 1px 1px 0px rgb(228, 228, 228);
+  padding: 5px 15px;
+  text-align: center;
+  margin: 0;
+  width: 120%;
+  max-width: 400px;
+  color: rgb(116, 62, 202);
+} */
+.icon1,
+.icon2 {
+  height: 45px;
+  width: 45px;
+  padding: 8px;
+  overflow: hidden;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  font-family: "Montserrat", sans-serif !important;
+  border-color: rgb(189, 189, 189);
+  -o-border-radius: 100px;
+  outline: none;
+}
+
+.icon1 {
+  position: absolute;
+  right: 20px;
+  bottom: 12vh;
+  background-color: rgb(245, 245, 245);
+  cursor: pointer;
+}
+
+.icon2 {
+  position: absolute;
+  right: 20px;
+  bottom: calc(12vh + 60px);
+  background-color: rgb(245, 245, 245);
+  cursor: pointer;
+}
+
+.visible1 {
+  display: inline-block;
+  width: 140px;
+  transition: all ease-in 0.15s;
+  -webkit-transition: all ease-in 0.15s;
+  -moz-transition: all ease-in 0.15s;
+  -ms-transition: all ease-in 0.15s;
+  -o-transition: all ease-in 0.15s;
+}
+.visible1::after {
+  content: "Support";
+  float: right;
+  padding: 3px 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.invisible1 {
+  display: hidden;
+  width: 45px;
+  transition: all ease-in 0.15s;
+  -webkit-transition: all ease-in 0.15s;
+  -moz-transition: all ease-in 0.15s;
+  -ms-transition: all ease-in 0.15s;
+  -o-transition: all ease-in 0.15s;
+}
+
+.visible2 {
+  display: inline-block;
+  width: 120px;
+  transition: all ease-in 0.15s;
+  -webkit-transition: all ease-in 0.15s;
+  -moz-transition: all ease-in 0.15s;
+  -ms-transition: all ease-in 0.15s;
+  -o-transition: all ease-in 0.15s;
+}
+.visible2::after {
+  content: "About";
+  float: right;
+  padding: 3px 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.invisible2 {
+  display: hidden;
+  width: 45px;
+  transition: all ease-in 0.15s;
+  -webkit-transition: all ease-in 0.15s;
+  -moz-transition: all ease-in 0.15s;
+  -ms-transition: all ease-in 0.15s;
+  -o-transition: all ease-in 0.15s;
+}
+
+.footbar {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(36, 36, 36);
+  color: white;
+  overflow-x: hidden;
+  overflow-y: visible;
+  height: 10vh;
+  z-index: 1001;
+}
+
+.ul {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 40px;
+  overflow: visible;
+}
+
+.ins {
+  padding: 10px;
+  padding-left: 50px;
+  font-size: 18px;
+}
+
+.ul li {
+  transition: all ease 0.3s 0.1s;
+  -webkit-transition: all ease 0.3s 0.1s;
+  -moz-transition: all ease 0.3s 0.1s;
+  -ms-transition: all ease 0.3s 0.1s;
+  -o-transition: all ease 0.3s 0.1s;
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+}
+
+.ul li:hover {
+  transform: translateY(-10px);
+  -webkit-transform: translateY(-10px);
+  -moz-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  -o-transform: translateY(-10px);
+}
+.ul li a {
+  padding: 10px 25px;
+  color: white;
+  font-size: 18px;
+  border-bottom: 1px solid transparent;
+  transition: all ease 0.3s 0.1s;
+  -webkit-transition: all ease 0.3s 0.1s;
+  -moz-transition: all ease 0.3s 0.1s;
+  -ms-transition: all ease 0.3s 0.1s;
+  -o-transition: all ease 0.3s 0.1s;
+}
+
+.ul li a:hover {
+  padding-bottom: 25px;
+  border-bottom: 1px solid white;
+}
+
+.iiit {
+  font-size: 16px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  z-index: 1001;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  font-size: 12px;
+  width: 360px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  background-color: rgb(245, 245, 245);
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1001;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+/*
 .div0 {
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.658), rgba(0, 0, 0, 0.61)),
-    url("../../Images/back.jpg");
+  background-image: linear-gradient(
+    white
+  );
   position: relative;
   background-position: top;
   background-size: cover;
@@ -78,7 +382,6 @@
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
-  /* border-bottom: 5px solid rgb(116, 62, 202); */
 }
 
 .google {
@@ -142,12 +445,11 @@
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
-  /* border-bottom: 5px solid white; */
   padding: 15px;
   text-align: center;
 }
 
-.txt{
+.txt {
   color: white;
   font-size: 1.5em;
   font-weight: bold;
@@ -172,83 +474,6 @@
   color: rgb(104, 31, 221);
 }
 
-.icon1,
-.icon2 {
-  height: 45px;
-  width: 45px;
-  padding: 8px;
-  overflow: hidden;
-  border-radius: 100px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  -ms-border-radius: 100px;
-  -o-border-radius: 100px;
-}
-
-.icon1 {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  background-color: rgb(235, 235, 235);
-  cursor: pointer;
-}
-
-.icon2 {
-  position: absolute;
-  right: 20px;
-  bottom: 80px;
-  background-color: rgb(235, 235, 235);
-  cursor: pointer;
-}
-
-.visible1 {
-  display: inline-block;
-  width: 140px;
-  transition: all ease-in 0.15s;
-  -webkit-transition: all ease-in 0.15s;
-  -moz-transition: all ease-in 0.15s;
-  -ms-transition: all ease-in 0.15s;
-  -o-transition: all ease-in 0.15s;
-}
-.visible1::after {
-  content: "Support";
-  float: right;
-  padding: 0 10px;
-}
-.invisible1 {
-  display: hidden;
-  width: 45px;
-  transition: all ease-in 0.15s;
-  -webkit-transition: all ease-in 0.15s;
-  -moz-transition: all ease-in 0.15s;
-  -ms-transition: all ease-in 0.15s;
-  -o-transition: all ease-in 0.15s;
-}
-
-.visible2 {
-  display: inline-block;
-  width: 120px;
-  transition: all ease-in 0.15s;
-  -webkit-transition: all ease-in 0.15s;
-  -moz-transition: all ease-in 0.15s;
-  -ms-transition: all ease-in 0.15s;
-  -o-transition: all ease-in 0.15s;
-}
-.visible2::after {
-  content: "About";
-  float: right;
-  padding: 0 10px;
-}
-.invisible2 {
-  display: hidden;
-  width: 45px;
-  transition: all ease-in 0.15s;
-  -webkit-transition: all ease-in 0.15s;
-  -moz-transition: all ease-in 0.15s;
-  -ms-transition: all ease-in 0.15s;
-  -o-transition: all ease-in 0.15s;
-}
-
 .div3 h1 {
   color: white;
   letter-spacing: 1px;
@@ -265,3 +490,6 @@
   margin: 0 35px;
   left: 50%;
 }
+
+
+*/

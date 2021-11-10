@@ -13,6 +13,10 @@ import cx from "classnames";
 import Image from "../../Images/inst.png";
 import Image2 from "../../Images/office.png";
 import { Route } from "react-router";
+import { AiFillCar, AiTwotoneMail } from "react-icons/ai";
+import { FaCar, FaPhone } from "react-icons/fa";
+
+import { IoLocationSharp } from "react-icons/io5";
 //import Upload from "../Upload/Upload";
 import "firebase/firestore";
 
@@ -96,7 +100,7 @@ const Auth = () => {
   }
 
   return (
-    <div>
+    <div className={styles.home}>
       {con ? (
         <span>
           <Home />
@@ -115,32 +119,26 @@ const Auth = () => {
         </span>
       ) : (
         <div className={styles.div0}>
-          <div className={styles.upper}>
+          {/* <div className={styles.upper}>
             <img src={Image} className={styles.logo} alt="logo" />
             <p>Indian Institute Of Information Technology Vadodara</p>
-          </div>
+          </div> */}
 
           <div className={styles.div1}>
             <div className={styles.div2}>
-              <div className={styles.div4}>
-                <FaUserCircle className={styles.circle} />
+              <div className={styles.div4}>HELLO</div>
+              <div className={styles.SignInButton1}>
+                <StyledFirebaseAuth
+                  uiConfig={uiConfig}
+                  firebaseAuth={firebase.auth()}
+                  id="google"
+                  className={styles.google}
+                  buttonText=""
+                />
               </div>
-
-              <StyledFirebaseAuth
-                uiConfig={uiConfig}
-                firebaseAuth={firebase.auth()}
-                className={styles.google}
-              />
-
               <div className={styles.div5}>
                 <a href="#">Trouble Logging In ?</a>
               </div>
-            </div>
-            <div className={styles.div3}>
-              <img src={Image2} alt="Office Order" className={styles.office} />
-              <h1>Office</h1>
-              <h1>Order</h1>
-              <h1>Management</h1>
             </div>
           </div>
           <button
@@ -166,6 +164,43 @@ const Auth = () => {
           >
             <FcAbout size={25} />
           </button>
+
+          <div className={styles.footbar}>
+            <div className={styles.ins}>
+              Office Order Managegment,
+              <span className={styles.iiit}> IIIT Vadodara </span>
+            </div>
+            <div className={styles.foot}>
+              <ul className={styles.ul}>
+                <li>
+                  <a
+                    href="https://www.google.com/maps/place/Indian+Institute+of+Information+Technology+Vadodara+(Gandhinagar+Campus)/@23.2591953,72.6481807,17z/data=!3m1!4b1!4m5!3m4!1s0x395c2c777c4b5e63:0xf2af0643c7186398!8m2!3d23.2591953!4d72.6503747"
+                    target="_blank"
+                  >
+                    <IoLocationSharp />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="http://iiitvadodara.ac.in/howtoreach.php"
+                    target="_blank"
+                  >
+                    <FaCar />
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+918849211679">
+                    <FaPhone />
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto: administration@iiitvadodara.ac.in">
+                    <AiTwotoneMail />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       )}
     </div>
