@@ -115,8 +115,8 @@ export default function Form() {
       formData.append("date", today);
       formData.append("newFamily", newFamily);
 
-      console.log(name);
-      console.log(familyName);
+      console.log(keywords);
+      
 
       // if(newFamily)
       formData.append("familyName", familyName);
@@ -363,6 +363,7 @@ export default function Form() {
             </option>
             {memberArray}
           </select>
+          {memberArray}
           <input
             placeholder="Add a New Family"
             onChange={(e) => setNew(e.target.value)}
@@ -384,8 +385,9 @@ export default function Form() {
           <br />
         </div>
         <div className={styles.line}></div>
-
+        {/* {memberArradday} */}
         <button className={styles.button}>Upload Order </button>
+        
       </form>
       {/* {orderUploaded && window.alert("Order Uploaded Successfully")
       // (

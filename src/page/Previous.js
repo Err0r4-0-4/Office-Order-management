@@ -88,12 +88,13 @@ const Previous = () => {
   };
 
   const navigateHandler = (e) => {
-    console.log(count);
 
     let c = +count + 1;
 
+
     if (e === "prev") {
-      c = +count - 1;
+      c = +c - 2;
+ 
     }
 
     console.log(c);
@@ -115,9 +116,10 @@ const Previous = () => {
       .then(async (res) => {
         console.log(res);
 
-        setImage(res.data.data.imageUrl);
+        // setImage(res.data.data.imageUrl);
 
-        // preViewHandler(res.data.data.imageUrl);
+        preViewHandler(res.data.data.imageUrl);
+        setCount(c);
         setLoading(false);
       })
       .catch((err) => {
@@ -128,10 +130,10 @@ const Previous = () => {
 
   const keywordSearch = (e) => {
     console.log(e.target.value);
-    console.log(ordersD);
     let renderSearchData = ordersD.filter((od) =>
-      od.keywords.includes(e.target.value)
+    od.lastOrder.keywords.includes(e.target.value)
     );
+    console.log(renderSearchData);
     console.log("renderSearchData", renderSearchData);
     setshoworders(
       renderSearchData.map((doc) => (
@@ -139,28 +141,32 @@ const Previous = () => {
           <img src={img} className={styles.img}></img>
           <div className={styles.inner}>
             <h4 className={styles.date}>{doc.date}</h4>
+            <h5>{doc.serialNo}</h5>
             <h2 className={styles.title}>{doc.title}</h2>
             <button
-              onClick={() => preViewHandler(doc.imageUrl)}
+              onClick={() => preViewHandler(doc.imageUrl, doc.familyId, doc.count)}
               target="_top"
               className={styles.link}
             >
               Preview Order
             </button>
-            <button
+            {/* <button
               target="_top"
               className={styles.link}
               onClick={(doc) => getParentHandler()}
             >
               Parent Order.
-            </button>
+            </button> */}
           </div>
         </div>
       ))
     );
   };
 
-  const preViewHandler = (e) => {
+  const preViewHandler = (e, i, c) => {
+    console.log(c);
+    setCount(c);
+    setFamilyId(i);
     setImage(e);
     console.log(e);
     setPreviewURL(e);
@@ -176,6 +182,8 @@ const Previous = () => {
         "https://office-order-backend.herokuapp.com/office/getLastMember"
       );
 
+      console.log(a);
+
       setOrdersCount(a.data.keywords.length);
 
       let data = a.data.keywords;
@@ -187,23 +195,24 @@ const Previous = () => {
           <img src={img} className={styles.img}></img>
           <div className={styles.inner}>
             <h4 className={styles.date}>{doc.lastOrder.date}</h4>
+            <h5>{doc.lastOrder.serialNo}</h5>
 
             <h2 className={styles.title}>{doc.lastOrder.title}</h2>
             <button
-              onClick={() => preViewHandler(doc.lastOrder.imageUrl)}
+              onClick={() => preViewHandler(doc.lastOrder.imageUrl, doc.lastOrder.familyId, doc.lastOrder.count)}
               target="_top"
               className={styles.link}
             >
               Preview Order
             </button>
             {console.log(doc.lastOrder.familyId, doc.lastOrder.count)}
-            <button
+            {/* <button
               target="_top"
               className={styles.link}
               onClick={() => getParentHandler(doc.lastOrder)}
             >
               Parent Order
-            </button>
+            </button> */}
             {/* <span className={styles.addons}>{doc.addons}</span> */}
           </div>
         </div>
@@ -215,6 +224,9 @@ const Previous = () => {
     getData();
   }, []);
   return (
+
+    //////////////////search
+
     <div className={styles.page}>
       {loading ? <Spinner /> : null}
       <div className={styles.search}>
