@@ -224,9 +224,9 @@ exports.getParentOrder = async (req, res, next) => {
   }
 };
 
-exports.isRegistrar = (req, res, next) => {
+exports.isRegistrar = async (req, res, next) => {
   try {
-    let decodedToken = admin.auth().verifyIdToken(req.body.token);
+    let decodedToken = await admin.auth().verifyIdToken(req.body.token);
     console.log(decodedToken);
     const userEmail = decodedToken.email;
     if (userEmail === "registrar@iiitvadodara.ac.in") {
