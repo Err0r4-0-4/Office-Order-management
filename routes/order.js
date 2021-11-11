@@ -9,5 +9,5 @@ route.post("/keywords", orderController.getKeywords);
 route.post("/getLastMember", orderController.getLastMember);
 route.post("/getParentOrder", orderController.getParentOrder);
 route.post("/getOtherOrder", orderController.getOtherOrder);
-route.post("/auth", orderController.auth);
+route.post("/isRegistrar", orderController.isRegistrar);
 module.exports = route;

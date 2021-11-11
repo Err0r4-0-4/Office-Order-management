@@ -224,19 +224,22 @@ exports.getParentOrder = async (req, res, next) => {
   }
 };
 
-exports.auth = (req, res, next) => {
-  admin
-    .auth()
-    .verifyIdToken(req.body.idToken)
-    .then((decodedToken) => {
-      console.log(decodedToken);
-      const uid = decodedToken.uid;
-      // ...
-    })
-    .catch((error) => {
-      // Handle error
-      console.log(error);
-    });
+exports.isRegistrar = (req, res, next) => {
+  try {
+    let decodedToken = admin.auth().verifyIdToken(req.body.token);
+    console.log(decodedToken);
+    const userEmail = decodedToken.email;
+    if (userEmail === "registrar@iiitvadodara.ac.in") {
+      res.status(400).send({ isRegistrar: true });
+      return;
+    } else {
+      res.status(400).send({ isRegistrar: false });
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ message: error.message });
+  }
 };
 
 exports.getOtherOrder = async (req, res, next) => {
