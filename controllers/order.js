@@ -230,10 +230,10 @@ exports.isRegistrar = async (req, res, next) => {
     console.log(decodedToken);
     const userEmail = decodedToken.email;
     if (userEmail === "registrar@iiitvadodara.ac.in") {
-      res.status(400).send({ isRegistrar: true });
+      res.status(200).send({ isRegistrar: true });
       return;
     } else {
-      res.status(400).send({ isRegistrar: false });
+      res.status(200).send({ isRegistrar: false });
       return;
     }
   } catch (error) {
