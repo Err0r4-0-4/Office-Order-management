@@ -283,7 +283,7 @@
     max-width: none;
     flex: 100%;
     flex-grow: 1;
-    height: 250px;
+    height: 300px;
   }
   .div3 {
     flex-grow: 1;
@@ -305,7 +305,7 @@
 
   .adddiv {
     flex: 100%;
-    flex-shrink: 0;
+    flex-shrink: 1;
   }
 }
 @media all and (max-width: 650px) {
@@ -317,5 +317,21 @@
 @media all and (max-width: 550px) {
   .homepage {
     padding: 40px 10px;
+  }
+  .per {
+    height: 330px;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .homepage {
+    padding: 30px 0;
+  }
+
+  .div3 {
+    padding-top: 0;
+  }
+  .per {
+    height: 350px;
   }
 }

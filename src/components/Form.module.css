@@ -86,7 +86,7 @@
 }
 .namei {
   background-color: transparent;
-  width: 68%;
+  width: 60%;
   padding: 6.8px;
   font-size: 16px;
   border: none;
@@ -363,18 +363,6 @@ li {
 }
 
 @media all and (max-width: 600px) {
-  .namei {
-    width: 50%;
-    flex: 50%;
-    flex-grow: 0;
-  }
-
-  .iiit {
-    width: 45%;
-    flex: 45%;
-    flex-grow: 0;
-  }
-
   .btn {
     width: 40%;
     flex: 40%;
@@ -388,6 +376,22 @@ li {
 } */
 
 @media all and (max-width: 500px) {
+  .name {
+    flex-wrap: wrap;
+  }
+  .namei {
+    width: 100%;
+    flex: 100%;
+    flex-grow: 0;
+    margin-top: 10px;
+  }
+
+  .iiit {
+    width: 100%;
+    flex: 100%;
+    flex-grow: 0;
+    text-align: left;
+  }
   .hundred1 {
     flex-wrap: wrap;
   }

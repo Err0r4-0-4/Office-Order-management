@@ -167,8 +167,8 @@ const Auth = () => {
 
           <div className={styles.footbar}>
             <div className={styles.ins}>
-              Office Order Managegment,
-              <span className={styles.iiit}> IIIT Vadodara </span>
+              Office Order Managegment
+              {/* <span className={styles.iiit}> IIIT Vadodara </span> */}
             </div>
             <div className={styles.foot}>
               <ul className={styles.ul}>

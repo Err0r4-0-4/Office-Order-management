@@ -292,7 +292,7 @@
 }
 .burgermenuo {
   position: absolute;
-  top: 6vh;
+  top: 10vh;
   left: 0%;
   z-index: 1001;
   font-family: "Montserrat", sans-serif;
@@ -309,7 +309,7 @@
 }
 .burgermenuc {
   position: absolute;
-  top: 5vh;
+  top: 9vh;
   left: 0%;
   z-index: 1001;
   font-family: "Montserrat", sans-serif;
@@ -541,5 +541,9 @@
     font-size: 20px;
     letter-spacing: 1px;
     font-weight: 400;
+  }
+
+  .active2 {
+    font-size: 12px;
   }
 }
