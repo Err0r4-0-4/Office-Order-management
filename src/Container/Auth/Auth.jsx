@@ -62,7 +62,9 @@ const Auth = () => {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           dispatch(Authactions.toggle());
+          console.log("user", user);
           console.log("user", user.email);
+          console.log("Aa", user.Aa);
           if (user.emailVerified) {
             if (
               user.email.includes("@iiitvadodara.ac.in") ||
