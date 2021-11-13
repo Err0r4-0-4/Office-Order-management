@@ -23,6 +23,8 @@ export default function Form() {
   const [addonError, setAddonError] = useState("");
   const [members, setMembers] = useState([]);
   const [familyName, setFamilyName] = useState("");
+  const [memberArray, setmemberArray] = useState("");
+
   const [name, setName] = useState("");
   const [loading, setLoding] = useState(false);
   const [newFamily, setNewFamily] = useState(false);
@@ -31,20 +33,14 @@ export default function Form() {
   useEffect(() => {
     setLoding(true);
 
-    console.log("fetch");
-
     axios
       .post("https://office-order-backend.herokuapp.com/office/keywords")
       .then(async (res) => {
-        console.log(res.data.keywords);
         setkeywordList(res.data.keywords.map((k) => <option>{k}</option>));
-
-        console.log(keywords);
 
         setLoding(false);
       })
       .catch((err) => {
-        console.log(err);
         setLoding(false);
       });
 
@@ -53,13 +49,11 @@ export default function Form() {
     axios
       .post("https://office-order-backend.herokuapp.com/office/getLastMember")
       .then(async (res) => {
-        console.log(res.data.keywords);
-        setMembers(res.data.keywords);
+        setMembers(res.data.keywords.map((k) => <option>{k}</option>));
 
         setLoding(false);
       })
       .catch((err) => {
-        console.log(err);
         setLoding(false);
       });
   }, []);
@@ -67,7 +61,6 @@ export default function Form() {
   const setNew = (n) => {
     setFamilyName(n);
     setNewFamily(true);
-    console.log(n);
   };
 
   const setFamilyHandler = (familyName, familyId) => {
@@ -75,24 +68,21 @@ export default function Form() {
 
     setName(familyId);
     setNewFamily(false);
-
-    console.log(familyName);
   };
 
-  let memberArray = (
-    <div>
-      {members.map((m) => (
-        <Member
-          name={m.lastOrder.familyName}
-          id={m.lastOrder.familyId}
-          setFamily={setFamilyHandler}
-        />
-      ))}
-    </div>
-  );
+  // let memberArray = (
+  //   <div>
+  //     {members.map((m) => (
+  //       <Member
+  //         name={m.lastOrder.familyName}
+  //         id={m.lastOrder.familyId}
+  //         setFamily={setFamilyHandler}
+  //       />
+  //     ))}
+  //   </div>
+  // );
 
   const uploadForm = async (e) => {
-    console.log("DownloadURL");
     try {
       e.preventDefault();
 
@@ -102,8 +92,6 @@ export default function Form() {
       var yyyy = today.getFullYear();
 
       today = mm + "/" + dd + "/" + yyyy;
-
-      console.log(today);
 
       const formData = new FormData();
       formData.append("title", title);
@@ -115,14 +103,10 @@ export default function Form() {
       formData.append("date", today);
       formData.append("newFamily", newFamily);
 
-      console.log(keywords);
-
       // if(newFamily)
       formData.append("familyName", familyName);
 
       if (!newFamily) formData.append("familyId", name);
-
-      console.log(formData);
 
       setLoding(true);
 
@@ -132,12 +116,9 @@ export default function Form() {
           formData
         )
         .then(async (res) => {
-          console.log(res);
-
           setLoding(false);
         })
         .catch((err) => {
-          console.log(err);
           setLoding(false);
         });
 
@@ -146,27 +127,21 @@ export default function Form() {
       setTitle("");
       setFile({});
       setKeywords([]);
-      console.log("order added to ORDER collection");
       window.alert("Order Uploaded Successfully");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const checkboxHandler = (e) => {
     if (e.target.checked) {
-      //console.log(a)
       setVisibility([...visibility, e.target.value]);
       a.push(e.target.value);
     } else {
-      console.log(visibility);
       let d = [...visibility];
       let index = d.indexOf(e.target.value);
       d.splice(index, 1);
       setVisibility([...d]);
       //a.pop(e.target.value);
     }
-    console.log(visibility);
   };
 
   const radioHandler = (e) => {
@@ -174,7 +149,6 @@ export default function Form() {
   };
 
   const removeAddon = (e) => {
-    console.log(e.target.id);
     let p = keywords;
     let index = p.indexOf(e.target.id);
     p.splice(index, 1);
@@ -192,10 +166,8 @@ export default function Form() {
   ));
 
   let addonHandler = (e) => {
-    console.log(e.target.value);
     let p = addons;
     if (addons.includes(e.target.value)) {
-      console.log("addonError");
       setAddonError("**This option is already Added!");
       return;
     }
@@ -211,14 +183,11 @@ export default function Form() {
     let newKeywords = [...keywords, input.value];
     setKeywords(newKeywords);
     input.value = "";
-    console.log(newKeywords);
   };
 
   const addKeyWords = (event) => {
-    console.log(keywords);
     let t = keywords;
     setKeywords([...t, event.target.value]);
-    console.log(keywords);
   };
 
   return (
@@ -360,9 +329,7 @@ export default function Form() {
             <option selected value>
               --Family --
             </option>
-            {memberArray}
           </select>
-          {memberArray}
           <input
             placeholder="Add a New Family"
             onChange={(e) => setNew(e.target.value)}

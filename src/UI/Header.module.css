@@ -1,7 +1,7 @@
 .pre {
-  height: 10vh;
+  height: 8vh;
   z-index: 1000;
-  min-height: 10vh;
+  min-height: 8vh;
 }
 .header {
   position: fixed;
@@ -15,7 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 40px 18px 0px;
+  padding: 12px 40px 12px 0px;
   z-index: 1000;
   height: 10vh;
   font-family: "Nunito", sans-serif;
@@ -25,11 +25,13 @@
   letter-spacing: 1px;
   font-weight: 400;
   padding-left: 20px;
+  margin: 0;
 }
 .header ul {
   display: flex;
   justify-content: end;
   align-items: center;
+  margin: 5px;
 }
 /* .circle {
   cursor: pointer;
@@ -292,7 +294,7 @@
 }
 .burgermenuo {
   position: absolute;
-  top: 10vh;
+  top: 9vh;
   left: 0%;
   z-index: 1001;
   font-family: "Montserrat", sans-serif;
@@ -309,7 +311,7 @@
 }
 .burgermenuc {
   position: absolute;
-  top: 9vh;
+  top: 8vh;
   left: 0%;
   z-index: 1001;
   font-family: "Montserrat", sans-serif;

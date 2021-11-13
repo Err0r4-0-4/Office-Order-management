@@ -55,14 +55,6 @@ const Auth = () => {
 
   try {
     useEffect(() => {
-      const uiConfig = {
-        signInFlow: "popup",
-        signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
-        callbacks: {
-          signInSuccessWithAuthResult: () => false,
-        },
-      };
-
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           dispatch(Authactions.toggle());
@@ -73,13 +65,6 @@ const Auth = () => {
               user.email.includes("@iiitv.ac.in")
             ) {
               setOk(true);
-              // if (user.email.includes("registrar"))
-              //   dispatch(Authactions.allocation("Registrar"));
-              // else if (user.email.includes("director"))
-              //   dispatch(Authactions.allocation("Director"));
-              // else if (user.email.includes("20"))
-              //   dispatch(Authactions.allocation("Student"));
-              // else dispatch(Authactions.allocation("Faculty"));
 
               if (user.email.includes("201951073"))
                 dispatch(Authactions.allocation("Registrar"));

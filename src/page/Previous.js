@@ -88,13 +88,10 @@ const Previous = () => {
   };
 
   const navigateHandler = (e) => {
-
     let c = +count + 1;
-
 
     if (e === "prev") {
       c = +c - 2;
- 
     }
 
     console.log(c);
@@ -131,7 +128,7 @@ const Previous = () => {
   const keywordSearch = (e) => {
     console.log(e.target.value);
     let renderSearchData = ordersD.filter((od) =>
-    od.lastOrder.keywords.includes(e.target.value)
+      od.lastOrder.keywords.includes(e.target.value)
     );
     console.log(renderSearchData);
     console.log("renderSearchData", renderSearchData);
@@ -144,7 +141,9 @@ const Previous = () => {
             <h5>{doc.serialNo}</h5>
             <h2 className={styles.title}>{doc.title}</h2>
             <button
-              onClick={() => preViewHandler(doc.imageUrl, doc.familyId, doc.count)}
+              onClick={() =>
+                preViewHandler(doc.imageUrl, doc.familyId, doc.count)
+              }
               target="_top"
               className={styles.link}
             >
@@ -199,7 +198,13 @@ const Previous = () => {
 
             <h2 className={styles.title}>{doc.lastOrder.title}</h2>
             <button
-              onClick={() => preViewHandler(doc.lastOrder.imageUrl, doc.lastOrder.familyId, doc.lastOrder.count)}
+              onClick={() =>
+                preViewHandler(
+                  doc.lastOrder.imageUrl,
+                  doc.lastOrder.familyId,
+                  doc.lastOrder.count
+                )
+              }
               target="_top"
               className={styles.link}
             >
@@ -224,7 +229,6 @@ const Previous = () => {
     getData();
   }, []);
   return (
-
     //////////////////search
 
     <div className={styles.page}>
@@ -263,9 +267,9 @@ const Previous = () => {
             onClick={f2}
           >
             {open ? (
-              <AiOutlineClose size={25} color="#fff" />
+              <AiOutlineClose size={25} color="#fff" className={styles.icon} />
             ) : (
-              <AiOutlineLeft size={25} color="#fff" />
+              <AiOutlineLeft size={25} color="#fff" className={styles.icon} />
             )}
           </div>
 
@@ -273,12 +277,14 @@ const Previous = () => {
             <button
               onClick={() => navigateHandler("prev")}
               className={styles.arr}
+              title="Previous Family Member"
             >
               <AiOutlineArrowLeft size={20} />
             </button>
             <button
               onClick={() => navigateHandler("next")}
               className={styles.arr}
+              title="Next Family Member"
             >
               <AiOutlineArrowRight size={20} />
             </button>
