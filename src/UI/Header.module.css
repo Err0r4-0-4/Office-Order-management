@@ -15,7 +15,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 20px 18px;
+  padding: 12px 40px 18px 0px;
   z-index: 1000;
   height: 10vh;
   font-family: "Nunito", sans-serif;
@@ -24,6 +24,7 @@
   font-size: 24px;
   letter-spacing: 1px;
   font-weight: 400;
+  padding-left: 20px;
 }
 .header ul {
   display: flex;
@@ -291,7 +292,7 @@
 }
 .burgermenuo {
   position: absolute;
-  top: 6vh;
+  top: 10vh;
   left: 0%;
   z-index: 1001;
   font-family: "Montserrat", sans-serif;
@@ -308,7 +309,7 @@
 }
 .burgermenuc {
   position: absolute;
-  top: 5vh;
+  top: 9vh;
   left: 0%;
   z-index: 1001;
   font-family: "Montserrat", sans-serif;
@@ -540,5 +541,9 @@
     font-size: 20px;
     letter-spacing: 1px;
     font-weight: 400;
+  }
+
+  .active2 {
+    font-size: 12px;
   }
 }
