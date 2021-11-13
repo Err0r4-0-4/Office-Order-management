@@ -26,6 +26,9 @@ import {
 } from "react-icons/si";
 
 import img from "../Images/Jatin.jpg";
+import img1 from "../Images/Adi.jpg";
+import img2 from "../Images/sidharth.jpg";
+import img3 from "../Images/deep.jpg";
 const About = () => {
   const [help1, sethelp1] = useState(false);
   const open1 = () => {
@@ -41,24 +44,24 @@ const About = () => {
     sethelp3(!help3);
   };
   return (
-    <div className={styles.about}>
+    <div className={styles.about} id="id1">
       <div className={styles.div}>
         <h1 className={styles.h1}>About us</h1>
         <ul className={styles.ul}>
           <li>
-            <a href="#">About</a>
+            <a href="#id1">About</a>
           </li>
           <li>
-            <a href="#">Code</a>
+            <a href="#id1">Code</a>
           </li>
           <li>
-            <a href="#">Issues</a>
+            <a href="#id2">Issues</a>
           </li>
           <li>
-            <a href="#">Coders</a>
+            <a href="#id3">Coders</a>
           </li>
           <li>
-            <a href="#">FAQs</a>
+            <a href="#id4">FAQs</a>
           </li>
         </ul>
         <div className={styles.div1}>
@@ -84,18 +87,20 @@ const About = () => {
               <div className={styles.flex}>
                 <h3 className={styles.h3}>Github</h3>
                 <div className={styles.icon}>
-                  <a href="#">
+                  <a href="https://github.com/Err0r4-0-4/Office-Order-management">
                     <AiFillGithub />
                   </a>
                 </div>
               </div>
             </div>
             <div className={styles.sec}>
-              <h2 className={styles.h2}>Issues/Suggestion</h2>
+              <h2 className={styles.h2} id="id3">
+                Issues/Suggestion
+              </h2>
               <div className={styles.flex}>
                 <h3 className={styles.h3}>Gmail</h3>
                 <div className={styles.icon}>
-                  <a href="#">
+                  <a href="mailto : administration@iiitvadodara.ac.in">
                     <AiFillMail />
                   </a>
                 </div>
@@ -169,17 +174,25 @@ const About = () => {
 
               <ul className={styles.connect}>
                 <li>
-                  <a href="#" target="_blank" title="View Github">
+                  <a
+                    href="https://github.com/jatin0814"
+                    target="_blank"
+                    title="View Github"
+                  >
                     <AiFillGithub />
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank" title="View Mail">
+                  <a href="mailto: jatingupta0214@gmail.com " title="View Mail">
                     <AiFillMail />
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank" title="ViewLinkdin">
+                  <a
+                    href="https://www.linkedin.com/in/jatin-gupta-005381196/"
+                    target="_blank"
+                    title="ViewLinkdin"
+                  >
                     <AiFillLinkedin />
                   </a>
                 </li>
@@ -189,7 +202,7 @@ const About = () => {
           <div className={styles.fif}>
             <div className={styles.top2}>
               <div className={styles.imgc}>
-                <img src={img} alt="Admin" className={styles.img} />
+                <img src={img1} alt="Admin" className={styles.img} />
               </div>
               <div className={styles.name}>
                 <h2 className={styles.h5}>Aditya Singh</h2>
@@ -245,17 +258,28 @@ const About = () => {
 
               <ul className={styles.connect}>
                 <li>
-                  <a href="#" target="_blank" title="View Github">
+                  <a
+                    href="https://github.com/adityasingh03"
+                    target="_blank"
+                    title="View Github"
+                  >
                     <AiFillGithub />
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank" title="View Mail">
+                  <a
+                    href="mailto:adityasingh030201@gmail.com"
+                    title="View Mail"
+                  >
                     <AiFillMail />
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank" title="ViewLinkdin">
+                  <a
+                    href="https://www.linkedin.com/feed/"
+                    target="_blank"
+                    title="ViewLinkdin"
+                  >
                     <AiFillLinkedin />
                   </a>
                 </li>
@@ -265,7 +289,7 @@ const About = () => {
           <div className={styles.fif}>
             <div className={styles.top3}>
               <div className={styles.imgc}>
-                <img src={img} alt="Admin" className={styles.img} />
+                <img src={img2} alt="Admin" className={styles.img} />
               </div>
               <div className={styles.name}>
                 <h2 className={styles.h5}>Sidhart Saini</h2>
@@ -320,17 +344,25 @@ const About = () => {
 
               <ul className={styles.connect}>
                 <li>
-                  <a href="#" target="_blank" title="View Github">
+                  <a
+                    href="https://github.com/sidharth3000"
+                    target="_blank"
+                    title="View Github"
+                  >
                     <AiFillGithub />
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank" title="View Mail">
+                  <a href="mailto: sidharthsaini49@gmail.com" title="View Mail">
                     <AiFillMail />
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank" title="ViewLinkdin">
+                  <a
+                    href="https://www.linkedin.com/in/sidharth-saini-7844831aa/"
+                    target="_blank"
+                    title="ViewLinkdin"
+                  >
                     <AiFillLinkedin />
                   </a>
                 </li>
@@ -340,9 +372,9 @@ const About = () => {
           <div className={styles.fif}>
             <div className={styles.top4}>
               <div className={styles.imgc}>
-                <img src={img} alt="Admin" className={styles.img} />
+                <img src={img3} alt="Admin" className={styles.img} />
               </div>
-              <div className={styles.name}>
+              <div className={styles.name} id="id4">
                 <h2 className={styles.h5}>Deepanshu Singh</h2>
                 <h4 className={styles.h4}>3rd Year, IIIT V</h4>
                 <p className={styles.h3}>
@@ -409,12 +441,19 @@ const About = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank" title="View Mail">
+                  <a
+                    href="mailto: chdeepanshuchauhan@gmail.com"
+                    title="View Mail"
+                  >
                     <AiFillMail />
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank" title="ViewLinkdin">
+                  <a
+                    href="https://www.linkedin.com/in/deepanshu-singh-1515b71a3"
+                    target="_blank"
+                    title="ViewLinkdin"
+                  >
                     <AiFillLinkedin />
                   </a>
                 </li>

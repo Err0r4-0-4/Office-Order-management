@@ -17,15 +17,7 @@ const New = () => {
           <img alt="profile picture" src={img} className={styles.img} />
           <div className={styles.personal}>
             <p className={styles.nameroll}>Registrar</p>
-            <p className={styles.nameroll}>
-              {firebase
-                .auth()
-                .currentUser.displayName.substring(
-                  firebase.auth().currentUser.displayName.indexOf(" ") + 1,
-                  firebase.auth().currentUser.displayName.length
-                )
-                .toLocaleLowerCase()}
-            </p>
+            <br />
             <p className={styles.small}>
               Registrar at Indian Institute of Information Technology Vadodara.
             </p>
