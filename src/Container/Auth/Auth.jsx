@@ -15,6 +15,7 @@ import Image2 from "../../Images/office.png";
 import { Route } from "react-router";
 import { AiFillCar, AiTwotoneMail } from "react-icons/ai";
 import { FaCar, FaPhone } from "react-icons/fa";
+import Modal from "../../UI/Modal";
 
 import { IoLocationSharp } from "react-icons/io5";
 //import Upload from "../Upload/Upload";
@@ -33,6 +34,12 @@ const Auth = () => {
   const [icon1, setIcon1] = useState(false);
   const [icon2, setIcon2] = useState(false);
   const [file, setFile] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const hideHandler = () => {
+    setShowModal(false)
+  }
+  
   const functionover1 = () => {
     setIcon1(true);
   };
@@ -70,6 +77,9 @@ const Auth = () => {
           dispatch(Authactions.toggle());
           console.log("user", user);
           if (user.emailVerified) {
+
+            localStorage.setItem("token", user.Aa);
+
             if (
               user.email.includes("@iiitvadodara.ac.in") ||
               user.email.includes("@iiitv.ac.in")
@@ -84,6 +94,13 @@ const Auth = () => {
                 dispatch(Authactions.allocation("Student"));
               else if (user.email.includes("201951073"))
                 dispatch(Authactions.allocation("Faculty"));
+
+              
+            }
+
+            else{
+              // setShowModal(true);
+              console.log("!!!!!!!");
             }
           }
           console.log(firebase.auth().currentUser.token);
@@ -96,6 +113,7 @@ const Auth = () => {
 
   return (
     <div className={styles.home}>
+      <Modal show={showModal} switch={hideHandler}>Please use your institute email ti login.</Modal>
       {con ? (
         <span>
           <Home />

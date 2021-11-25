@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
+import axios from 'axios';
 import { FiMail } from "react-icons/fi";
 import { GoMarkGithub, GoMail } from "react-icons/go";
 import { FaLinkedinIn, FaSearchLocation } from "react-icons/fa";
@@ -10,7 +11,43 @@ import styles from "./Header.module.css";
 import img1 from ".././Images/inst.png";
 import { useSelector, useDispatch } from "react-redux";
 import { Authactions } from "../store/Auth-login";
+
+let config = {
+  headers: {
+    token: localStorage.getItem("token")
+  }
+}
+
 const Header = () => {
+  
+  const con = useSelector((state) => state.isSignedIn);
+  const role = useSelector((state) => state.isReg);
+  const dispatch = useDispatch();
+
+  console.log(role);
+
+  useEffect(() => {
+
+    const data = {
+      token: localStorage.getItem("token")
+    };
+
+    console.log(data);
+    
+    axios
+    .post("https://office-order-backend.herokuapp.com/office/isRegistrar", data, config)
+    .then(async (res) => {
+      console.log(res);
+      ////////////////////////////////////////////////////////////////////
+      dispatch(Authactions.assignRole(true));
+      console.log(role);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }, []);
+
   const history = useHistory();
   const [open, setOpen] = useState(false);
   const clickhandler = () => {
@@ -22,13 +59,11 @@ const Header = () => {
     setover(!over);
   };
 
-  const con = useSelector((state) => state.isSignedIn);
-  const role = useSelector((state) => state.member);
-  const dispatch = useDispatch();
   const signout = () => {
     history.push("/");
     dispatch(Authactions.toggle());
     firebase.auth().signOut();
+    localStorage.removeItem("token");
   };
   console.log(con);
   return (
@@ -49,13 +84,16 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
+            {role ? 
             <NavLink
-              to="/neworder"
-              activeClassName={styles.active}
-              className={styles.link}
-            >
-              New Order
-            </NavLink>
+            to="/neworder"
+            activeClassName={styles.active}
+            className={styles.link}
+          >
+            New Order
+          </NavLink>
+          : null}
+            
           </li>
 
           <li>
@@ -64,7 +102,7 @@ const Header = () => {
               activeClassName={styles.active}
               className={styles.link}
             >
-              Previous
+              View Orders
             </NavLink>
           </li>
           {/* <li className={styles.circleli}>
