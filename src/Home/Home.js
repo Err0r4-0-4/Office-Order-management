@@ -27,9 +27,6 @@ const Home = () => {
     <React.Fragment>
       <Header />
       <Switch>
-        <Route path="/" exact>
-          <Redirect to="/home" />
-        </Route>
         <Route path="/home" exact>
           <Homepage />
         </Route>
@@ -46,6 +43,10 @@ const Home = () => {
 
         <Route path="/about" exact>
           <About />
+        </Route>
+
+        <Route path="*" exact>
+          <Redirect to="/home" />
         </Route>
       </Switch>
       <Footer />

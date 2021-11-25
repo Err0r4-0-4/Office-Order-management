@@ -1,5 +1,5 @@
 .about {
-  padding: 30px 80px 60px;
+  padding: 50px 80px 60px;
   margin: 0;
   display: flex;
   justify-content: start;
@@ -210,7 +210,7 @@
 .bot {
   background-image: linear-gradient(#dbdbdb 5%, #f3f3f3 40%);
   width: 95%;
-  margin: 0 2.5%;
+  margin: 0 1%;
   border: 1px solid rgb(180, 180, 180);
   border-top: 0;
   box-shadow: 0 0 10px rgb(207, 207, 207);
@@ -469,7 +469,7 @@
 
 @media all and (max-width: 1050px) {
   .about {
-    padding: 30px 20px;
+    padding: 50px 20px;
   }
 }
 
@@ -624,7 +624,7 @@
   }
 
   .about {
-    padding: 30px 10px;
+    padding: 50px 10px;
   }
   .div {
     padding: 0;

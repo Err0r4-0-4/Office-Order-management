@@ -62,6 +62,7 @@ const Auth = () => {
 
   try {
     useEffect(() => {
+<<<<<<< HEAD
       
       const uiConfig = {
         signInFlow: "popup",
@@ -71,6 +72,8 @@ const Auth = () => {
         },
       };
 
+=======
+>>>>>>> e243bea71e14fa81dee29369321b05a48a03500f
       firebase.auth().onAuthStateChanged((user) => {
 
         if (user) {
