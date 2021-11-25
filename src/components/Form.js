@@ -134,11 +134,8 @@ export default function Form() {
           config
         )
         .then(async (res) => {
-<<<<<<< HEAD
           console.log(res);
           
-=======
->>>>>>> e243bea71e14fa81dee29369321b05a48a03500f
           setLoding(false);
           setShowModal(true)
         })
@@ -154,15 +151,10 @@ export default function Form() {
       setTitle("");
       setFile({});
       setKeywords([]);
-<<<<<<< HEAD
       console.log("order added to ORDER collection");
     } catch (error) {
       console.log(error);
     }
-=======
-      window.alert("Order Uploaded Successfully");
-    } catch (error) {}
->>>>>>> e243bea71e14fa81dee29369321b05a48a03500f
   };
 
   const checkboxHandler = (e) => {
