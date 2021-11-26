@@ -24,6 +24,7 @@ exports.uploadOrder = async (req, res, next) => {
     let type = req.body.type;
     let keywords = req.body.keywords.split(",");
     let date = req.body.date;
+    let inex = req.body.inex;
     console.log(req.body);
     let file = req.files.file;
     console.log(file);
@@ -58,6 +59,7 @@ exports.uploadOrder = async (req, res, next) => {
         type: type,
         keywords: keywords,
         date: date,
+        inex: inex,
         serialNo: totalCount + 1,
       };
       let orderDoc = await db.collection("orders").doc();
