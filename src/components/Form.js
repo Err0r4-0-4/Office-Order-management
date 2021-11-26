@@ -31,13 +31,6 @@ export default function Form() {
   const [addonError, setAddonError] = useState("");
   const [members, setMembers] = useState([]);
   const [familyName, setFamilyName] = useState("");
-<<<<<<< HEAD
-  // const [memberArray, setmemberArray] = useState("");
-
-=======
-  const [memberArray, setmemberArray] = useState("");
-  const [int, setint] = useState(false);
->>>>>>> 528d65bb0f621b42d3b013e9668127a936db8c88
   const [name, setName] = useState("");
   const [loading, setLoding] = useState(false);
   const [newFamily, setNewFamily] = useState(false);
@@ -45,6 +38,7 @@ export default function Form() {
   const [family, setfamily] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(false);
+  const [int, setint] = useState(false);
 
   const hideHandler = () => {
     setShowModal(false);
@@ -65,12 +59,8 @@ export default function Form() {
         config
       )
       .then(async (res) => {
-<<<<<<< HEAD
         setkeywordList(res.data.keywords);
 
-=======
-        setkeywordList(res.data.keywords.map((k) => k));
->>>>>>> 528d65bb0f621b42d3b013e9668127a936db8c88
         setLoding(false);
       })
       .catch((err) => {
@@ -84,13 +74,8 @@ export default function Form() {
       {},
       config)
       .then(async (res) => {
-<<<<<<< HEAD
         console.log(res.data.keywords);
         setMembers(res.data.keywords);
-=======
-        setMembers(res.data.keywords.map((k) => k));
-        console.log(res.data.keywords);
->>>>>>> 528d65bb0f621b42d3b013e9668127a936db8c88
 
         setLoding(false);
       })
@@ -111,7 +96,6 @@ export default function Form() {
     setNewFamily(false);
   };
 
-<<<<<<< HEAD
   console.log(members);
 
   let memberArray = (
@@ -126,8 +110,6 @@ export default function Form() {
     </div>
   );
 
-=======
->>>>>>> 528d65bb0f621b42d3b013e9668127a936db8c88
   const uploadForm = async (e) => {
     try {
       e.preventDefault();
