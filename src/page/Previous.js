@@ -16,9 +16,9 @@ let db = firebase.firestore();
 
 let config = {
   headers: {
-    token: localStorage.getItem("token")
-  }
-}
+    token: localStorage.getItem("token"),
+  },
+};
 
 const Previous = () => {
   const [open, setopen] = useState(false);
@@ -41,15 +41,17 @@ const Previous = () => {
   const [loading, setLoading] = useState(false);
   const [orderCount, setOrdersCount] = useState([]);
 
-  
-
   useEffect(() => {
     console.log("fetch");
 
     setLoading(true);
 
     axios
-      .post("https://office-order-backend.herokuapp.com/office/keywords", {}, config)
+      .post(
+        "https://office-order-backend.herokuapp.com/office/keywords",
+        {},
+        config
+      )
       .then(async (res) => {
         console.log(res.data.keywords);
         setKeywords(res.data.keywords.map((k) => <option>{k}</option>));
@@ -137,9 +139,16 @@ const Previous = () => {
 
   const keywordSearch = (e) => {
     console.log(e.target.value);
-    let renderSearchData = ordersD.filter((od) =>
-      od.lastOrder.keywords.includes(e.target.value)
-    );
+
+    console.log(typeof e.target.value);
+    let renderSearchData = [];
+    if (e.target.value === "true") {
+      renderSearchData = ordersD;
+    } else {
+      renderSearchData = ordersD.filter((od) =>
+        od.lastOrder.keywords.includes(e.target.value)
+      );
+    }
     console.log(renderSearchData);
     console.log("renderSearchData", renderSearchData);
     setshoworders(
@@ -159,7 +168,6 @@ const Previous = () => {
             >
               Preview Order
             </button>
-            
           </div>
         </div>
       ))

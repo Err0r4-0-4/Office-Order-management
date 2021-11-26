@@ -31,8 +31,6 @@ export default function Form() {
   const [addonError, setAddonError] = useState("");
   const [members, setMembers] = useState([]);
   const [familyName, setFamilyName] = useState("");
-  const [memberArray, setmemberArray] = useState("");
-  const [int, setint] = useState(false);
   const [name, setName] = useState("");
   const [loading, setLoding] = useState(false);
   const [newFamily, setNewFamily] = useState(false);
@@ -40,6 +38,7 @@ export default function Form() {
   const [family, setfamily] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(false);
+  const [int, setint] = useState(false);
 
   const hideHandler = () => {
     setShowModal(false);
@@ -60,7 +59,8 @@ export default function Form() {
         config
       )
       .then(async (res) => {
-        setkeywordList(res.data.keywords.map((k) => k));
+        setkeywordList(res.data.keywords);
+
         setLoding(false);
       })
       .catch((err) => {
@@ -70,10 +70,12 @@ export default function Form() {
     setLoding(true);
 
     axios
-      .post("https://office-order-backend.herokuapp.com/office/getLastMember")
+      .post("https://office-order-backend.herokuapp.com/office/getLastMember",
+      {},
+      config)
       .then(async (res) => {
-        setMembers(res.data.keywords.map((k) => k));
         console.log(res.data.keywords);
+        setMembers(res.data.keywords);
 
         setLoding(false);
       })
@@ -93,6 +95,20 @@ export default function Form() {
     setName(familyId);
     setNewFamily(false);
   };
+
+  console.log(members);
+
+  let memberArray = (
+    <div>
+      {members.map((m) => (
+        <Member
+          name={m.lastOrder.familyName}
+          id={m.lastOrder.familyId}
+          setFamily={setFamilyHandler}
+        />
+      ))}
+    </div>
+  );
 
   const uploadForm = async (e) => {
     try {
@@ -352,11 +368,12 @@ export default function Form() {
 
         <div className={styles.one}>
           <h1 className={styles.h2}>Family</h1>
-          <select className={styles.sel} onChange={addKeyWords}>
+          {/* <select className={styles.sel} onChange={addKeyWords}>
             <option selected value>
               --Family --
             </option>
-          </select>
+          </select> */}
+          {memberArray}
           <input
             placeholder="Add a New Family"
             onChange={(e) => setNew(e.target.value)}
@@ -378,7 +395,6 @@ export default function Form() {
           <br />
         </div>
         <div className={styles.line}></div>
-        {/* {memberArradday} */}
         <button className={styles.button}>Upload Order </button>
       </form>
     </div>
