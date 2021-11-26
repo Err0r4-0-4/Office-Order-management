@@ -1,13 +1,45 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./Homepage.module.css";
 import firebase from "firebase";
 import Form from "../components/Form";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+
 const Homepage = () => {
   let s = "Student";
-  //   if (role == "student") s = "Student";
-  //   if (role == "staff") s = "Staff";
-  //   if (role == "registrar") s = "Registrar";
+
+  let config = {
+    headers: {
+      token: localStorage.getItem("token"),
+    },
+  };
+
+  try {
+    useEffect(() => {
+      
+      axios
+        .get(
+          "https://office-order-backend.herokuapp.com/office/getLatestOrder",
+          {},
+          config
+        )
+        .then(async (res) => {
+          console.log(res);
+         
+        })
+        .catch((err) => {
+          console.log(err);
+  
+        });
+  
+     
+    }, []);
+  } catch (e) {
+    console.log("Error");
+  }
+  
+
   return (
     <div className={styles.homepage}>
       <div className={styles.div1}>

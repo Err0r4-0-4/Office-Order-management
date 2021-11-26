@@ -53,13 +53,11 @@ export default function Form() {
     setLoding(true);
 
     axios
-      .post(
-        "https://office-order-backend.herokuapp.com/office/keywords",
-        {},
-        config
-      )
+      .post("https://office-order-backend.herokuapp.com/office/keywords",
+      {},
+      config)
       .then(async (res) => {
-        setkeywordList(res.data.keywords);
+        setkeywordList(res.data.keywords.map((k) => <option>{k}</option>));
 
         setLoding(false);
       })
@@ -359,10 +357,12 @@ export default function Form() {
             </option>
             {keywordList}
           </select>
+
           <div className={styles.tagsel}>
             {options ? options : <p>Keywords will be added</p>}
             <p className={styles.err}>{addonError}</p>
           </div>
+          
         </div>
         <div className={styles.line}></div>
 
