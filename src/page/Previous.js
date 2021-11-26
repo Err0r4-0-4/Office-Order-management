@@ -14,6 +14,12 @@ import Spinner from "../UI/Spinner";
 
 let db = firebase.firestore();
 
+let config = {
+  headers: {
+    token: localStorage.getItem("token"),
+  },
+};
+
 const Previous = () => {
   const [open, setopen] = useState(false);
   const f1 = () => {
@@ -41,7 +47,11 @@ const Previous = () => {
     setLoading(true);
 
     axios
-      .post("https://office-order-backend.herokuapp.com/office/keywords")
+      .post(
+        "https://office-order-backend.herokuapp.com/office/keywords",
+        {},
+        config
+      )
       .then(async (res) => {
         console.log(res.data.keywords);
         setKeywords(res.data.keywords.map((k) => <option>{k}</option>));
@@ -72,7 +82,8 @@ const Previous = () => {
     axios
       .post(
         "https://office-order-backend.herokuapp.com/office/getParentOrder",
-        data
+        data,
+        config
       )
       .then(async (res) => {
         console.log(res);
@@ -108,7 +119,8 @@ const Previous = () => {
     axios
       .post(
         "https://office-order-backend.herokuapp.com/office/getOtherOrder",
-        data
+        data,
+        config
       )
       .then(async (res) => {
         console.log(res);
@@ -127,9 +139,16 @@ const Previous = () => {
 
   const keywordSearch = (e) => {
     console.log(e.target.value);
-    let renderSearchData = ordersD.filter((od) =>
-      od.lastOrder.keywords.includes(e.target.value)
-    );
+
+    console.log(typeof e.target.value);
+    let renderSearchData = [];
+    if (e.target.value === "true") {
+      renderSearchData = ordersD;
+    } else {
+      renderSearchData = ordersD.filter((od) =>
+        od.lastOrder.keywords.includes(e.target.value)
+      );
+    }
     console.log(renderSearchData);
     console.log("renderSearchData", renderSearchData);
     setshoworders(
@@ -149,13 +168,6 @@ const Previous = () => {
             >
               Preview Order
             </button>
-            {/* <button
-              target="_top"
-              className={styles.link}
-              onClick={(doc) => getParentHandler()}
-            >
-              Parent Order.
-            </button> */}
           </div>
         </div>
       ))
@@ -178,7 +190,9 @@ const Previous = () => {
       let docData = await db.collection("orders").get();
 
       let a = await axios.post(
-        "https://office-order-backend.herokuapp.com/office/getLastMember"
+        "https://office-order-backend.herokuapp.com/office/getLastMember",
+        {},
+        config
       );
 
       console.log(a);

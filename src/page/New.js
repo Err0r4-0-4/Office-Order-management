@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./New.module.css";
 import firebase from "firebase";
 import Form from "../components/Form";
 import Spinner from "../UI/Spinner";
 import img from "../Images/R.jpg";
+
 const New = () => {
   let s = "Student";
   //   if (role == "student") s = "Student";

@@ -15,6 +15,7 @@ import Image2 from "../../Images/office.png";
 import { Route } from "react-router";
 import { AiFillCar, AiTwotoneMail } from "react-icons/ai";
 import { FaCar, FaPhone } from "react-icons/fa";
+import Modal from "../../UI/Modal";
 
 import { IoLocationSharp } from "react-icons/io5";
 //import Upload from "../Upload/Upload";
@@ -27,12 +28,19 @@ const Auth = () => {
   const [ok, setOk] = useState(false);
   // const [state, setState] = useState({ isSignedIn: false });
   const con = useSelector((state) => state.isSignedIn);
+  console.log(con);
   const role = useSelector((state) => state.member);
 
   const dispatch = useDispatch();
   const [icon1, setIcon1] = useState(false);
   const [icon2, setIcon2] = useState(false);
   const [file, setFile] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const hideHandler = () => {
+    setShowModal(false);
+  };
+
   const functionover1 = () => {
     setIcon1(true);
   };
@@ -55,19 +63,27 @@ const Auth = () => {
 
   try {
     useEffect(() => {
+      const uiConfig = {
+        signInFlow: "popup",
+        signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+        callbacks: {
+          signInSuccessWithAuthResult: () => false,
+        },
+      };
+
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          dispatch(Authactions.toggle());
           console.log("user", user);
-          console.log("user", user.email);
-          console.log("Aa", user.Aa);
           if (user.emailVerified) {
+            localStorage.setItem("token", user.Aa);
+
             if (
               user.email.includes("@iiitvadodara.ac.in") ||
               user.email.includes("@iiitv.ac.in")
             ) {
               setOk(true);
-
+              dispatch(Authactions.toggle());
+              console.log("heey");
               if (user.email.includes("201951073"))
                 dispatch(Authactions.allocation("Registrar"));
               else if (user.email.includes("201951054"))
@@ -76,6 +92,9 @@ const Auth = () => {
                 dispatch(Authactions.allocation("Student"));
               else if (user.email.includes("201951073"))
                 dispatch(Authactions.allocation("Faculty"));
+            } else {
+              setShowModal(true);
+              console.log("!!!!!!!");
             }
           }
           console.log(firebase.auth().currentUser.token);
@@ -88,6 +107,9 @@ const Auth = () => {
 
   return (
     <div className={styles.home}>
+      <Modal show={showModal} switch={hideHandler}>
+        Please use your institute email to login.
+      </Modal>
       {con ? (
         <span>
           <Home />
@@ -114,15 +136,28 @@ const Auth = () => {
           <div className={styles.div1}>
             <div className={styles.div2}>
               <div className={styles.div4}>HELLO</div>
-              <div className={styles.SignInButton1}>
-                <StyledFirebaseAuth
-                  uiConfig={uiConfig}
-                  firebaseAuth={firebase.auth()}
-                  id="google"
-                  className={styles.google}
-                  buttonText=""
-                />
-              </div>
+              {con ? (
+                <div className={styles.SignInButton1}>
+                  <StyledFirebaseAuth
+                    uiConfig={uiConfig}
+                    firebaseAuth={firebase.auth()}
+                    id="google"
+                    className={styles.google}
+                    buttonText=""
+                  />
+                </div>
+              ) : (
+                <div className={styles.SignInButton1}>
+                  <StyledFirebaseAuth
+                    uiConfig={uiConfig}
+                    firebaseAuth={firebase.auth()}
+                    id="google"
+                    className={styles.google}
+                    buttonText=""
+                  />
+                </div>
+              )}
+
               <div className={styles.div5}>
                 <a href="#">Trouble Logging In ?</a>
               </div>

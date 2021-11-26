@@ -6,15 +6,23 @@ import styles from "./Form.module.css";
 import axios from "axios";
 import Member from "../Cards/LastMember/LastMember";
 import Spinner from "../UI/Spinner";
+import Modal from "../UI/Modal";
 import { AiOutlineClose } from "react-icons/ai";
+
 const db = firebase.firestore();
 var storageRef = firebase.storage().ref();
+
+let config = {
+  headers: {
+    token: localStorage.getItem("token")
+  }
+}
 
 export default function Form() {
   let a = [];
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
-  const [file, setFile] = useState({});
+  const [file, setFile] = useState({}); 
   const [orderUploaded, setOrderUploaded] = useState(false);
   const [visibility, setVisibility] = useState([]);
   const [addons, setAddons] = useState([]);
@@ -30,11 +38,20 @@ export default function Form() {
   const [newFamily, setNewFamily] = useState(false);
   const [date, setDate] = useState("");
   const [family, setfamily] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [error, setError] = useState(false);
+
+  const hideHandler = () => {
+    setShowModal(false)
+  }
+
   useEffect(() => {
     setLoding(true);
 
     axios
-      .post("https://office-order-backend.herokuapp.com/office/keywords")
+      .post("https://office-order-backend.herokuapp.com/office/keywords",
+      {},
+      config)
       .then(async (res) => {
         setkeywordList(res.data.keywords.map((k) => <option>{k}</option>));
 
@@ -113,13 +130,20 @@ export default function Form() {
       axios
         .post(
           "https://office-order-backend.herokuapp.com/office/upload",
-          formData
+          formData,
+          config
         )
         .then(async (res) => {
+          console.log(res);
+          
           setLoding(false);
+          setShowModal(true)
         })
         .catch((err) => {
           setLoding(false);
+          // window.alert("Error in uploading Office Order");
+          setError(true);
+          setShowModal(true);
         });
 
       // console.log("Doc Id: ", orders.id);
@@ -127,8 +151,10 @@ export default function Form() {
       setTitle("");
       setFile({});
       setKeywords([]);
-      window.alert("Order Uploaded Successfully");
-    } catch (error) {}
+      console.log("order added to ORDER collection");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const checkboxHandler = (e) => {
@@ -192,6 +218,9 @@ export default function Form() {
 
   return (
     <div>
+      <Modal show={showModal} switch={hideHandler}>
+        {error ? "Error in uploading" : "Successfully uploaded"}
+      </Modal>
       {loading ? <Spinner /> : null}
       <form onSubmit={uploadForm} className={styles.form}>
         <h1 className={styles.h1}>Upload New Order</h1>
@@ -354,15 +383,7 @@ export default function Form() {
         {/* {memberArradday} */}
         <button className={styles.button}>Upload Order </button>
       </form>
-      {/* {orderUploaded && window.alert("Order Uploaded Successfully")
-      // (
-      //   <p style={{ color: "green", fontWeight: "bold" }}>
-      //     Order Uploaded Successfully!
-      //   </p>
-      // ) : (
-      //   <p></p>
-      // )
-      } */}
+      
     </div>
   );
 }

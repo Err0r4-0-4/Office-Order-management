@@ -9,8 +9,15 @@ import Previous from "../page/Previous";
 import Homepage from "./Homepage";
 import { useHistory } from "react-router-dom";
 import About from "../page/About";
+import { useSelector, useDispatch } from "react-redux";
+
+
 const Home = () => {
+
+  const role = useSelector((state) => state.isReg);
+
   const history = useHistory();
+
   useEffect(() => {
     history.push("/");
   }, []);
@@ -23,9 +30,13 @@ const Home = () => {
         <Route path="/home" exact>
           <Homepage />
         </Route>
-        <Route path="/neworder" exact>
+
+        {role ? 
+          <Route path="/neworder" exact>
           <New />
-        </Route>
+          </Route> :
+        null}
+        
         <Route path="/prevorder" exact>
           <Previous />
         </Route>
