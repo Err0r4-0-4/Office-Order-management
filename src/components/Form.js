@@ -31,7 +31,7 @@ export default function Form() {
   const [addonError, setAddonError] = useState("");
   const [members, setMembers] = useState([]);
   const [familyName, setFamilyName] = useState("");
-  const [memberArray, setmemberArray] = useState("");
+  // const [memberArray, setmemberArray] = useState("");
 
   const [name, setName] = useState("");
   const [loading, setLoding] = useState(false);
@@ -64,10 +64,16 @@ export default function Form() {
     setLoding(true);
 
     axios
-      .post("https://office-order-backend.herokuapp.com/office/getLastMember")
+      .post("https://office-order-backend.herokuapp.com/office/getLastMember",
+      {},
+      config)
       .then(async (res) => {
+        console.log(res.data.keywords);
         setMembers(res.data.keywords.map((k) => <option>{k}</option>));
 
+        // console.log(members)
+
+        
         setLoding(false);
       })
       .catch((err) => {
@@ -380,7 +386,7 @@ export default function Form() {
           <br />
         </div>
         <div className={styles.line}></div>
-        {/* {memberArradday} */}
+        {/* {memberArray} */}
         <button className={styles.button}>Upload Order </button>
       </form>
       
