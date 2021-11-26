@@ -68,9 +68,11 @@ export default function Form() {
     setLoding(true);
 
     axios
-      .post("https://office-order-backend.herokuapp.com/office/getLastMember",
-      {},
-      config)
+      .post(
+        "https://office-order-backend.herokuapp.com/office/getLastMember",
+        {},
+        config
+      )
       .then(async (res) => {
         console.log(res.data.keywords);
         setMembers(res.data.keywords);
@@ -373,7 +375,8 @@ export default function Form() {
               --Family --
             </option>
           </select> */}
-          {memberArray}
+          <div className={styles.array}>{memberArray}</div>
+
           <input
             placeholder="Add a New Family"
             onChange={(e) => setNew(e.target.value)}

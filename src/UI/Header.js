@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { FiMail } from "react-icons/fi";
 import { GoMarkGithub, GoMail } from "react-icons/go";
 import { FaLinkedinIn, FaSearchLocation } from "react-icons/fa";
@@ -14,12 +14,11 @@ import { Authactions } from "../store/Auth-login";
 
 let config = {
   headers: {
-    token: localStorage.getItem("token")
-  }
-}
+    token: localStorage.getItem("token"),
+  },
+};
 
 const Header = () => {
-  
   const con = useSelector((state) => state.isSignedIn);
   const role = useSelector((state) => state.isReg);
   const dispatch = useDispatch();
@@ -27,25 +26,27 @@ const Header = () => {
   console.log(role);
 
   useEffect(() => {
-
     const data = {
-      token: localStorage.getItem("token")
+      token: localStorage.getItem("token"),
     };
 
     console.log(data);
-    
-    axios
-    .post("https://office-order-backend.herokuapp.com/office/isRegistrar", data, config)
-    .then(async (res) => {
-      console.log(res);
-      ////////////////////////////////////////////////////////////////////
-      dispatch(Authactions.assignRole(true));
-      console.log(role);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 
+    axios
+      .post(
+        "https://office-order-backend.herokuapp.com/office/isRegistrar",
+        data,
+        config
+      )
+      .then(async (res) => {
+        console.log(res);
+        ////////////////////////////////////////////////////////////////////
+        dispatch(Authactions.assignRole(true));
+        console.log(role);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const history = useHistory();
@@ -85,16 +86,15 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
-            {role ? 
-            <NavLink
-            to="/neworder"
-            activeClassName={styles.active}
-            className={styles.link}
-          >
-            New Order
-          </NavLink>
-          : null}
-            
+            {role ? (
+              <NavLink
+                to="/neworder"
+                activeClassName={styles.active}
+                className={styles.link}
+              >
+                New Order
+              </NavLink>
+            ) : null}
           </li>
 
           <li>
@@ -176,7 +176,7 @@ const Header = () => {
                 activeClassName={styles.active2}
                 onClick={clickhandler}
               >
-                Previous Orders
+                View   Orders
               </NavLink>
             </li>
             <li>
