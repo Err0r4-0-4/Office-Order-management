@@ -7,6 +7,9 @@ import axios from "axios";
 
 
 const Homepage = () => {
+
+  // const [orders, setOrders] = useState([]);
+
   let s = "Student";
 
   let config = {
@@ -14,6 +17,8 @@ const Homepage = () => {
       token: localStorage.getItem("token"),
     },
   };
+
+  let orders = []
 
   try {
     useEffect(() => {
@@ -25,7 +30,8 @@ const Homepage = () => {
           config
         )
         .then(async (res) => {
-          console.log(res);
+          console.log(res.data.result);
+          setOrders(res.data.result);
          
         })
         .catch((err) => {
@@ -107,7 +113,7 @@ const Homepage = () => {
           <div className={styles.recent}>
             <div className={styles.rec1}>
               <div className={styles.order}>IIITV/2019-20/12</div>
-              <div className={styles.name}>Order 1</div>
+              <div className={styles.name}>{orders.}</div>
             </div>
             <div className={styles.rec2}>
               <div className={styles.date}>22 Jan 2019</div>
