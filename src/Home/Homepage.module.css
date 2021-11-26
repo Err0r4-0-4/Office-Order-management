@@ -164,6 +164,7 @@
   font-weight: 600;
   color: rgb(58, 58, 58);
   padding: 5px 0;
+  margin: 0;
 }
 .recent {
   display: flex;
