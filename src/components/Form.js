@@ -14,15 +14,15 @@ var storageRef = firebase.storage().ref();
 
 let config = {
   headers: {
-    token: localStorage.getItem("token")
-  }
-}
+    token: localStorage.getItem("token"),
+  },
+};
 
 export default function Form() {
   let a = [];
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
-  const [file, setFile] = useState({}); 
+  const [file, setFile] = useState({});
   const [orderUploaded, setOrderUploaded] = useState(false);
   const [visibility, setVisibility] = useState([]);
   const [addons, setAddons] = useState([]);
@@ -32,7 +32,7 @@ export default function Form() {
   const [members, setMembers] = useState([]);
   const [familyName, setFamilyName] = useState("");
   const [memberArray, setmemberArray] = useState("");
-
+  const [int, setint] = useState(false);
   const [name, setName] = useState("");
   const [loading, setLoding] = useState(false);
   const [newFamily, setNewFamily] = useState(false);
@@ -42,19 +42,25 @@ export default function Form() {
   const [error, setError] = useState(false);
 
   const hideHandler = () => {
-    setShowModal(false)
-  }
-
+    setShowModal(false);
+  };
+  const internal = () => {
+    setint(false);
+  };
+  const external = () => {
+    setint(true);
+  };
   useEffect(() => {
     setLoding(true);
 
     axios
-      .post("https://office-order-backend.herokuapp.com/office/keywords",
-      {},
-      config)
+      .post(
+        "https://office-order-backend.herokuapp.com/office/keywords",
+        {},
+        config
+      )
       .then(async (res) => {
-        setkeywordList(res.data.keywords.map((k) => <option>{k}</option>));
-
+        setkeywordList(res.data.keywords.map((k) => k));
         setLoding(false);
       })
       .catch((err) => {
@@ -66,7 +72,8 @@ export default function Form() {
     axios
       .post("https://office-order-backend.herokuapp.com/office/getLastMember")
       .then(async (res) => {
-        setMembers(res.data.keywords.map((k) => <option>{k}</option>));
+        setMembers(res.data.keywords.map((k) => k));
+        console.log(res.data.keywords);
 
         setLoding(false);
       })
@@ -86,18 +93,6 @@ export default function Form() {
     setName(familyId);
     setNewFamily(false);
   };
-
-  // let memberArray = (
-  //   <div>
-  //     {members.map((m) => (
-  //       <Member
-  //         name={m.lastOrder.familyName}
-  //         id={m.lastOrder.familyId}
-  //         setFamily={setFamilyHandler}
-  //       />
-  //     ))}
-  //   </div>
-  // );
 
   const uploadForm = async (e) => {
     try {
@@ -120,7 +115,6 @@ export default function Form() {
       formData.append("date", today);
       formData.append("newFamily", newFamily);
 
-      // if(newFamily)
       formData.append("familyName", familyName);
 
       if (!newFamily) formData.append("familyId", name);
@@ -135,18 +129,16 @@ export default function Form() {
         )
         .then(async (res) => {
           console.log(res);
-          
+
           setLoding(false);
-          setShowModal(true)
+          setShowModal(true);
         })
         .catch((err) => {
           setLoding(false);
-          // window.alert("Error in uploading Office Order");
           setError(true);
           setShowModal(true);
         });
 
-      // console.log("Doc Id: ", orders.id);
       setOrderUploaded(true);
       setTitle("");
       setFile({});
@@ -229,12 +221,13 @@ export default function Form() {
         <div className={styles.one}>
           <h1 className={styles.h2}>Order Number</h1>
           <div className={styles.name}>
-            <div className={styles.iiit}>IIITV/2019-20/12</div>
+            <div className={styles.iiit}>
+              IIITV/2019-20/{int ? "EE" : "II"}/12
+            </div>
             <input
               type="text"
               placeholder="Regarding Issue"
               onChange={(e) => setTitle(e.target.value)}
-              //value={title}
               className={styles.namei}
             />
           </div>
@@ -248,12 +241,14 @@ export default function Form() {
 
           <span>
             <input
+              checked={!int && "checked"}
               type="radio"
               id="internal"
               name="ie"
               value="internal"
               onChange={radioHandler}
               className={styles.radio}
+              onClick={internal}
             />
              <label for="internal">Internal</label>
           </span>
@@ -265,6 +260,7 @@ export default function Form() {
               value="external"
               className={styles.radio}
               onChange={radioHandler}
+              onClick={external}
             />
             <label for="external">External</label>
           </span>
@@ -284,6 +280,8 @@ export default function Form() {
               value="registrar"
               className={styles.radio}
               onChange={checkboxHandler}
+              checked
+              disabled
             />
             <label for="registrar"> Registrar</label>
           </span>
@@ -383,7 +381,6 @@ export default function Form() {
         {/* {memberArradday} */}
         <button className={styles.button}>Upload Order </button>
       </form>
-      
     </div>
   );
 }

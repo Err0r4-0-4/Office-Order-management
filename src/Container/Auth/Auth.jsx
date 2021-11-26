@@ -18,7 +18,6 @@ import { FaCar, FaPhone } from "react-icons/fa";
 import Modal from "../../UI/Modal";
 
 import { IoLocationSharp } from "react-icons/io5";
-//import Upload from "../Upload/Upload";
 import "firebase/firestore";
 
 var storage = firebase.storage();
@@ -26,7 +25,6 @@ var storageRef = firebase.storage().ref();
 
 const Auth = () => {
   const [ok, setOk] = useState(false);
-  // const [state, setState] = useState({ isSignedIn: false });
   const con = useSelector((state) => state.isSignedIn);
   console.log(con);
   const role = useSelector((state) => state.member);
@@ -76,7 +74,6 @@ const Auth = () => {
           console.log("user", user);
           if (user.emailVerified) {
             localStorage.setItem("token", user.Aa);
-
             if (
               user.email.includes("@iiitvadodara.ac.in") ||
               user.email.includes("@iiitv.ac.in")
@@ -92,6 +89,7 @@ const Auth = () => {
                 dispatch(Authactions.allocation("Student"));
               else if (user.email.includes("201951073"))
                 dispatch(Authactions.allocation("Faculty"));
+                
             } else {
               setShowModal(true);
               console.log("!!!!!!!");
@@ -113,25 +111,10 @@ const Auth = () => {
       {con ? (
         <span>
           <Home />
-          {/* <div>Signed In!</div>
-          <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
-          <h1>
-            Welcome
-            {firebase.auth().currentUser.displayName}
-          </h1>
-          <img
-            alt="profile picture"
-            src={firebase.auth().currentUser.photoURL}
-          />
-          <br />
-           */}
+         
         </span>
       ) : (
         <div className={styles.div0}>
-          {/* <div className={styles.upper}>
-            <img src={Image} className={styles.logo} alt="logo" />
-            <p>Indian Institute Of Information Technology Vadodara</p>
-          </div> */}
 
           <div className={styles.div1}>
             <div className={styles.div2}>
@@ -190,7 +173,7 @@ const Auth = () => {
           <div className={styles.footbar}>
             <div className={styles.ins}>
               Office Order Managegment
-              {/* <span className={styles.iiit}> IIIT Vadodara </span> */}
+
             </div>
             <div className={styles.foot}>
               <ul className={styles.ul}>
