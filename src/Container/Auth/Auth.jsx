@@ -74,7 +74,6 @@ const Auth = () => {
           console.log("user", user);
           if (user.emailVerified) {
             localStorage.setItem("token", user.Aa);
-
             if (
               user.email.includes("@iiitvadodara.ac.in") ||
               user.email.includes("@iiitv.ac.in")
