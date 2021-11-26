@@ -271,3 +271,16 @@ exports.getOtherOrder = async (req, res, next) => {
     res.status(400).send({ message: error.message });
   }
 };
+
+exports.getLatestOrder = async (req, res, next) => {
+  let orders = await db
+    .collection("orders")
+    .orderBy("serialNo", "desc")
+    .limit(5)
+    .get();
+  let result = [];
+  orders.forEach((doc) => {
+    result.push(doc.data());
+  });
+  res.status(200).send({ result: result });
+};

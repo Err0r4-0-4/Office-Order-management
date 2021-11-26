@@ -12,5 +12,6 @@ route.post("/getLastMember", isAuth, orderController.getLastMember);
 route.post("/getParentOrder", isAuth, orderController.getParentOrder);
 route.post("/getOtherOrder", isAuth, orderController.getOtherOrder);
 route.post("/isRegistrar", orderController.isRegistrar);
+route.get("/getLatestOrder", orderController.getLatestOrder);
 route.post("/isAuth", isAuth);
 module.exports = route;
