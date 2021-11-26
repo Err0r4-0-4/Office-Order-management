@@ -107,7 +107,7 @@ const Auth = () => {
   return (
     <div className={styles.home}>
       <Modal show={showModal} switch={hideHandler}>
-        Please use your institute email ti login.
+        Please use your institute email to login.
       </Modal>
       {con ? (
         <span>
