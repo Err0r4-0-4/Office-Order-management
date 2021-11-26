@@ -223,7 +223,8 @@ li {
   list-style-type: none;
 }
 
-.tagsel {
+.tagsel,
+.array {
   width: 100%;
   margin: 30px auto 0;
   display: flex;
@@ -241,6 +242,12 @@ li {
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
+}
+
+.array {
+  max-height: 120px;
+  overflow-y: scroll;
+  margin: 10px auto;
 }
 
 .tagsselli {
