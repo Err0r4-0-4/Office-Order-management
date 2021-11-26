@@ -5,10 +5,8 @@ import Form from "../components/Form";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
 const Homepage = () => {
-
-  // const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   let s = "Student";
 
@@ -18,11 +16,8 @@ const Homepage = () => {
     },
   };
 
-  let orders = []
-
   try {
     useEffect(() => {
-      
       axios
         .get(
           "https://office-order-backend.herokuapp.com/office/getLatestOrder",
@@ -31,20 +26,32 @@ const Homepage = () => {
         )
         .then(async (res) => {
           console.log(res.data.result);
-          setOrders(res.data.result);
-         
+
+          let a = res.data.result.map((data) => (
+            <div className={styles.recent}>
+              <div className={styles.rec1}>
+                <div className={styles.order}>IIITV/2019-20/12</div>
+                <div className={styles.name}>{data.title}</div>
+              </div>
+              <div className={styles.rec2}>
+                <div className={styles.date}>{data.date}</div>
+                <div className={styles.button}>
+                  <Link className={styles.previewo} to="/prevorder">
+                    Preview
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ));
+          setOrders(a);
         })
         .catch((err) => {
           console.log(err);
-  
         });
-  
-     
     }, []);
   } catch (e) {
     console.log("Error");
   }
-  
 
   return (
     <div className={styles.homepage}>
@@ -110,80 +117,7 @@ const Homepage = () => {
               View All
             </Link>
           </div>
-          <div className={styles.recent}>
-            <div className={styles.rec1}>
-              <div className={styles.order}>IIITV/2019-20/12</div>
-              <div className={styles.name}>{orders.}</div>
-            </div>
-            <div className={styles.rec2}>
-              <div className={styles.date}>22 Jan 2019</div>
-              <div className={styles.button}>
-                <Link className={styles.previewo} to="/prevorder">
-                  Preview
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.recent}>
-            <div className={styles.rec1}>
-              <div className={styles.order}>IIITV/2019-20/14</div>
-              <div className={styles.name}>Order 2</div>
-            </div>
-            <div className={styles.rec2}>
-              <div className={styles.date}>22 Jan 2019</div>
-              <div className={styles.button}>
-                <Link className={styles.previewo} to="/prevorder">
-                  Preview
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.recent}>
-            <div className={styles.rec1}>
-              <div className={styles.order}>IIITV/2019-20/15</div>
-              <div className={styles.name}>Order 3</div>
-            </div>
-            <div className={styles.rec2}>
-              <div className={styles.date}>14 Jan 2019</div>
-              <div className={styles.button}>
-                <Link className={styles.previewo} to="/prevorder">
-                  Preview
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.recent}>
-            <div className={styles.rec1}>
-              <div className={styles.order}>IIITV/2019-20/16</div>
-              <div className={styles.name}>Order 4</div>
-            </div>
-            <div className={styles.rec2}>
-              <div className={styles.date}>11 Jan 2019</div>
-              <div className={styles.button}>
-                <Link className={styles.previewo} to="/prevorder">
-                  Preview
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.recent}>
-            <div className={styles.rec1}>
-              <div className={styles.order}>IIITV/2019-20/17</div>
-              <div className={styles.name}>Order 5</div>
-            </div>
-            <div className={styles.rec2}>
-              <div className={styles.date}>05 Jan 2019</div>
-              <div className={styles.button}>
-                <Link className={styles.previewo} to="/prevorder">
-                  Preview
-                </Link>
-              </div>
-            </div>
-          </div>
+          {orders}
         </div>
       </div>
 
