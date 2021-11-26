@@ -53,7 +53,7 @@ export default function Form() {
       {},
       config)
       .then(async (res) => {
-        setkeywordList(res.data.keywords.map((k) => <option>{k}</option>));
+        setkeywordList(res.data.keywords);
 
         setLoding(false);
       })
@@ -69,11 +69,8 @@ export default function Form() {
       config)
       .then(async (res) => {
         console.log(res.data.keywords);
-        setMembers(res.data.keywords.map((k) => <option>{k}</option>));
+        setMembers(res.data.keywords);
 
-        // console.log(members)
-
-        
         setLoding(false);
       })
       .catch((err) => {
@@ -93,17 +90,19 @@ export default function Form() {
     setNewFamily(false);
   };
 
-  // let memberArray = (
-  //   <div>
-  //     {members.map((m) => (
-  //       <Member
-  //         name={m.lastOrder.familyName}
-  //         id={m.lastOrder.familyId}
-  //         setFamily={setFamilyHandler}
-  //       />
-  //     ))}
-  //   </div>
-  // );
+  console.log(members);
+
+  let memberArray = (
+    <div>
+      {members.map((m) => (
+        <Member
+          name={m.lastOrder.familyName}
+          id={m.lastOrder.familyId}
+          setFamily={setFamilyHandler}
+        />
+      ))}
+    </div>
+  );
 
   const uploadForm = async (e) => {
     try {
@@ -360,11 +359,12 @@ export default function Form() {
 
         <div className={styles.one}>
           <h1 className={styles.h2}>Family</h1>
-          <select className={styles.sel} onChange={addKeyWords}>
+          {/* <select className={styles.sel} onChange={addKeyWords}>
             <option selected value>
               --Family --
             </option>
-          </select>
+          </select> */}
+          {memberArray}
           <input
             placeholder="Add a New Family"
             onChange={(e) => setNew(e.target.value)}
@@ -386,7 +386,6 @@ export default function Form() {
           <br />
         </div>
         <div className={styles.line}></div>
-        {/* {memberArray} */}
         <button className={styles.button}>Upload Order </button>
       </form>
       
