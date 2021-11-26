@@ -253,7 +253,7 @@ exports.getOtherOrder = async (req, res, next) => {
       .doc(familyId)
       .collection("members")
       .get();
-    if (count > familyMember.size - 1 && count < 0) {
+    if (count > familyMember.size - 1 || count < 0) {
       res.status(400).send({ message: "Order not Found!" });
       return;
     }
