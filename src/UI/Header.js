@@ -76,7 +76,7 @@ const Header = () => {
         <ul>
           <li>
             <NavLink
-              to="/home"
+              to="/"
               activeClassName={styles.active}
               className={styles.link}
             >
@@ -153,7 +153,7 @@ const Header = () => {
           <ul className={styles.flex2}>
             <li>
               <NavLink
-                to="/home"
+                to="/"
                 activeClassName={styles.active2}
                 onClick={clickhandler}
               >

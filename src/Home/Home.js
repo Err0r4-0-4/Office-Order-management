@@ -27,9 +27,6 @@ const Home = () => {
     <React.Fragment>
       <Header />
       <Switch>
-        <Route path="/home" exact>
-          <Homepage />
-        </Route>
 
         {role ? 
           <Route path="/neworder" exact>
@@ -45,8 +42,12 @@ const Home = () => {
           <About />
         </Route>
 
+        <Route path="/" exact>
+          <Homepage />
+        </Route>
+
         <Route path="*" exact>
-          <Redirect to="/home" />
+          <Redirect to="/" />
         </Route>
       </Switch>
       <Footer />
