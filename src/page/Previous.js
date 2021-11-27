@@ -4,6 +4,9 @@ import styles from "./Previous.module.css";
 import firebase from "../util/firebase";
 import img from "../Images/pdf.png";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { Authactions } from "../store/Auth-login";
+
 import {
   AiOutlineClose,
   AiOutlineLeft,
@@ -13,12 +16,6 @@ import {
 import Spinner from "../UI/Spinner";
 
 let db = firebase.firestore();
-
-let config = {
-  headers: {
-    token: localStorage.getItem("token"),
-  },
-};
 
 const Previous = () => {
   const [open, setopen] = useState(false);
@@ -41,8 +38,16 @@ const Previous = () => {
   const [loading, setLoading] = useState(false);
   const [orderCount, setOrdersCount] = useState([]);
 
+  const role = useSelector((state) => state.member);
+  const tkn = useSelector((state) => state.token);
+
+  let config = {
+    headers: {
+      token: tkn,
+    },
+  };
+
   useEffect(() => {
-    console.log("fetch");
 
     setLoading(true);
 
@@ -149,27 +154,32 @@ const Previous = () => {
         od.lastOrder.keywords.includes(e.target.value)
       );
     }
-    console.log(renderSearchData);
-    console.log("renderSearchData", renderSearchData);
+
+    console.log("renderSearchData", renderSearchData[0]);
     setshoworders(
       renderSearchData.map((doc) => (
+
+        doc.lastOrder.visibility.split(",").includes(role) ?
+
         <div className={styles.box}>
           <img src={img} className={styles.img}></img>
           <div className={styles.inner}>
-            <h4 className={styles.date}>{doc.date}</h4>
+            <h4 className={styles.date}>{doc.lastOrder.date}</h4>
             <h5>{doc.serialNo}</h5>
-            <h2 className={styles.title}>{doc.title}</h2>
+            <h2 className={styles.title}>{doc.lastOrder.title}</h2>
             <button
               onClick={() =>
-                preViewHandler(doc.imageUrl, doc.familyId, doc.count)
+                preViewHandler(doc.lastOrder.imageUrl, doc.lastOrder.familyId, doc.lastOrder.count)
               }
               target="_top"
               className={styles.link}
             >
-              Preview Order
+              Preview Orde
             </button>
           </div>
         </div>
+        :
+        null
       ))
     );
   };
@@ -204,6 +214,9 @@ const Previous = () => {
       // docData.forEach((d) => data.push(d.data()));
       //data.map((doc) => doc.data());
       let docDataRender = data.map((doc) => (
+
+        doc.lastOrder.visibility.split(",").includes(role) ?
+
         <div className={styles.box}>
           <img src={img} className={styles.img}></img>
           <div className={styles.inner}>
@@ -237,6 +250,8 @@ const Previous = () => {
             {/* <span className={styles.addons}>{doc.addons}</span> */}
           </div>
         </div>
+
+        : null
       ));
 
       setOrders(docDataRender);

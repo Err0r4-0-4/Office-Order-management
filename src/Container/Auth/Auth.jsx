@@ -16,6 +16,7 @@ import { Route } from "react-router";
 import { AiFillCar, AiTwotoneMail } from "react-icons/ai";
 import { FaCar, FaPhone } from "react-icons/fa";
 import Modal from "../../UI/Modal";
+import { Redirect } from 'react-router'
 
 import { IoLocationSharp } from "react-icons/io5";
 import "firebase/firestore";
@@ -34,6 +35,7 @@ const Auth = () => {
   const [icon2, setIcon2] = useState(false);
   const [file, setFile] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const hideHandler = () => {
     setShowModal(false);
@@ -74,6 +76,7 @@ const Auth = () => {
           console.log("user", user);
           if (user.emailVerified) {
             localStorage.setItem("token", user.Aa);
+            dispatch(Authactions.assignToken(user.Aa));
             if (
               user.email.includes("@iiitvadodara.ac.in") ||
               user.email.includes("@iiitv.ac.in")
@@ -82,13 +85,15 @@ const Auth = () => {
               dispatch(Authactions.toggle());
               console.log("heey");
               if (user.email.includes("201951073"))
-                dispatch(Authactions.allocation("Registrar"));
+                dispatch(Authactions.allocation("registrar"));
               else if (user.email.includes("201951054"))
-                dispatch(Authactions.allocation("Director"));
-              else if (user.email.includes("201952233"))
-                dispatch(Authactions.allocation("Student"));
+                dispatch(Authactions.allocation("director"));
+              else if (user.email.includes("201952234"))
+                dispatch(Authactions.allocation("student"));
               else if (user.email.includes("201951073"))
-                dispatch(Authactions.allocation("Faculty"));
+                dispatch(Authactions.allocation("faculty"));
+
+                setRedirect(true);
                 
             } else {
               setShowModal(true);
@@ -105,6 +110,7 @@ const Auth = () => {
 
   return (
     <div className={styles.home}>
+      <Redirect to="/home"/>
       <Modal show={showModal} switch={hideHandler}>
         Please use your institute email to login.
       </Modal>
