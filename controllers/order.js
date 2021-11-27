@@ -280,11 +280,15 @@ exports.getLatestOrder = async (req, res, next) => {
     result.push(doc.data());
   });
   let newResult = [];
-  result.filter((order) => {
+  result.forEach((order) => {
     let roleArray = order.visibility.split(",");
     if (roleArray.includes(role)) {
       newResult.push(order);
     }
   });
-  res.status(200).send({ result: newResult });
+  if (newResult.length > 5) {
+    res.status(200).send({ result: newResult.splice(0, 5) });
+  } else {
+    res.status(200).send({ result: newResult });
+  }
 };
