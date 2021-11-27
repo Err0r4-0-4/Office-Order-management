@@ -19,7 +19,7 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    history.push("/");
+    history.push("/home");
   }, []);
 
   console.log(firebase.auth().currentUser);
@@ -42,12 +42,12 @@ const Home = () => {
           <About />
         </Route>
 
-        <Route path="/" exact>
+        <Route path="/home" exact>
           <Homepage />
         </Route>
 
         <Route path="*" exact>
-          <Redirect to="/" />
+          <Redirect to="/home" />
         </Route>
       </Switch>
       <Footer />

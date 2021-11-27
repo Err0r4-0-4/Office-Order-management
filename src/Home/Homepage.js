@@ -30,7 +30,7 @@ const Homepage = () => {
           let a = res.data.result.map((data) => (
             <div className={styles.recent}>
               <div className={styles.rec1}>
-                <div className={styles.order}>IIITV/2019-20/12</div>
+                <div className={styles.order}>IIITV/2019-20/ {data.serialNo}</div>
                 <div className={styles.name}>{data.title}</div>
               </div>
               <div className={styles.rec2}>
