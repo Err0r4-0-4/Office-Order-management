@@ -273,14 +273,18 @@ exports.getOtherOrder = async (req, res, next) => {
 };
 
 exports.getLatestOrder = async (req, res, next) => {
-  let orders = await db
-    .collection("orders")
-    .orderBy("serialNo", "desc")
-    .limit(5)
-    .get();
+  let orders = await db.collection("orders").orderBy("serialNo", "desc").get();
+  let role = req.query.role;
   let result = [];
   orders.forEach((doc) => {
     result.push(doc.data());
   });
-  res.status(200).send({ result: result });
+  let newResult = [];
+  result.filter((order) => {
+    let roleArray = order.visibility.split(",");
+    if (roleArray.includes(role)) {
+      newResult.push(order);
+    }
+  });
+  res.status(200).send({ result: newResult });
 };
