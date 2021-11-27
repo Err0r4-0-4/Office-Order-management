@@ -60,9 +60,11 @@ export default function Form() {
     setLoding(true);
 
     axios
-      .post("https://office-order-backend.herokuapp.com/office/keywords",
-      {},
-      config)
+      .post(
+        "https://office-order-backend.herokuapp.com/office/keywords",
+        {},
+        config
+      )
       .then(async (res) => {
         setkeywordList(res.data.keywords.map((k) => <option>{k}</option>));
 
@@ -81,8 +83,16 @@ export default function Form() {
         config
       )
       .then(async (res) => {
-        console.log(res.data.keywords);
-        setMembers(res.data.keywords);
+        console.log(
+          res.data.keywords.map((k) => (
+            <option>{k.lastOrder.familyName}</option>
+          ))
+        );
+        setMembers(
+          res.data.keywords.map((k) => (
+            <option>{k.lastOrder.familyName}</option>
+          ))
+        );
 
         setLoding(false);
       })
@@ -105,17 +115,17 @@ export default function Form() {
 
   console.log(members);
 
-  let memberArray = (
-    <div>
-      {members.map((m) => (
-        <Member
-          name={m.lastOrder.familyName}
-          id={m.lastOrder.familyId}
-          setFamily={setFamilyHandler}
-        />
-      ))}
-    </div>
-  );
+  // let memberArray = (
+  //   <option>
+  //     {members.map((m) => (
+  //       <Member
+  //         name={m.lastOrder.familyName}
+  //         id={m.lastOrder.familyId}
+  //         setFamily={setFamilyHandler}
+  //       />
+  //     ))}
+  //   </option>
+  // );
 
   const uploadForm = async (e) => {
     try {
@@ -248,7 +258,7 @@ export default function Form() {
           <h1 className={styles.h2}>Order Number</h1>
           <div className={styles.name}>
             <div className={styles.iiit}>
-              IIITV/2019-20/{int ? "EE" : "II"}/12
+              OO:IIITV/2019-20/{int ? "E" : "I"}/12
             </div>
             <input
               type="text"
@@ -374,19 +384,22 @@ export default function Form() {
             {options ? options : <p>Keywords will be added</p>}
             <p className={styles.err}>{addonError}</p>
           </div>
-          
         </div>
         <div className={styles.line}></div>
 
         <div className={styles.one}>
           <h1 className={styles.h2}>Family</h1>
-          {/* <select className={styles.sel} onChange={addKeyWords}>
+          <select
+            className={styles.sel}
+            style={{ margin: "auto", display: "block", width: "100%" }}
+          >
             <option selected value>
               --Family --
             </option>
-          </select> */}
-          <div className={styles.array}>{memberArray}</div>
-
+            {members}
+          </select>
+          {/* <div className={styles.array}>{memberArray}</div> */}
+          <p style={{ margin: "20px auto 0", display: "block" }}>Or</p>
           <input
             placeholder="Add a New Family"
             onChange={(e) => setNew(e.target.value)}

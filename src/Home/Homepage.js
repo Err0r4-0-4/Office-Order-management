@@ -4,7 +4,7 @@ import firebase from "firebase";
 import Form from "../components/Form";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import vedio from "../Images/vedio.mp4";
 const Homepage = () => {
   const [orders, setOrders] = useState([]);
 
@@ -137,6 +137,15 @@ const Homepage = () => {
               <a href="http://nptel.iiitv.ac.in/">NPTEL@ IIIT Vadodara</a>
             </li>
           </ul>
+        </div>
+        <div className={styles.link2}>
+          <div className={styles.link}>
+            <video controls className={styles.vedio}>
+              <source src={vedio} type="video/mp4" />
+              <source src={vedio} type="video/ogg" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </div>
     </div>

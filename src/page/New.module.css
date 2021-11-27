@@ -130,7 +130,7 @@
   text-decoration: underline;
 }
 
-@media all and (max-width: 1150px) {
+@media all and (max-width: 1200px) {
   .new {
     margin: 0px;
   }

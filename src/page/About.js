@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./About.module.css";
+import vedio from "../Images/vedio.mp4";
 import {
   AiFillGithub,
   AiFillMail,
@@ -54,14 +55,15 @@ const About = () => {
           <li>
             <a href="#id1">Code</a>
           </li>
+
           <li>
-            <a href="#id2">Issues</a>
-          </li>
-          <li>
-            <a href="#id3">Coders</a>
+            <a href="#id3">Team</a>
           </li>
           <li>
             <a href="#id4">FAQs</a>
+          </li>
+          <li>
+            <a href="#id2">Demo</a>
           </li>
         </ul>
         <div className={styles.div1}>
@@ -494,7 +496,7 @@ const About = () => {
               <div className={styles.faqques}>
                 Is the website Office Order Website secure ?{" "}
               </div>
-              <div className={help3 ? styles.up : styles.add}>
+              <div className={help3 ? styles.up : styles.add} id="id2">
                 <AiOutlineDown />
               </div>
               <div className={help3 ? styles.open : styles.close}>
@@ -504,6 +506,12 @@ const About = () => {
             </div>
           </div>
         </div>
+        <h2 className={styles.h2}>Demo</h2>
+        <video width="320" height="240" controls className={styles.vedio}>
+          <source src={vedio} type="video/mp4" />
+          <source src={vedio} type="video/ogg" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   );

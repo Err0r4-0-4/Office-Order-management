@@ -258,8 +258,6 @@ const Previous = () => {
     getData();
   }, []);
   return (
-    //////////////////search
-
     <div className={styles.page}>
       {loading ? <Spinner /> : null}
       <div className={styles.search}>
@@ -271,7 +269,7 @@ const Previous = () => {
             {keywords}
           </select>
           <p>
-            <span className={styles.big}>{orderCount}</span> test results
+            <span className={styles.big}>{orderCount}</span> orders created
           </p>
         </div>
       </div>
