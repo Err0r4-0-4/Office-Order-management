@@ -16,7 +16,7 @@ import { Route } from "react-router";
 import { AiFillCar, AiTwotoneMail } from "react-icons/ai";
 import { FaCar, FaPhone } from "react-icons/fa";
 import Modal from "../../UI/Modal";
-import { Redirect } from 'react-router'
+import { Redirect } from "react-router";
 
 import { IoLocationSharp } from "react-icons/io5";
 import "firebase/firestore";
@@ -90,11 +90,10 @@ const Auth = () => {
                 dispatch(Authactions.allocation("director"));
               else if (user.email.includes("201952234"))
                 dispatch(Authactions.allocation("student"));
-              else if (user.email.includes("201951073"))
+              else if (user.email.includes("201951093"))
                 dispatch(Authactions.allocation("faculty"));
 
-                setRedirect(true);
-                
+              setRedirect(true);
             } else {
               setShowModal(true);
               console.log("!!!!!!!");
@@ -110,18 +109,16 @@ const Auth = () => {
 
   return (
     <div className={styles.home}>
-      <Redirect to="/home"/>
+      <Redirect to="/home" />
       <Modal show={showModal} switch={hideHandler}>
         Please use your institute email to login.
       </Modal>
       {con ? (
         <span>
           <Home />
-         
         </span>
       ) : (
         <div className={styles.div0}>
-
           <div className={styles.div1}>
             <div className={styles.div2}>
               <div className={styles.div4}>HELLO</div>
@@ -177,10 +174,7 @@ const Auth = () => {
           </button>
 
           <div className={styles.footbar}>
-            <div className={styles.ins}>
-              Office Order Managegment
-
-            </div>
+            <div className={styles.ins}>Office Order Managegment</div>
             <div className={styles.foot}>
               <ul className={styles.ul}>
                 <li>

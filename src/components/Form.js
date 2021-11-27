@@ -8,13 +8,11 @@ import Member from "../Cards/LastMember/LastMember";
 import Spinner from "../UI/Spinner";
 import Modal from "../UI/Modal";
 import { AiOutlineClose } from "react-icons/ai";
-import { Redirect } from 'react-router'
+import { Redirect } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 
 const db = firebase.firestore();
 var storageRef = firebase.storage().ref();
-
-
 
 export default function Form() {
   let a = [];
@@ -38,7 +36,7 @@ export default function Form() {
   const [error, setError] = useState(false);
   const [int, setint] = useState(false);
   const [redirect, setRedirect] = useState(false);
-  
+
   const tkn = useSelector((state) => state.token);
 
   let config = {
@@ -137,7 +135,23 @@ export default function Form() {
       var yyyy = today.getFullYear();
 
       today = mm + "/" + dd + "/" + yyyy;
-
+      if (title.length === 0) {
+        alert("Please Enter Title!");
+        return;
+      }
+      if (visibility.length === 0) {
+        alert("Please Enter Visibility!");
+        return;
+      }
+      if (keywords.length === 0) {
+        alert("Please Enter keywords!");
+        return;
+      }
+      if (Object.keys(file).length === 0) {
+        alert("Please Select File!");
+        return;
+      }
+      console.log(file);
       const formData = new FormData();
       formData.append("title", title);
       formData.append("visibility", visibility);
@@ -234,18 +248,22 @@ export default function Form() {
     e.preventDefault();
     let input = document.getElementById("keywordsInput");
     let newKeywords = [...keywords, input.value];
-    setKeywords(newKeywords);
+    if (!keywords.includes(input.value)) {
+      setKeywords(newKeywords);
+    }
     input.value = "";
   };
 
   const addKeyWords = (event) => {
     let t = keywords;
-    setKeywords([...t, event.target.value]);
+    if (!t.includes(event.target.value)) {
+      setKeywords([...t, event.target.value]);
+    }
   };
 
   return (
     <div>
-      {redirect ? <Redirect to="prevorder"/> : null}
+      {redirect ? <Redirect to="prevorder" /> : null}
       <Modal show={showModal} switch={hideHandler}>
         {error ? "Error in uploading" : "Successfully uploaded"}
       </Modal>
