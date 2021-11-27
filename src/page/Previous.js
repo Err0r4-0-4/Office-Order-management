@@ -221,7 +221,9 @@ const Previous = () => {
           <img src={img} className={styles.img}></img>
           <div className={styles.inner}>
             <h4 className={styles.date}>{doc.lastOrder.date}</h4>
-            <h5>{doc.lastOrder.serialNo}</h5>
+
+            <h5>OO:IIITV/2019-20/I/12</h5>
+            {/* <h5>{doc.lastOrder.serialNo}</h5> */}
 
             <h2 className={styles.title}>{doc.lastOrder.title}</h2>
             <button
