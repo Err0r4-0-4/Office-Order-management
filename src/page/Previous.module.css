@@ -177,7 +177,6 @@
 .inner {
   margin: 10px;
   min-width: 50%;
-  max-width: 50%;
 }
 
 .inner h5 {
@@ -205,7 +204,7 @@
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
   text-align: center;
-  margin: 15px 0%;
+  margin: 15px 0px;
   border: 0.5px solid rgb(201, 201, 201);
   font-size: 15px;
   min-width: 120px;
@@ -231,10 +230,10 @@
 .hid {
   align-items: center;
   position: fixed;
-  top: 10vh;
+  top: 12vh;
   right: 0;
   width: 50%;
-  height: 90vh;
+  height: 88vh;
   background-color: rgb(32, 32, 32);
 }
 .previewMain {
@@ -247,7 +246,7 @@
   width: 10px;
 }
 .close {
-  height: 90vh;
+  height: 88vh;
   position: relative;
 }
 
@@ -408,7 +407,7 @@
 @media all and (max-width: 1300px) {
   .link {
     display: block;
-    width: 80%;
+    width: 40%;
     margin: 10px auto;
     min-width: 220px;
   }
@@ -424,8 +423,7 @@
 @media all and (max-width: 1150px) {
   .link {
     display: inline-block;
-    width: 40%;
-    margin: 10px 5%;
+    width: 100%;
     padding: 5px 10px;
     min-width: 150px;
     max-width: none;
@@ -474,7 +472,7 @@
     display: block;
     width: 80%;
     padding: 6px;
-    margin: 15px 10%;
+    margin: 15px 0%;
     min-width: 150px;
     max-width: none;
     font-size: 14px;
@@ -500,7 +498,7 @@
   }
 }
 
-@media all and (max-width: 700px) {
+@media all and (max-width: 600px) {
   .flex .box,
   .flex2 .box {
     min-width: 200px;
@@ -522,7 +520,16 @@
   }
 }
 
-@media all and (max-width: 550px) {
+@media all and (max-width: 600px) {
+  .link {
+    display: block;
+    width: 100%;
+    padding: 6px;
+    margin: 15px 0%;
+    min-width: 150px;
+    max-width: none;
+    font-size: 14px;
+  }
   .page {
     margin: 0;
     padding: 40px 10px 20px;

@@ -1,4 +1,5 @@
 import React from "react";
+import firebase from "firebase";
 
 import styles from "./Footer.module.css";
 import { AiFillGitlab } from "react-icons/ai";
@@ -11,8 +12,10 @@ const Footer = () => (
     <div className={styles.flex}>
       <div className={styles.sign}>
         You are signed in as:
-        <p className={styles.signed}>201952202@iiitvadodara.ac.in</p>
-        <p className={styles.signed}>Aditya Singh</p>
+        <p className={styles.signed}>{firebase.auth().currentUser.email}</p>
+        <p className={styles.signed}>
+          {firebase.auth().currentUser.displayName}
+        </p>
       </div>
       <div className={styles.report}>Report a Bug</div>
     </div>

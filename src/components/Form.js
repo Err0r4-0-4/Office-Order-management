@@ -8,13 +8,11 @@ import Member from "../Cards/LastMember/LastMember";
 import Spinner from "../UI/Spinner";
 import Modal from "../UI/Modal";
 import { AiOutlineClose } from "react-icons/ai";
-import { Redirect } from 'react-router'
+import { Redirect } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 
 const db = firebase.firestore();
 var storageRef = firebase.storage().ref();
-
-
 
 export default function Form() {
   let a = [];
@@ -38,7 +36,7 @@ export default function Form() {
   const [error, setError] = useState(false);
   const [int, setint] = useState(false);
   const [redirect, setRedirect] = useState(false);
-  
+
   const tkn = useSelector((state) => state.token);
 
   let config = {
@@ -245,7 +243,7 @@ export default function Form() {
 
   return (
     <div>
-      {redirect ? <Redirect to="prevorder"/> : null}
+      {redirect ? <Redirect to="prevorder" /> : null}
       <Modal show={showModal} switch={hideHandler}>
         {error ? "Error in uploading" : "Successfully uploaded"}
       </Modal>
