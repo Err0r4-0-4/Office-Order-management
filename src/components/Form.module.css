@@ -317,9 +317,9 @@ li {
 }
 
 .sel {
-  width: 90%;
+  width: 100%;
   margin: auto;
-  flex: 90%;
+  flex: 100%;
   padding: 5px 20px;
   border: none;
   cursor: pointer;

@@ -254,7 +254,7 @@
   margin-bottom: 5px;
 }
 
-@media all and (max-width: 1100px) {
+@media all and (max-width: 1200px) {
   .div3 .link {
     display: none;
   }
