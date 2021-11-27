@@ -81,16 +81,9 @@ export default function Form() {
         config
       )
       .then(async (res) => {
-        console.log(
-          res.data.keywords.map((k) => (
-            <option>{k.lastOrder.familyName}</option>
-          ))
-        );
-        setMembers(
-          res.data.keywords.map((k) => (
-            <option>{k.lastOrder.familyName}</option>
-          ))
-        );
+      
+        console.log(res.data.keywords);
+        setMembers(res.data.keywords);
 
         setLoding(false);
       })
@@ -113,17 +106,17 @@ export default function Form() {
 
   console.log(members);
 
-  // let memberArray = (
-  //   <option>
-  //     {members.map((m) => (
-  //       <Member
-  //         name={m.lastOrder.familyName}
-  //         id={m.lastOrder.familyId}
-  //         setFamily={setFamilyHandler}
-  //       />
-  //     ))}
-  //   </option>
-  // );
+  let memberArray = (
+    <div>
+      {members.map((m) => (
+        <Member
+          name={m.lastOrder.familyName}
+          id={m.lastOrder.familyId}
+          setFamily={setFamilyHandler}
+        />
+      ))}
+    </div>
+  );
 
   const uploadForm = async (e) => {
     try {
@@ -407,16 +400,7 @@ export default function Form() {
 
         <div className={styles.one}>
           <h1 className={styles.h2}>Family</h1>
-          <select
-            className={styles.sel}
-            style={{ margin: "auto", display: "block", width: "100%" }}
-          >
-            <option selected value>
-              --Family --
-            </option>
-            {members}
-          </select>
-          {/* <div className={styles.array}>{memberArray}</div> */}
+          <div className={styles.array}>{memberArray}</div>
           <p style={{ margin: "20px auto 0", display: "block" }}>Or</p>
           <input
             placeholder="Add a New Family"

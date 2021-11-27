@@ -5,7 +5,12 @@ import Form from "../components/Form";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import vedio from "../Images/vedio.mp4";
+import { useSelector, useDispatch } from "react-redux";
+
 const Homepage = () => {
+
+  const role = useSelector((state) => state.member);
+
   const [orders, setOrders] = useState([]);
 
   let s = "Student";
@@ -20,7 +25,7 @@ const Homepage = () => {
     useEffect(() => {
       axios
         .get(
-          "https://office-order-backend.herokuapp.com/office/getLatestOrder",
+          `https://office-order-backend.herokuapp.com/office/getLatestOrder?role=${role}`,
           {},
           config
         )
