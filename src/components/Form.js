@@ -122,7 +122,7 @@ export default function Form() {
   console.log(members);
 
   let memberArray = (
-    <div styles={{ width: "100%" }}>
+    <div className={styles.hundredw}>
       {members.map((m) => (
         <Member
           name={m.lastOrder.familyName}
