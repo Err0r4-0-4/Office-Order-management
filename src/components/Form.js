@@ -53,13 +53,11 @@ export default function Form() {
   };
 
   useEffect(async () => {
-    let a = await axios.post(
-      "https://office-order-backend.herokuapp.com/office/getLastMember",
-      {},
-      config
+    let a = await axios.get(
+      "https://office-order-backend.herokuapp.com/office/getcount"
     );
-    console.log(a.data.keywords.length);
-    setordernumber(a.data.keywords.length + 1);
+    console.log(a.data.size);
+    setordernumber(a.data.size + 1);
   }, []);
   const hideHandler = () => {
     setShowModal(false);
@@ -162,7 +160,7 @@ export default function Form() {
       console.log(file);
       const formData = new FormData();
       formData.append("title", title);
-      formData.append("visibility", visibility);
+      formData.append("visibility", visibility + ",registrar");
       formData.append("addons", addons);
       formData.append("type", type);
       formData.append("keywords", keywords);
@@ -170,7 +168,6 @@ export default function Form() {
       formData.append("date", today);
       formData.append("newFamily", newFamily);
       formData.append("inex", int);
-
       formData.append("familyName", familyName);
 
       if (!newFamily) formData.append("familyId", name);
@@ -343,6 +340,7 @@ export default function Form() {
               className={styles.radio}
               onChange={checkboxHandler}
               checked
+              disabled
             />
             <label for="registrar"> Registrar</label>
           </span>

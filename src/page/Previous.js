@@ -39,6 +39,7 @@ const Previous = () => {
   const [loading2, setLoading2] = useState(true);
   const [loading3, setLoading3] = useState(true);
   const [loading4, setLoading4] = useState(true);
+  let [ordernumber, setordernumber] = useState(0);
 
   const [orderCount, setOrdersCount] = useState([]);
 
@@ -50,7 +51,13 @@ const Previous = () => {
       token: tkn,
     },
   };
-
+  useEffect(async () => {
+    let a = await axios.get(
+      "https://office-order-backend.herokuapp.com/office/getcount"
+    );
+    console.log(a.data.size);
+    setordernumber(a.data.size + 1);
+  }, []);
   useEffect(() => {
     axios
       .post(
@@ -207,7 +214,15 @@ const Previous = () => {
 
       setOrdersCount(a.data.keywords.length);
 
-      let data = a.data.keywords;
+      let data2 = a.data.keywords;
+      let data = [];
+      for (let i = 0; i <= data2.length + 1; i++) {
+        data2.map((p) => {
+          if (p.lastOrder.serialNo === i) {
+            data.push(p);
+          }
+        });
+      }
       console.log(data);
       // docData.forEach((d) => data.push(d.data()));
       //data.map((doc) => doc.data());
@@ -280,7 +295,8 @@ const Previous = () => {
             {keywords}
           </select>
           <p>
-            <span className={styles.big}>{orderCount}</span> orders created
+            <span className={styles.big}>{ordernumber - 1}</span> orders created
+            {/* <span className={styles.big}>{orderCount}</span> orders created */}
           </p>
         </div>
       </div>
