@@ -179,7 +179,7 @@ const Previous = () => {
                 target="_top"
                 className={styles.link}
               >
-                Preview Orde
+                Preview Order
               </button>
             </div>
           </div>
@@ -216,7 +216,7 @@ const Previous = () => {
 
       let data2 = a.data.keywords;
       let data = [];
-      for (let i = 0; i <= data2.length + 1; i++) {
+      for (let i = data2.length + 1; i >= 0; i--) {
         data2.map((p) => {
           if (p.lastOrder.serialNo === i) {
             data.push(p);

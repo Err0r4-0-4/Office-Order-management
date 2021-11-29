@@ -127,7 +127,7 @@ const About = () => {
                 <h2 className={styles.h5}>Jatin Gupta</h2>
                 <h4 className={styles.h4}>3rd Year, IIIT V</h4>
                 <p className={styles.h3}>
-                  Block Chain Dev, Full Stack Dev & CP Enthusiast
+                  Blockchain Dev, Full Stack Dev & CP Enthusiast
                 </p>
               </div>
             </div>
@@ -297,7 +297,7 @@ const About = () => {
                 <h2 className={styles.h5}>Sidhart Saini</h2>
                 <h4 className={styles.h4}>3rd Year, IIIT V</h4>
                 <p className={styles.h3}>
-                  Block Chain Dev, Full Stack Dev & CP Enthusiast
+                  Blockchain Dev, Full Stack Dev & CP Enthusiast
                 </p>
               </div>
             </div>
