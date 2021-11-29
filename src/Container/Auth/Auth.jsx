@@ -109,7 +109,6 @@ const Auth = () => {
 
   return (
     <div className={styles.home}>
-      <Redirect to="/home" />
       <Modal show={showModal} switch={hideHandler}>
         Please use your institute email to login.
       </Modal>

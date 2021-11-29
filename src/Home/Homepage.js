@@ -54,7 +54,7 @@ const Homepage = () => {
         .catch((err) => {
           console.log(err);
         });
-    }, []);
+    }, [spin]);
   } catch (e) {
     console.log("Error");
   }
