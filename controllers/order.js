@@ -295,3 +295,13 @@ exports.getLatestOrder = async (req, res, next) => {
     res.status(200).send({ result: newResult });
   }
 };
+
+exports.getCount = (req, res, next) => {
+  try {
+    let orders = await db.collection("orders").get();
+    res.status(200).send({ size: orders.size });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ message: error.message });
+  }
+};
