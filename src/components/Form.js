@@ -81,16 +81,9 @@ export default function Form() {
         config
       )
       .then(async (res) => {
-        console.log(
-          res.data.keywords.map((k) => (
-            <option>{k.lastOrder.familyName}</option>
-          ))
-        );
-        setMembers(
-          res.data.keywords.map((k) => (
-            <option>{k.lastOrder.familyName}</option>
-          ))
-        );
+      
+        console.log(res.data.keywords);
+        setMembers(res.data.keywords);
 
         setLoding(false);
       })
@@ -113,17 +106,17 @@ export default function Form() {
 
   console.log(members);
 
-  // let memberArray = (
-  //   <option>
-  //     {members.map((m) => (
-  //       <Member
-  //         name={m.lastOrder.familyName}
-  //         id={m.lastOrder.familyId}
-  //         setFamily={setFamilyHandler}
-  //       />
-  //     ))}
-  //   </option>
-  // );
+  let memberArray = (
+    <div>
+      {members.map((m) => (
+        <Member
+          name={m.lastOrder.familyName}
+          id={m.lastOrder.familyId}
+          setFamily={setFamilyHandler}
+        />
+      ))}
+    </div>
+  );
 
   const uploadForm = async (e) => {
     try {
@@ -135,7 +128,23 @@ export default function Form() {
       var yyyy = today.getFullYear();
 
       today = mm + "/" + dd + "/" + yyyy;
-
+      if (title.length === 0) {
+        alert("Please Enter Title!");
+        return;
+      }
+      if (visibility.length === 0) {
+        alert("Please Enter Visibility!");
+        return;
+      }
+      if (keywords.length === 0) {
+        alert("Please Enter keywords!");
+        return;
+      }
+      if (Object.keys(file).length === 0) {
+        alert("Please Select File!");
+        return;
+      }
+      console.log(file);
       const formData = new FormData();
       formData.append("title", title);
       formData.append("visibility", visibility);
@@ -232,13 +241,17 @@ export default function Form() {
     e.preventDefault();
     let input = document.getElementById("keywordsInput");
     let newKeywords = [...keywords, input.value];
-    setKeywords(newKeywords);
+    if (!keywords.includes(input.value)) {
+      setKeywords(newKeywords);
+    }
     input.value = "";
   };
 
   const addKeyWords = (event) => {
     let t = keywords;
-    setKeywords([...t, event.target.value]);
+    if (!t.includes(event.target.value)) {
+      setKeywords([...t, event.target.value]);
+    }
   };
 
   return (
@@ -387,16 +400,7 @@ export default function Form() {
 
         <div className={styles.one}>
           <h1 className={styles.h2}>Family</h1>
-          <select
-            className={styles.sel}
-            style={{ margin: "auto", display: "block", width: "100%" }}
-          >
-            <option selected value>
-              --Family --
-            </option>
-            {members}
-          </select>
-          {/* <div className={styles.array}>{memberArray}</div> */}
+          <div className={styles.array}>{memberArray}</div>
           <p style={{ margin: "20px auto 0", display: "block" }}>Or</p>
           <input
             placeholder="Add a New Family"

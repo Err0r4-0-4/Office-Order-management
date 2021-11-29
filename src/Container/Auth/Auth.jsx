@@ -90,7 +90,7 @@ const Auth = () => {
                 dispatch(Authactions.allocation("director"));
               else if (user.email.includes("201952234"))
                 dispatch(Authactions.allocation("student"));
-              else if (user.email.includes("201951073"))
+              else if (user.email.includes("201951093"))
                 dispatch(Authactions.allocation("faculty"));
 
               setRedirect(true);
