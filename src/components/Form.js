@@ -399,7 +399,7 @@ export default function Form() {
           </div>
 
           <select className={styles.sel} onChange={addKeyWords}>
-            <option selected value>
+            <option selected value disabled>
               --Select Keywords--
             </option>
             {keywordList}

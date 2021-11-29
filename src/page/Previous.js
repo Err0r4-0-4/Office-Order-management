@@ -160,13 +160,24 @@ const Previous = () => {
 
     console.log("renderSearchData", renderSearchData[0]);
     setshoworders(
-      renderSearchData.map((doc) =>
-        doc.lastOrder.visibility.split(",").includes(role) ? (
+      renderSearchData.map((doc) => {
+        let month = +doc.lastOrder.date.substring(0, 2);
+        let year = +doc.lastOrder.date.substring(6, 10);
+        if (month < 6) {
+          year = year - 1;
+        }
+        console.log(month, year);
+
+        let year2 = "" + year + "-" + ((year + 1) % 100);
+        return doc.lastOrder.visibility.split(",").includes(role) ? (
           <div className={styles.box}>
             <img src={img} className={styles.img}></img>
             <div className={styles.inner}>
               <h4 className={styles.date}>{doc.lastOrder.date}</h4>
-              <h5>{doc.serialNo}</h5>
+              <h5>
+                OO:IIITV/{year2}/{doc.lastOrder.inex ? "E" : "I"}/
+                {doc.lastOrder.serialNo}
+              </h5>
               <h2 className={styles.title}>{doc.lastOrder.title}</h2>
               <button
                 onClick={() =>
@@ -183,8 +194,8 @@ const Previous = () => {
               </button>
             </div>
           </div>
-        ) : null
-      )
+        ) : null;
+      })
     );
   };
 
