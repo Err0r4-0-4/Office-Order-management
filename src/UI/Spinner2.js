@@ -5,7 +5,6 @@ import Backdrop from "./Backdrop";
 const Spinner = (props) => {
   return (
     <div>
-      <Backdrop show={true} />
       <div className={styles["spinner"]}>
         <div className={styles.loader}></div>
       </div>
