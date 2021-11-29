@@ -144,7 +144,12 @@ const Auth = () => {
               )}
 
               <div className={styles.div5}>
-                <a href="#">Trouble Logging In ?</a>
+                <a
+                  style={{ cursor: "pointer" }}
+                  onClick={() => window.location.reload()}
+                >
+                  Trouble Logging In ?
+                </a>
               </div>
             </div>
           </div>
@@ -173,7 +178,7 @@ const Auth = () => {
           </button>
 
           <div className={styles.footbar}>
-            <div className={styles.ins}>Office Order Managegment</div>
+            <div className={styles.ins}>OFFICE ORDER MANAGEMENT</div>
             <div className={styles.foot}>
               <ul className={styles.ul}>
                 <li>
