@@ -100,7 +100,7 @@ const Previous = () => {
       .then(async (res) => {
         console.log(res);
 
-        preViewHandler(res.data.data.imageUrl);
+        // preViewHandler(res.data.data.imageUrl);
 
         setLoading2(false);
       })
@@ -110,17 +110,17 @@ const Previous = () => {
       });
   };
 
-  const navigateHandler = (e) => {
+  const navigateHandler = (e, id) => {
     let c = +count + 1;
 
     if (e === "prev") {
       c = +c - 2;
     }
 
-    console.log(c);
+    console.log("abcd", c);
 
     const data = {
-      familyId: familyId,
+      familyId: id,
       count: c,
     };
 
@@ -135,12 +135,12 @@ const Previous = () => {
       .then(async (res) => {
         console.log(res);
 
-        // setImage(res.data.data.imageUrl);
-
-        preViewHandler(res.data.data.imageUrl);
+        //preViewHandler(res.data.data.imageUrl);
         setCount(c);
       })
       .catch((err) => {
+        if (c === -1) alert("No Previous Order");
+        else if (data.familyId) alert("No Next Order");
         console.log(err);
       });
   };
@@ -340,14 +340,14 @@ const Previous = () => {
 
           <div className={styles.arrow}>
             <button
-              onClick={() => navigateHandler("prev")}
+              onClick={() => navigateHandler("prev", familyId)}
               className={styles.arr}
               title="Previous Family Member"
             >
               <AiOutlineArrowLeft size={20} />
             </button>
             <button
-              onClick={() => navigateHandler("next")}
+              onClick={() => navigateHandler("next", familyId)}
               className={styles.arr}
               title="Next Family Member"
             >
