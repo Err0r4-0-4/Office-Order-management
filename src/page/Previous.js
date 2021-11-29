@@ -100,7 +100,7 @@ const Previous = () => {
       .then(async (res) => {
         console.log(res);
 
-        preViewHandler(res.data.data.imageUrl);
+        preViewHandler(res.data.data.imageUrl, res.data.data.familyId);
 
         setLoading2(false);
       })
@@ -137,7 +137,7 @@ const Previous = () => {
 
         // setImage(res.data.data.imageUrl);
 
-        preViewHandler(res.data.data.imageUrl);
+        preViewHandler(res.data.data.imageUrl, res.data.data.familyId);
         setCount(c);
       })
       .catch((err) => {
