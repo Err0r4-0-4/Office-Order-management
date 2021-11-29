@@ -70,6 +70,7 @@ exports.uploadOrder = async (req, res, next) => {
         .get();
       let allKeywords = keywordDoc.data().keywords;
       allKeywords = [...allKeywords, ...keywords];
+      allKeywords = [...new Set(allKeywords)];
       await db.collection("keywords").doc("1sKJt3XpeYiOyQgFcFaj").update({
         keywords: allKeywords,
       });
