@@ -274,6 +274,7 @@ exports.getOtherOrder = async (req, res, next) => {
 
 exports.getLatestOrder = async (req, res, next) => {
   let orders = await db.collection("orders").orderBy("serialNo", "desc").get();
+  console.log("orders", orders);
   let role = req.query.role;
   let result = [];
   orders.forEach((doc) => {
@@ -286,6 +287,7 @@ exports.getLatestOrder = async (req, res, next) => {
       newResult.push(order);
     }
   });
+  console.log("newResult", newResult);
   if (newResult.length > 5) {
     res.status(200).send({ result: newResult.splice(0, 5) });
   } else {
