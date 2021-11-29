@@ -190,6 +190,7 @@ exports.getLastMember = async (req, res, next) => {
     members.forEach((doc) => {
       results.push(doc.data());
     });
+    console.log(results);
     res.status(200).send({ keywords: results });
   } catch (error) {
     console.log(error);
