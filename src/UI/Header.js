@@ -53,7 +53,6 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const clickhandler = () => {
     setOpen(!open);
-    
   };
 
   const [over, setover] = useState(false);
@@ -130,12 +129,7 @@ const Header = () => {
             </a>
           </li>
           <li>
-            <NavLink
-              to="/out"
-              activeClassName={styles.active}
-              className={styles.link}
-              onClick={signout}
-            >
+            <NavLink to="/" className={styles.link} onClick={signout}>
               Signout
             </NavLink>
           </li>
@@ -176,7 +170,7 @@ const Header = () => {
                 activeClassName={styles.active2}
                 onClick={clickhandler}
               >
-                View   Orders
+                View Orders
               </NavLink>
             </li>
             <li>
@@ -195,11 +189,7 @@ const Header = () => {
             </li>
 
             <li>
-              <NavLink
-                to="/out"
-                activeClassName={styles.active2}
-                onClick={signout}
-              >
+              <NavLink to="/" onClick={signout}>
                 Signout
               </NavLink>
             </li>
