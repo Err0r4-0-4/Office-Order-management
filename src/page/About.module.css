@@ -528,6 +528,11 @@
     padding-left: 0;
     width: 100%;
   }
+
+  .vedio {
+    width: 100%;
+    height: 400px;
+  }
 }
 
 @media all and (max-width: 600px) {
@@ -549,6 +554,11 @@
     flex: 100%;
     width: 100%;
     font-size: 20px;
+  }
+
+  .vedio {
+    width: 100%;
+    height: 300px;
   }
 }
 

@@ -35,7 +35,11 @@ const Previous = () => {
   const [familyId, setFamilyId] = useState([]);
   const [count, setCount] = useState("");
   const [image, setImage] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(true);
+  const [loading2, setLoading2] = useState(true);
+  const [loading3, setLoading3] = useState(true);
+  const [loading4, setLoading4] = useState(true);
+
   const [orderCount, setOrdersCount] = useState([]);
 
   const role = useSelector((state) => state.member);
@@ -48,9 +52,6 @@ const Previous = () => {
   };
 
   useEffect(() => {
-
-    setLoading(true);
-
     axios
       .post(
         "https://office-order-backend.herokuapp.com/office/keywords",
@@ -63,11 +64,10 @@ const Previous = () => {
 
         console.log(keywords);
 
-        setLoading(false);
+        setLoading1(false);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
       });
   }, []);
 
@@ -82,7 +82,7 @@ const Previous = () => {
       familyId: doc.familyId,
     };
 
-    setLoading(true);
+    setLoading2(true);
 
     axios
       .post(
@@ -95,11 +95,11 @@ const Previous = () => {
 
         preViewHandler(res.data.data.imageUrl);
 
-        setLoading(false);
+        setLoading2(false);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
+        setLoading2(false);
       });
   };
 
@@ -119,8 +119,6 @@ const Previous = () => {
 
     console.log(data);
 
-    setLoading(true);
-
     axios
       .post(
         "https://office-order-backend.herokuapp.com/office/getOtherOrder",
@@ -134,11 +132,9 @@ const Previous = () => {
 
         preViewHandler(res.data.data.imageUrl);
         setCount(c);
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
       });
   };
 
@@ -157,30 +153,31 @@ const Previous = () => {
 
     console.log("renderSearchData", renderSearchData[0]);
     setshoworders(
-      renderSearchData.map((doc) => (
-
-        doc.lastOrder.visibility.split(",").includes(role) ?
-
-        <div className={styles.box}>
-          <img src={img} className={styles.img}></img>
-          <div className={styles.inner}>
-            <h4 className={styles.date}>{doc.lastOrder.date}</h4>
-            <h5>{doc.serialNo}</h5>
-            <h2 className={styles.title}>{doc.lastOrder.title}</h2>
-            <button
-              onClick={() =>
-                preViewHandler(doc.lastOrder.imageUrl, doc.lastOrder.familyId, doc.lastOrder.count)
-              }
-              target="_top"
-              className={styles.link}
-            >
-              Preview Orde
-            </button>
+      renderSearchData.map((doc) =>
+        doc.lastOrder.visibility.split(",").includes(role) ? (
+          <div className={styles.box}>
+            <img src={img} className={styles.img}></img>
+            <div className={styles.inner}>
+              <h4 className={styles.date}>{doc.lastOrder.date}</h4>
+              <h5>{doc.serialNo}</h5>
+              <h2 className={styles.title}>{doc.lastOrder.title}</h2>
+              <button
+                onClick={() =>
+                  preViewHandler(
+                    doc.lastOrder.imageUrl,
+                    doc.lastOrder.familyId,
+                    doc.lastOrder.count
+                  )
+                }
+                target="_top"
+                className={styles.link}
+              >
+                Preview Orde
+              </button>
+            </div>
           </div>
-        </div>
-        :
-        null
-      ))
+        ) : null
+      )
     );
   };
 
@@ -206,6 +203,7 @@ const Previous = () => {
       );
 
       console.log(a);
+      setLoading4(false);
 
       setOrdersCount(a.data.keywords.length);
 
@@ -213,55 +211,66 @@ const Previous = () => {
       console.log(data);
       // docData.forEach((d) => data.push(d.data()));
       //data.map((doc) => doc.data());
-      let docDataRender = data.map((doc) => (
+      let docDataRender = data.map((doc) => {
+        let month = +doc.lastOrder.date.substring(0, 2);
+        let year = +doc.lastOrder.date.substring(6, 10);
+        if (month < 6) {
+          year = year - 1;
+        }
+        console.log(month, year);
 
-        doc.lastOrder.visibility.split(",").includes(role) ?
+        let year2 = "" + year + "-" + ((year + 1) % 100);
 
-        <div className={styles.box}>
-          <img src={img} className={styles.img}></img>
-          <div className={styles.inner}>
-            <h4 className={styles.date}>{doc.lastOrder.date}</h4>
+        return doc.lastOrder.visibility.split(",").includes(role) ? (
+          <div className={styles.box}>
+            <img src={img} className={styles.img}></img>
+            <div className={styles.inner}>
+              <h4 className={styles.date}>{doc.lastOrder.date}</h4>
 
-            {/* <h5>OO:IIITV/2019-20/I/12</h5> */}
-            <h5>{doc.lastOrder.serialNo}</h5>
+              {/* <h5>OO:IIITV/2019-20/I/12</h5> */}
+              <h5>
+                OO:IIITV/{year2}/{doc.lastOrder.inex ? "E" : "I"}/
+                {doc.lastOrder.serialNo}
+              </h5>
 
-            <h2 className={styles.title}>{doc.lastOrder.title}</h2>
-            <button
-              onClick={() =>
-                preViewHandler(
-                  doc.lastOrder.imageUrl,
-                  doc.lastOrder.familyId,
-                  doc.lastOrder.count
-                )
-              }
-              target="_top"
-              className={styles.link}
-            >
-              Preview Order
-            </button>
-            {console.log(doc.lastOrder.familyId, doc.lastOrder.count)}
-            {/* <button
+              <h2 className={styles.title}>{doc.lastOrder.title}</h2>
+              <button
+                onClick={() =>
+                  preViewHandler(
+                    doc.lastOrder.imageUrl,
+                    doc.lastOrder.familyId,
+                    doc.lastOrder.count
+                  )
+                }
+                target="_top"
+                className={styles.link}
+              >
+                Preview Order
+              </button>
+              {console.log(doc.lastOrder.familyId, doc.lastOrder.count)}
+              {/* <button
               target="_top"
               className={styles.link}
               onClick={() => getParentHandler(doc.lastOrder)}
             >
               Parent Order
             </button> */}
-            {/* <span className={styles.addons}>{doc.addons}</span> */}
+              {/* <span className={styles.addons}>{doc.addons}</span> */}
+            </div>
           </div>
-        </div>
-
-        : null
-      ));
+        ) : null;
+      });
 
       setOrders(docDataRender);
       setordersD(data);
     }
     getData();
   }, []);
+
+  const loading = !loading1 && !loading2 && !loading4;
   return (
     <div className={styles.page}>
-      {loading ? <Spinner /> : null}
+      {loading4 ? <Spinner /> : null}
       <div className={styles.search}>
         <div className={styles.select}>
           <select onChange={keywordSearch} className={styles.sel}>

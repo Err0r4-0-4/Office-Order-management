@@ -36,15 +36,31 @@ export default function Form() {
   const [error, setError] = useState(false);
   const [int, setint] = useState(false);
   const [redirect, setRedirect] = useState(false);
+  let newDate = new Date();
+  let month = newDate.getMonth() + 1;
+  let year = newDate.getFullYear();
+  if (month < 6) {
+    year = year - 1;
+  }
 
+  let year2 = "" + year + "-" + ((year + 1) % 100);
   const tkn = useSelector((state) => state.token);
-
+  let [ordernumber, setordernumber] = useState(0);
   let config = {
     headers: {
       token: tkn,
     },
   };
 
+  useEffect(async () => {
+    let a = await axios.post(
+      "https://office-order-backend.herokuapp.com/office/getLastMember",
+      {},
+      config
+    );
+    console.log(a.data.keywords.length);
+    setordernumber(a.data.keywords.length + 1);
+  }, []);
   const hideHandler = () => {
     setShowModal(false);
   };
@@ -81,7 +97,6 @@ export default function Form() {
         config
       )
       .then(async (res) => {
-      
         console.log(res.data.keywords);
         setMembers(res.data.keywords);
 
@@ -140,10 +155,10 @@ export default function Form() {
         alert("Please Enter keywords!");
         return;
       }
-      if (Object.keys(file).length === 0) {
-        alert("Please Select File!");
-        return;
-      }
+      // if (Object.keys(file).length === 0) {
+      //   alert("Please Select File!");
+      //   return;
+      // }
       console.log(file);
       const formData = new FormData();
       formData.append("title", title);
@@ -269,7 +284,7 @@ export default function Form() {
           <h1 className={styles.h2}>Order Number</h1>
           <div className={styles.name}>
             <div className={styles.iiit}>
-              OO:IIITV/2019-20/{int ? "E" : "I"}/12
+              OO:IIITV/{year2}/{int ? "E" : "I"}/{ordernumber}
             </div>
             <input
               type="text"
@@ -328,7 +343,6 @@ export default function Form() {
               className={styles.radio}
               onChange={checkboxHandler}
               checked
-              disabled
             />
             <label for="registrar"> Registrar</label>
           </span>
