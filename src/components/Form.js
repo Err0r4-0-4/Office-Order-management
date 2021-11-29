@@ -109,18 +109,20 @@ export default function Form() {
     setFamilyName(n);
     setNewFamily(true);
   };
-
+  const [message, setmessage] = useState("");
   const setFamilyHandler = (familyName, familyId) => {
     setFamilyName(familyName);
 
     setName(familyId);
     setNewFamily(false);
+
+    setmessage(`Family Selected : ${familyName}`);
   };
 
   console.log(members);
 
   let memberArray = (
-    <div>
+    <div styles={{ width: "100%" }}>
       {members.map((m) => (
         <Member
           name={m.lastOrder.familyName}
@@ -413,7 +415,10 @@ export default function Form() {
         <div className={styles.one}>
           <h1 className={styles.h2}>Family</h1>
           <div className={styles.array}>{memberArray}</div>
-          <p style={{ margin: "20px auto 0", display: "block" }}>Or</p>
+          <div style={{ color: "green", display: "block", flex: "100%" }}>
+            {message}
+          </div>
+          <div style={{ margin: "0 auto 0", display: "block" }}>Or</div>
           <input
             placeholder="Add a New Family"
             onChange={(e) => setNew(e.target.value)}
