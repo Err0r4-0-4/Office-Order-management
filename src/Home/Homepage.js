@@ -6,18 +6,17 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import vedio from "../Images/vedio.mp4";
 import { useSelector, useDispatch } from "react-redux";
-
+import Spinner from "../UI/Spinner";
 const Homepage = () => {
-
+  const [spin, setspin] = useState(true);
   const role = useSelector((state) => state.member);
-
+  const tkn = useSelector((state) => state.token);
   const [orders, setOrders] = useState([]);
 
   let s = "Student";
-
   let config = {
     headers: {
-      token: localStorage.getItem("token"),
+      token: tkn,
     },
   };
 
@@ -31,11 +30,13 @@ const Homepage = () => {
         )
         .then(async (res) => {
           console.log(res.data.result);
-
+          setspin(false);
           let a = res.data.result.map((data) => (
             <div className={styles.recent}>
               <div className={styles.rec1}>
-                <div className={styles.order}>IIITV/2019-20/ {data.serialNo}</div>
+                <div className={styles.order}>
+                  IIITV/2019-20/ {data.serialNo}
+                </div>
                 <div className={styles.name}>{data.title}</div>
               </div>
               <div className={styles.rec2}>
@@ -122,7 +123,7 @@ const Homepage = () => {
               View All
             </Link>
           </div>
-          {orders}
+          {spin ? <Spinner /> : orders}
         </div>
       </div>
 

@@ -7,6 +7,7 @@
   flex-wrap: wrap;
   background-color: #f3f2ef;
   font-family: "Nunito", sans-serif;
+  min-height: 60vh;
 }
 .div1 {
   margin: 0;
@@ -156,6 +157,7 @@
   box-shadow: 0 0 10px rgb(248, 248, 248);
   padding: 10px;
   padding-bottom: 0;
+  min-height: 30vh;
 }
 
 .header {
