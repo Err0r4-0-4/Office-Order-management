@@ -106,6 +106,7 @@ export default function Form() {
   }, []);
 
   const setNew = (n) => {
+    setmessage("");
     setFamilyName(n);
     setNewFamily(true);
   };
