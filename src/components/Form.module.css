@@ -246,9 +246,17 @@ li {
 }
 
 .array {
-  max-height: 120px;
+  min-height: 120px;
+  max-height: 180px;
+
   overflow-y: scroll;
   margin: 10px auto;
+  padding: 0 10px;
+}
+
+.hundredw {
+  width: 100%;
+  flex: 100%;
 }
 
 .tagsselli {
