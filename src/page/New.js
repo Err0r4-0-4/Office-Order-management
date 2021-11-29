@@ -10,6 +10,8 @@ const New = () => {
   //   if (role == "student") s = "Student";
   //   if (role == "staff") s = "Staff";
   //   if (role == "registrar") s = "Registrar";
+
+  
   return (
     <div className={styles.new}>
       <div className={styles.div1}>

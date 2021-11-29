@@ -35,7 +35,7 @@ const Homepage = () => {
             <div className={styles.recent}>
               <div className={styles.rec1}>
                 <div className={styles.order}>
-                  IIITV/2019-20/ {data.serialNo}
+                  IIITV/2021-22/{data.serialNo}
                 </div>
                 <div className={styles.name}>{data.title}</div>
               </div>

@@ -36,15 +36,29 @@ export default function Form() {
   const [error, setError] = useState(false);
   const [int, setint] = useState(false);
   const [redirect, setRedirect] = useState(false);
+  let newDate = new Date();
+  let month = newDate.getMonth() + 1;
+  let year = newDate.getFullYear();
+  if (month < 6) {
+    year = year - 1;
+  }
 
+  let year2 = "" + year + "-" + ((year + 1) % 100);
   const tkn = useSelector((state) => state.token);
-
+  let [ordernumber, setordernumber] = useState(0);
   let config = {
     headers: {
       token: tkn,
     },
   };
 
+  useEffect(async () => {
+    let a = await axios.get(
+      "https://office-order-backend.herokuapp.com/office/getcount"
+    );
+    console.log(a.data.size);
+    setordernumber(a.data.size + 1);
+  }, []);
   const hideHandler = () => {
     setShowModal(false);
   };
@@ -81,7 +95,6 @@ export default function Form() {
         config
       )
       .then(async (res) => {
-      
         console.log(res.data.keywords);
         setMembers(res.data.keywords);
 
@@ -140,14 +153,14 @@ export default function Form() {
         alert("Please Enter keywords!");
         return;
       }
-      if (Object.keys(file).length === 0) {
-        alert("Please Select File!");
-        return;
-      }
+      // if (Object.keys(file).length === 0) {
+      //   alert("Please Select File!");
+      //   return;
+      // }
       console.log(file);
       const formData = new FormData();
       formData.append("title", title);
-      formData.append("visibility", visibility);
+      formData.append("visibility", visibility + ",registrar");
       formData.append("addons", addons);
       formData.append("type", type);
       formData.append("keywords", keywords);
@@ -155,7 +168,6 @@ export default function Form() {
       formData.append("date", today);
       formData.append("newFamily", newFamily);
       formData.append("inex", int);
-
       formData.append("familyName", familyName);
 
       if (!newFamily) formData.append("familyId", name);
@@ -269,7 +281,7 @@ export default function Form() {
           <h1 className={styles.h2}>Order Number</h1>
           <div className={styles.name}>
             <div className={styles.iiit}>
-              OO:IIITV/2019-20/{int ? "E" : "I"}/12
+              OO:IIITV/{year2}/{int ? "E" : "I"}/{ordernumber}
             </div>
             <input
               type="text"

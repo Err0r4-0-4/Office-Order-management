@@ -1,5 +1,5 @@
 .about {
-  padding: 50px 80px 60px;
+  padding: 0 80px 60px;
   margin: 0;
   display: flex;
   justify-content: start;
@@ -20,6 +20,7 @@
   min-height: 30vh;
   width: 90%;
   margin: auto;
+  margin-top: 50px;
 }
 .h1 {
   font-size: 40px;
@@ -528,6 +529,11 @@
     padding-left: 0;
     width: 100%;
   }
+
+  .vedio {
+    width: 100%;
+    height: 400px;
+  }
 }
 
 @media all and (max-width: 600px) {
@@ -549,6 +555,11 @@
     flex: 100%;
     width: 100%;
     font-size: 20px;
+  }
+
+  .vedio {
+    width: 100%;
+    height: 300px;
   }
 }
 
