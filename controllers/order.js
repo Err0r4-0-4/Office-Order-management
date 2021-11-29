@@ -296,7 +296,7 @@ exports.getLatestOrder = async (req, res, next) => {
   }
 };
 
-exports.getCount = (req, res, next) => {
+exports.getCount = async (req, res, next) => {
   try {
     let orders = await db.collection("orders").get();
     res.status(200).send({ size: orders.size });
