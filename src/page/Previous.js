@@ -229,9 +229,11 @@ const Previous = () => {
 
       let data2 = a.data.keywords;
       let data = [];
-      for (let i = data2.length + 1; i >= 0; i--) {
+      for (let i = ordernumber ; i >= 0; i--) {
         data2.map((p) => {
           if (p.lastOrder.serialNo === i) {
+          console.log(i)
+
             data.push(p);
           }
         });
