@@ -26,11 +26,13 @@ import {
   SiBlockchaindotcom,
 } from "react-icons/si";
 
+
 import img from "../Images/Jatin.jpg";
 import img1 from "../Images/Adi.jpg";
 import img2 from "../Images/sidharth.jpg";
 import img3 from "../Images/deep.jpg";
 const About = () => {
+  
   const [help1, sethelp1] = useState(false);
   const open1 = () => {
     sethelp1(!help1);
@@ -53,7 +55,7 @@ const About = () => {
             <a href="#id1">About</a>
           </li>
           <li>
-            <a href="#id1">Code</a>
+            <a href="#id5">Code</a>
           </li>
 
           <li>
@@ -83,7 +85,7 @@ const About = () => {
               </p>
             </div>
           </div>
-          <div className={styles.three}>
+          <div className={styles.three} id="id5">
             <div className={styles.sec}>
               <h2 className={styles.h2}>Code</h2>
               <div className={styles.flex}>
@@ -115,7 +117,7 @@ const About = () => {
             </ul> */}
           </div>
         </div>
-        <h2 className={styles.h2}>The Coders</h2>
+        <h2 className={styles.h2} >The Coders</h2>
 
         <div className={styles.div2}>
           <div className={styles.fif}>
@@ -512,6 +514,8 @@ const About = () => {
           <source src={vedio} type="video/ogg" />
           Your browser does not support the video tag.
         </video>
+
+
       </div>
     </div>
   );

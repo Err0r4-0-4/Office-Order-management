@@ -6,6 +6,8 @@ import img from "../Images/pdf.png";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Authactions } from "../store/Auth-login";
+import NumberEasing from 'react-number-easing';
+ 
 
 import {
   AiOutlineClose,
@@ -14,10 +16,13 @@ import {
   AiOutlineArrowRight,
 } from "react-icons/ai";
 import Spinner from "../UI/Spinner";
+import { ToastContainer, toast } from 'react-toastify';
 
 let db = firebase.firestore();
 
 const Previous = () => {
+  
+
   const [open, setopen] = useState(false);
   const f1 = () => {
     setopen(true);
@@ -26,6 +31,11 @@ const Previous = () => {
     setopen(!open);
   };
 
+  const f3 = ()=>
+  {
+    setcoustom(!coustom);
+  }
+const [coustom , setcoustom] = useState(false);
   const [orders, setOrders] = useState([]);
   const [showorders, setshoworders] = useState(null);
   const [search, setsearch] = useState("");
@@ -45,7 +55,6 @@ const Previous = () => {
 
   const role = useSelector((state) => state.member);
   const tkn = useSelector((state) => state.token);
-
   let config = {
     headers: {
       token: tkn,
@@ -56,7 +65,7 @@ const Previous = () => {
       "https://office-order-backend.herokuapp.com/office/getcount"
     );
     console.log(a.data.size);
-    setordernumber(a.data.size + 1);
+    setordernumber(a.data.size );
   }, []);
   useEffect(() => {
     axios
@@ -228,17 +237,20 @@ const Previous = () => {
       setOrdersCount(a.data.keywords.length);
 
       let data2 = a.data.keywords;
+      console.log(data2);
+
       let data = [];
-      for (let i = ordernumber ; i >= 0; i--) {
+      let i =ordernumber
+      console.log(i , ordernumber)
+      for ( ; i >= 0; i--) {
         data2.map((p) => {
           if (p.lastOrder.serialNo === i) {
-          console.log(i)
+     
 
             data.push(p);
           }
         });
       }
-      console.log(data);
       // docData.forEach((d) => data.push(d.data()));
       //data.map((doc) => doc.data());
       let docDataRender = data.map((doc) => {
@@ -295,7 +307,7 @@ const Previous = () => {
       setordersD(data);
     }
     getData();
-  }, []);
+  }, [ordernumber ]);
 
   const loading = !loading1 && !loading2 && !loading4;
   return (
@@ -310,7 +322,15 @@ const Previous = () => {
             {keywords}
           </select>
           <p>
-            <span className={styles.big}>{ordernumber - 1}</span> orders created
+            <span className={styles.big}>{loading4 ? <NumberEasing
+  value={ordernumber}
+  speed={1000}
+  decimals={0}
+  ease='quintInOut' /> : <NumberEasing
+  value={ordernumber}
+  speed={2000}
+  decimals={0}
+  ease='linear' />}</span> orders created
             {/* <span className={styles.big}>{orderCount}</span> orders created */}
           </p>
         </div>
@@ -319,7 +339,8 @@ const Previous = () => {
         <h1 className={open ? styles.h2 : styles.h1}>Previous Orders</h1>
         <div className={open ? styles.flex2 : styles.flex}>
           {/* <Showimage /> */}
-          {showorders ? showorders : orders}
+          {showorders ? (showorders.length ? showorders : <p className={styles.center} >No Matching results</p>) : (orders.length ? orders: <p className={styles.center}>No Office Order</p>)}
+          {console.log(showorders , orders)}
         </div>
       </div>
       <div className={open ? styles.previewMain : styles.hid}>

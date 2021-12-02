@@ -329,6 +329,15 @@
 .closebut2 {
   right: -10px;
 }
+
+.center
+{
+  width: 100%;
+  position: relative;
+  
+  font-size: 18px;
+  
+}
 .preview {
   width: calc(100% - 10px);
   height: 100%;

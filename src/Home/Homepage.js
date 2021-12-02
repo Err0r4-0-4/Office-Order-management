@@ -7,6 +7,7 @@ import axios from "axios";
 import vedio from "../Images/vedio.mp4";
 import { useSelector, useDispatch } from "react-redux";
 import Spinner from "../UI/Spinner";
+import {FaUser} from 'react-icons/fa'
 const Homepage = () => {
   const [spin, setspin] = useState(true);
   const role = useSelector((state) => state.member);
@@ -58,18 +59,18 @@ const Homepage = () => {
   } catch (e) {
     console.log("Error");
   }
-
+const img= firebase.auth().currentUser.photoURL
   return (
     <div className={styles.homepage}>
       <div className={styles.div1}>
         <div className={styles.per}>
           <div className={styles.back}></div>
-
-          <img
+          {img ? <img
             alt="profile picture"
             src={firebase.auth().currentUser.photoURL}
             className={styles.img}
-          />
+          /> : <FaUser  className={styles.img}/>}
+          
           <div className={styles.personal}>
             <p className={styles.nameroll}>
               {firebase

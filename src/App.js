@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import Auth from "./Container/Auth/Auth";
 import { Route } from "react-router";
 import firebase from "./util/firebase";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const messaging = firebase.messaging();
 
 const App = () => {
+
   // useEffect(() => {
   //   async function token() {
   //     const token = await messaging.getToken({
@@ -19,6 +22,8 @@ const App = () => {
     <div className="App">
       <Route path="/">
         <Auth />
+
+        <ToastContainer />
       </Route>
     </div>
   );
