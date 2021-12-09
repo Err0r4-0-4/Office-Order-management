@@ -340,7 +340,7 @@ export default function Form() {
         <div className={styles.one}>
           <h1 className={styles.h2}>Visibility</h1>
 
-          <input onChange={e => setAddField(e.target.value)} value={addFiled}/>
+          <input onChange={e => setAddField(e.target.value)} value={addFiled} placeholder={"add custom visibility"}/>
           <div onClick={onAddHandler}>Add</div>
 
           <span>
