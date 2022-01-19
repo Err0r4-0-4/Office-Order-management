@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import firebase from "../util/firebase";
 import UploadImage from "./UploadImage";
 import { v4 as uuid } from "uuid";
+import { ToastContainer, toast } from 'react-toastify';
+
 import styles from "./Form.module.css";
 import axios from "axios";
 import Member from "../Cards/LastMember/LastMember";
@@ -10,11 +12,12 @@ import Modal from "../UI/Modal";
 import { AiOutlineClose } from "react-icons/ai";
 import { Redirect } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-
+import NumberEasing from "react-number-easing";
 const db = firebase.firestore();
 var storageRef = firebase.storage().ref();
 
 export default function Form() {
+  
   let a = [];
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
@@ -284,7 +287,12 @@ export default function Form() {
           <h1 className={styles.h2}>Order Number</h1>
           <div className={styles.name}>
             <div className={styles.iiit}>
-              OO:IIITV/{year2}/{int ? "E" : "I"}/{ordernumber}
+              OO:IIITV/{year2}/{int ? "E" : "I"}/<span><NumberEasing
+  value={ordernumber}
+  speed={1000}
+  decimals={0}
+  ease='linear' />
+  </span>
             </div>
             <input
               type="text"
@@ -312,7 +320,7 @@ export default function Form() {
               className={styles.radio}
               onClick={internal}
             />
-             <label for="internal">Internal</label>
+            <label for="internal">Internal</label>
           </span>
           <span>
             <input
@@ -441,7 +449,8 @@ export default function Form() {
           <br />
         </div>
         <div className={styles.line}></div>
-        <button className={styles.button}>Upload Order </button>
+
+        <button className={styles.button} onClick={() => toast.info("This feature will be implemented soon")}>Upload Order </button>
       </form>
     </div>
   );
