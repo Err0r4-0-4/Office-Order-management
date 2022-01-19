@@ -39,6 +39,7 @@ export default function Form() {
   const [error, setError] = useState(false);
   const [int, setint] = useState(false);
   const [redirect, setRedirect] = useState(false);
+  const [addFiled, setAddField] = useState("");
   let newDate = new Date();
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
@@ -272,6 +273,11 @@ export default function Form() {
     }
   };
 
+  const onAddHandler = () => {
+    setVisibility([...visibility, addFiled]);
+    setAddField("");
+  };
+
   return (
     <div>
       {redirect ? <Redirect to="prevorder" /> : null}
@@ -342,6 +348,9 @@ export default function Form() {
         <div className={styles.one}>
           <h1 className={styles.h2}>Visibility</h1>
 
+          <input onChange={e => setAddField(e.target.value)} value={addFiled} placeholder={"add custom visibility"}/>
+          <div onClick={onAddHandler}>Add</div>
+
           <span>
             <input
               type="checkbox"
@@ -355,6 +364,7 @@ export default function Form() {
             />
             <label for="registrar"> Registrar</label>
           </span>
+
           <span>
             <input
               type="checkbox"
@@ -366,6 +376,7 @@ export default function Form() {
             />
             <label for="faculty"> Faculty</label>
           </span>
+          
           <span>
             <input
               type="checkbox"
