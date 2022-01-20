@@ -104,7 +104,7 @@ const About = () => {
               <div className={styles.flex}>
                 <h3 className={styles.h3}>Gmail</h3>
                 <div className={styles.icon}>
-                  <a href="mailto : administration@iiitvadodara.ac.in">
+                  <a href="mailto:administration@iiitvadodara.ac.in">
                     <AiFillMail />
                   </a>
                 </div>
@@ -305,6 +305,18 @@ const About = () => {
             </div>
             <div className={styles.bot}>
               <ul className={styles.power}>
+              <li>
+                  <SiAdobeaftereffects
+                    style={{ color: "#ec6565" }}
+                    title="Adobe Light Room"
+                  />
+                </li>
+                <li>
+                  <SiAdobephotoshop
+                    style={{ color: "#b4c428" }}
+                    title="Adobe Photoshop"
+                  />
+                </li>
                 {/* <li>
                   <SiAdobeillustratorstyle={{ color: "#ec6565" }} title="Adobe Illustartor"/>
                 </li> */}
@@ -440,7 +452,7 @@ const About = () => {
 
               <ul className={styles.connect}>
                 <li>
-                  <a href="#" target="_blank" title="View Github">
+                  <a href="#" title="View Github">
                     <AiFillGithub />
                   </a>
                 </li>
@@ -489,8 +501,8 @@ const About = () => {
                 <AiOutlineDown />
               </div>
               <div className={help2 ? styles.open : styles.close}>
-                This website helps registrar store the orders at same platform
-                and others can access the orders at same platform saving time.
+                This website helps the registrar to store the orders at ONE platform
+                and others can access the orders at the same platform, thus saving time and labour.
               </div>
             </div>
 
@@ -503,7 +515,7 @@ const About = () => {
               </div>
               <div className={help3 ? styles.open : styles.close}>
                 Yes, the website Office Order website is safe and secure and
-                uses G-Auth for authentication and firebase for database.
+                uses G-Auth for authentication and firebase as database.
               </div>
             </div>
           </div>

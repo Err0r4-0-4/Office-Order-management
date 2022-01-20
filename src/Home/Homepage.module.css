@@ -178,7 +178,7 @@
 .recent {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   padding: 15px 10px;
   border-bottom: 1px solid rgb(226, 226, 226);
 }
@@ -232,7 +232,10 @@
   text-decoration: none;
   font-size: 14px;
 }
-
+/* .previewo 
+{
+  display: none;
+} */
 .view:hover,
 .view:active,
 .previewo:hover {

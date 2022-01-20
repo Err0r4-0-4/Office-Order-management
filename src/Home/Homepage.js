@@ -43,9 +43,9 @@ const Homepage = () => {
               <div className={styles.rec2}>
                 <div className={styles.date}>{data.date}</div>
                 <div className={styles.button}>
-                  <Link className={styles.previewo} to="/prevorder">
+                  {/* <Link className={styles.previewo} to="/prevorder">
                     Preview
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>

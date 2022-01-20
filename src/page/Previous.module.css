@@ -574,3 +574,22 @@
     margin: 0;
   }
 }
+
+
+.notfound
+{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+.notfound img{
+  width: 200px;
+  margin: auto;
+  flex-grow:0;
+}
+.notfound p{
+  flex: 100%;
+  text-align: center;
+}

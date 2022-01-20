@@ -293,12 +293,12 @@ export default function Form() {
           <h1 className={styles.h2}>Order Number</h1>
           <div className={styles.name}>
             <div className={styles.iiit}>
-              OO:IIITV/{year2}/{int ? "E" : "I"}/<span><NumberEasing
+              OO:IIITV/{year2}/{int ? "E" : "I"}/<NumberEasing
   value={ordernumber}
   speed={1000}
   decimals={0}
   ease='linear' />
-  </span>
+  
             </div>
             <input
               type="text"

@@ -7,8 +7,8 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { Authactions } from "../store/Auth-login";
 import NumberEasing from 'react-number-easing';
- 
-
+import img3 from '../Images/found.svg'
+import { useLocation } from 'react-router-dom';
 import {
   AiOutlineClose,
   AiOutlineLeft,
@@ -17,11 +17,21 @@ import {
 } from "react-icons/ai";
 import Spinner from "../UI/Spinner";
 import { ToastContainer, toast } from 'react-toastify';
-
+import img2 from '../Images/mail.svg';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 let db = firebase.firestore();
 
 const Previous = () => {
+  const not = 
+  <div className={styles.notfound}><img src={img2} title="No Search Result!"/>
+  <p>No search Results !</p>
   
+  </div>
+   const nosearch = 
+   <div className={styles.notfound}><img src={img3} title="No Matching Result!"/>
+   <p>No Matching Result !</p>
+   
+   </div>
 
   const [open, setopen] = useState(false);
   const f1 = () => {
@@ -209,7 +219,7 @@ const [coustom , setcoustom] = useState(false);
       })
     );
   };
-
+const history = useHistory();
   const preViewHandler = (e, i, c) => {
     console.log(c);
     setCount(c);
@@ -218,6 +228,7 @@ const [coustom , setcoustom] = useState(false);
     console.log(e);
     setPreviewURL(e);
     setopen(true);
+    history.push({search: `id=${i}`})
   };
 
   useEffect(() => {
@@ -339,7 +350,7 @@ const [coustom , setcoustom] = useState(false);
         <h1 className={open ? styles.h2 : styles.h1}>Previous Orders</h1>
         <div className={open ? styles.flex2 : styles.flex}>
           {/* <Showimage /> */}
-          {showorders ? (showorders.length ? showorders : <p className={styles.center} >No Matching results</p>) : (orders.length ? orders: <p className={styles.center}>No Office Order</p>)}
+          {showorders ? (showorders.length ? showorders : nosearch) : (orders.length ? orders : not)}
           {console.log(showorders , orders)}
         </div>
       </div>
