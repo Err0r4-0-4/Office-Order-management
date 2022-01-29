@@ -13,7 +13,10 @@ import { AiOutlineClose } from "react-icons/ai";
 import { Redirect } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import NumberEasing from "react-number-easing";
+// 
+
 const db = firebase.firestore();
+
 var storageRef = firebase.storage().ref();
 
 export default function Form() {
@@ -43,6 +46,7 @@ export default function Form() {
   const [coustom , setcoustom] = useState(false);
   
   const [coustommails , setcoustommails] = useState([]); 
+
   let keywordsHandler2 = (e) => {
     e.preventDefault();
     let input = document.getElementById("keywordsInput2");
@@ -234,14 +238,19 @@ export default function Form() {
       formData.append("inex", int);
       formData.append("familyName", familyName);
 
+      let str = "";
+
       if(coustom){
+        coustommails.forEach((e) => {str  = str + "," + e});
         formData.append("visibilityIds", coustommails);
-        formData.append("visibility","registrar");
+        formData.append("visibility", visibility + ",registrar"  + str);
       }
       else{
-        formData.append("visibilityIds", []);
+        formData.append("visibilityIds", []);  
         formData.append("visibility", visibility + ",registrar");
       }
+
+      console.log(formData);
       
       if (!newFamily) formData.append("familyId", name);
 
@@ -493,7 +502,7 @@ export default function Form() {
             />
 
             <button onClick={keywordsHandler} className={styles.btn}>
-              Manually Add
+              Manually Add.
             </button>
           </div>
 
