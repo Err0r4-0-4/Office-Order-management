@@ -70,9 +70,6 @@ export default function Form() {
     </li>
   ));
 
-
-
-
   const coustomhtml = <div className={styles.coustom}> <h3 className={styles.h3}>Add Coustom Mails</h3>
   <div className={styles.hundred1}>
     <input
@@ -227,7 +224,7 @@ export default function Form() {
       console.log(file);
       const formData = new FormData();
       formData.append("title", title);
-      formData.append("visibility", visibility + ",registrar");
+      
       formData.append("addons", addons);
       formData.append("type", type);
       formData.append("keywords", keywords);
@@ -236,7 +233,15 @@ export default function Form() {
       formData.append("newFamily", newFamily);
       formData.append("inex", int);
       formData.append("familyName", familyName);
-      formData.append("visibilityIds", coustommails);
+
+      if(coustom){
+        formData.append("visibilityIds", coustommails);
+        formData.append("visibility","registrar");
+      }
+      else{
+        formData.append("visibilityIds", []);
+        formData.append("visibility", visibility + ",registrar");
+      }
       
       if (!newFamily) formData.append("familyId", name);
 
