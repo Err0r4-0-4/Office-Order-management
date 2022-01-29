@@ -85,14 +85,14 @@ const Auth = () => {
               dispatch(Authactions.toggle());
               console.log("heey");
               if (
-                user.email.includes("201952202") ||
+                
                 user.email.includes("201951073") ||
                 user.email.includes("201952234")
               )
                 dispatch(Authactions.allocation("registrar"));
               else if (user.email.includes("201951056"))
                 dispatch(Authactions.allocation("director"));
-              else if (user.email.includes("201951054"))
+              else if (user.email.includes("201952202"))
                 dispatch(Authactions.allocation("student"));
               else dispatch(Authactions.allocation("faculty"));
 
