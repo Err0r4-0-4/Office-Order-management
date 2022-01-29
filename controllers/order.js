@@ -25,6 +25,7 @@ exports.uploadOrder = async (req, res, next) => {
     let keywords = req.body.keywords.split(",");
     let date = req.body.date;
     let inex = req.body.inex;
+    let visibilityIds = req.body.visibilityIds;
     console.log(req.body);
     let file = req.files.file;
     console.log(file);
@@ -61,6 +62,7 @@ exports.uploadOrder = async (req, res, next) => {
         date: date,
         inex: inex,
         serialNo: totalCount + 1,
+        visibilityIds:visibilityIds
       };
       let orderDoc = await db.collection("orders").doc();
       console.log(orderDoc.id);
