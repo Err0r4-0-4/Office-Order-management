@@ -73,12 +73,12 @@ export default function Form() {
 
 
 
-  const coustomhtml = <div className={styles.coustom}> <h2 className={styles.h2}>Add keywords</h2>
+  const coustomhtml = <div className={styles.coustom}> <h3 className={styles.h3}>Add Coustom Mails</h3>
   <div className={styles.hundred1}>
     <input
       type="text"
       id="keywordsInput2"
-      placeholder="Add Keywords"
+      placeholder="Add Coustom Mails"
       className={styles.namei}
     />
 
@@ -411,9 +411,7 @@ export default function Form() {
         <div className={styles.one}>
           <h1 className={styles.h2}>Visibility</h1>
 
-          <input onChange={e => setAddField(e.target.value)} value={addFiled} placeholder={"add custom visibility"}/>
-          <div onClick={onAddHandler}>Add</div>
-
+         
           <span>
             <input
               type="checkbox"
@@ -427,8 +425,7 @@ export default function Form() {
             />
             <label for="registrar"> Registrar</label>
           </span>
-
-          <span>
+{!coustom &&  <span>
             <input
               type="checkbox"
               id="faculty"
@@ -438,9 +435,9 @@ export default function Form() {
               onChange={checkboxHandler}
             />
             <label for="faculty"> Faculty</label>
-          </span>
-          
-          <span>
+          </span>}
+         
+         {!coustom &&  <span>
             <input
               type="checkbox"
               id="staff"
@@ -450,8 +447,8 @@ export default function Form() {
               onChange={checkboxHandler}
             />
             <label for="staff"> Staff</label>
-          </span>
-          <span>
+          </span>} 
+         {!coustom && <span>
             <input
               type="checkbox"
               id="student"
@@ -461,7 +458,8 @@ export default function Form() {
               onChange={checkboxHandler}
             />
             <label for="student"> Student</label>
-          </span>
+          </span>}
+          
 
 
           <span >
