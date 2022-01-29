@@ -42,12 +42,66 @@ export default function Form() {
   const [addFiled, setAddField] = useState("");
   const [coustom , setcoustom] = useState(false);
   
-  const coustomhtml = <p>hello</p>; 
+  const [coustommails , setcoustommails] = useState([]); 
+  let keywordsHandler2 = (e) => {
+    e.preventDefault();
+    let input = document.getElementById("keywordsInput2");
+    let newKeywords = [...coustommails, input.value];
+    if (!coustommails.includes(input.value) && input!="") {
+      setcoustommails(newKeywords);
+    }
+    input.value = "";
+  };
+
+  const removeAddonmails = (e) => {
+    let p = coustommails;
+    let index = p.indexOf(e.target.id);
+    p.splice(index, 1);
+    setAddonError("");
+    setcoustommails([...p]);
+  };
+
+  let optionsmails = coustommails.map((addon) => (
+    <li className={styles.addons} className={styles.tagsselli}>
+      {addon}
+      <span id={addon} className={styles.cross} onClick={removeAddonmails}>
+        <AiOutlineClose />
+      </span>
+    </li>
+  ));
+
+
+
+
+  const coustomhtml = <div className={styles.coustom}> <h2 className={styles.h2}>Add keywords</h2>
+  <div className={styles.hundred1}>
+    <input
+      type="text"
+      id="keywordsInput2"
+      placeholder="Add Keywords"
+      className={styles.namei}
+    />
+
+    <button onClick={keywordsHandler2} className={styles.btn}>
+      Manually Add
+    </button>
+  </div>
+
+  
+
+  <div className={styles.tagsel}>
+            {optionsmails ? optionsmails : <p>Keywords will be added</p>}
+            <p className={styles.err}>{addonError}</p>
+          </div> </div>; 
+  
+  
+  
+  
 
 
 
   const coustomhandler = () => {
-    setcoustom(true);
+    setcoustom(!coustom);
   }
   let newDate = new Date();
   let month = newDate.getMonth() + 1;
