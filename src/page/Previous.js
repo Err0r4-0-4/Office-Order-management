@@ -285,7 +285,8 @@ const history = useHistory();
 
         let year2 = "" + year + "-" + ((year + 1) % 100);
 
-        return doc.lastOrder.visibility.split(",").includes(role) ? (
+        return doc.lastOrder.visibility.split(",").includes(role)
+         || doc.lastOrder.visibility.split(",").includes(email)  ? (
           <div className={styles.box}>
             <img src={img} className={styles.img}></img>
             <div className={styles.inner}>
