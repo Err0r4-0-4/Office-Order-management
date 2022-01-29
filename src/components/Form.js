@@ -40,6 +40,15 @@ export default function Form() {
   const [int, setint] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [addFiled, setAddField] = useState("");
+  const [coustom , setcoustom] = useState(false);
+  
+  const coustomhtml = <p>hello</p>; 
+
+
+
+  const coustomhandler = () => {
+    setcoustom(true);
+  }
   let newDate = new Date();
   let month = newDate.getMonth() + 1;
   let year = newDate.getFullYear();
@@ -399,6 +408,21 @@ export default function Form() {
             />
             <label for="student"> Student</label>
           </span>
+
+
+          <span >
+            <input
+              type="checkbox"
+              id="coustom"
+              name="coustom"
+              value="coustom"
+              className={styles.radio}
+              onChange={coustomhandler}
+            />
+            <label for="coustom"> Add Coustom Visibility</label>
+          </span>
+ {coustom ? coustomhtml : ""}
+
           <br></br>
         </div>
         <div className={styles.line}></div>
