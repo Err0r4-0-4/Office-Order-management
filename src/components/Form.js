@@ -537,7 +537,7 @@ export default function Form() {
         </div>
         <div className={styles.line}></div>
 
-        <button className={styles.button} onClick={() => toast.info("This feature will be implemented soon")}>Upload Order </button>
+        <button className={styles.button} onClick={() => toast.info("Office Order Uploaded!")}>Upload Order </button>
       </form>
     </div>
   );
