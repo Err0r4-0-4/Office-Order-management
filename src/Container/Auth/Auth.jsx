@@ -85,7 +85,7 @@ const Auth = () => {
               dispatch(Authactions.toggle());
               console.log("heey");
               if (
-                user.email.includes("201952202") ||
+                
                 user.email.includes("201951073") ||
                 user.email.includes("201952234")
               )
