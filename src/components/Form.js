@@ -223,10 +223,7 @@ export default function Form() {
         alert("Please Enter keywords!");
         return;
       }
-      // if (Object.keys(file).length === 0) {
-      //   alert("Please Select File!");
-      //   return;
-      // }
+    
       console.log(file);
       const formData = new FormData();
       formData.append("title", title);
@@ -239,7 +236,8 @@ export default function Form() {
       formData.append("newFamily", newFamily);
       formData.append("inex", int);
       formData.append("familyName", familyName);
-
+      formData.append("visibilityIds", coustommails);
+      
       if (!newFamily) formData.append("familyId", name);
 
       setLoding(true);

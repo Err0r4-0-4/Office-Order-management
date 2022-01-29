@@ -39,9 +39,10 @@ const Header = () => {
         config
       )
       .then(async (res) => {
-        console.log(res);
+        console.log(res.data.isRegistrar);
         ////////////////////////////////////////////////////////////////////
-        dispatch(Authactions.assignRole(true));
+        dispatch(Authactions.assignRole(true
+          ));
         console.log(role);
       })
       .catch((err) => {
@@ -92,6 +93,7 @@ const Header = () => {
                 className={styles.link}
               >
                 New Order
+                {console.log(role)}
               </NavLink>
             ) : null}
           </li>
@@ -155,15 +157,18 @@ const Header = () => {
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/neworder"
-                activeClassName={styles.active2}
-                onClick={clickhandler}
-              >
-                New Order
-              </NavLink>
-            </li>
+
+            {role ? 
+             <li>
+             <NavLink
+               to="/neworder"
+               activeClassName={styles.active2}
+               onClick={clickhandler}
+             >
+               New Order
+             </NavLink>
+           </li> : null}
+           
             <li>
               <NavLink
                 to="/prevorder"
