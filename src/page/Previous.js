@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Showimage from "../components/Showimage";
 import styles from "./Previous.module.css";
-import firebase from "../util/firebase";
+// import firebase from "../util/firebase";
 import img from "../Images/pdf.png";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,6 +19,9 @@ import Spinner from "../UI/Spinner";
 import { ToastContainer, toast } from 'react-toastify';
 import img2 from '../Images/mail.svg';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import firebase from "firebase";
+
+
 let db = firebase.firestore();
 
 const Previous = () => {
@@ -59,6 +62,7 @@ const [coustom , setcoustom] = useState(false);
   const [loading2, setLoading2] = useState(true);
   const [loading3, setLoading3] = useState(true);
   const [loading4, setLoading4] = useState(true);
+  const [email, setEmail] = useState("");
   let [ordernumber, setordernumber] = useState(0);
 
   const [orderCount, setOrdersCount] = useState([]);
@@ -71,6 +75,9 @@ const [coustom , setcoustom] = useState(false);
     },
   };
   useEffect(async () => {
+    // console.log("<<<<<<<<>>>>>>>>");
+    setEmail(firebase.auth().currentUser.email);
+    // console.log();
     let a = await axios.get(
       "https://office-order-backend.herokuapp.com/office/getcount"
     );
@@ -190,7 +197,11 @@ const [coustom , setcoustom] = useState(false);
         console.log(month, year);
 
         let year2 = "" + year + "-" + ((year + 1) % 100);
-        return doc.lastOrder.visibility.split(",").includes(role) ? (
+        // if(doc.lastOrder.visibilityIds.length==0){
+
+        // }
+        return doc.lastOrder.visibility.split(",").includes(role) 
+        || doc.lastOrder.visibility.split(",").includes(email)  ? (
           <div className={styles.box}>
             <img src={img} className={styles.img}></img>
             <div className={styles.inner}>

@@ -87,7 +87,7 @@ const Auth = () => {
               if (
                 
                 user.email.includes("201951073") ||
-                user.email.includes("201952234")
+                user.email.includes("201952233")
               )
                 dispatch(Authactions.allocation("registrar"));
               else if (user.email.includes("201951056"))
