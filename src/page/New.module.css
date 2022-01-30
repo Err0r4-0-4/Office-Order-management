@@ -22,7 +22,9 @@
 }
 .add {
   flex-grow: 1;
+  flex-shrink: 1;
   margin: 10px;
+  max-width: 1100px;
 }
 .per {
   flex-grow: 0;
@@ -130,7 +132,7 @@
   text-decoration: underline;
 }
 
-@media all and (max-width: 1200px) {
+@media all and (max-width: 1350px) {
   .new {
     margin: 0px;
   }

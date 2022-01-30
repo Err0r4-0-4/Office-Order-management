@@ -17,7 +17,10 @@
 .coustom
 {
   width: 100%;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 80px;
 }
 .h1 {
   font-size: 30px;
@@ -247,7 +250,7 @@ li {
   flex-wrap: wrap;
   padding: 10px;
   border: 0.5px solid #a7a7a7;
-  background-color: #f3f3f3;
+  background-color: #faf8f8;
   min-height: 70px;
   position: relative;
   margin-bottom: 10px;
@@ -258,7 +261,11 @@ li {
   -o-border-radius: 6px;
   overflow: auto;
 }
-
+.tagsel{
+  overflow: hidden;
+  word-break: break-all;
+  
+}
 .array {
   min-height: 120px;
   max-height: 180px;
@@ -275,14 +282,16 @@ li {
 
 .tagsselli {
   margin: 10px;
-  background-color: rgb(255, 255, 255);
-  flex: 15%;
+  background-color: rgb(56, 55, 55);
+  color: white;
+  /* flex: 15%; */
   border: 0.5px solid #a8a8a8;
   flex-grow: 0;
   text-align: center;
   position: relative;
-  padding: 0 10px;
+  padding: 5px 12px;
   border-radius: 6px;
+  font-size: 14px;
 }
 
 .cross {
@@ -366,6 +375,80 @@ li {
   outline: none;
   border-bottom: 2px solid rgb(104, 103, 103);
   padding-bottom: 4px;
+}
+.binbutton
+{
+  padding: 2px 10px;
+  background-color: rgb(222, 45, 45);
+  cursor: pointer;
+  color: rgb(235, 233, 233);
+  max-height: 60px;
+  min-height: 30px;
+  margin: 0 0 0 15px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  box-shadow: 3px 3px 10px rgb(218, 216, 216);
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+.binbutton:hover{
+  background-color: rgb(199, 30, 30);
+
+
+}
+.binbutton *
+{
+  margin: 0;
+  color: white;
+  font-weight: 800;
+  /* stroke: 4px; */
+
+}
+
+.io
+{
+  display:flex;
+  border: 0.25px solid rgb(39, 39, 39);
+  font-size: 15px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+.io div{
+  padding: 5px 10px;
+font-weight: 500;
+letter-spacing: 1px;
+cursor: pointer;
+
+}
+.selected
+{
+  background-color: rgb(75, 74, 74) !important;
+  color: white;
+  border-radius: 3px;
+
+}
+.unselected
+{
+  background-color: white;
+  color: black;
+  border-radius: 3px  0 0 3px;
+  -webkit-border-radius: 3px  0 0 3px;
+  -moz-border-radius: 3px  0 0 3px;
+  -ms-border-radius: 3px  0 0 3px;
+  -o-border-radius: 3px  0 0 3px;
+}
+.unselected:hover{
+  background-color: rgb(211, 211, 211);
+
+
 }
 @media all and (max-width: 900px) {
   .iiit {

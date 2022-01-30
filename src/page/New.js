@@ -48,11 +48,9 @@ const New = () => {
         </div>
       </div>
       <div className={styles.add}>
-        <div className={styles.upload}>
           <Form />
           {/* <TodoList />
           //<UploadImage /> */}
-        </div>
       </div>
     </div>
   );

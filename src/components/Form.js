@@ -14,7 +14,7 @@ import { Redirect } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import NumberEasing from "react-number-easing";
 // 
-
+import {BsTrash} from 'react-icons/bs'
 const db = firebase.firestore();
 
 var storageRef = firebase.storage().ref();
@@ -44,15 +44,42 @@ export default function Form() {
   const [redirect, setRedirect] = useState(false);
   const [addFiled, setAddField] = useState("");
   const [coustom , setcoustom] = useState(false);
-  
+  const [visibilitycount , setvc] = useState(true);
   const [coustommails , setcoustommails] = useState([]); 
+ const [success , setsuccess] = useState(false);
 
+
+ const setInternal = ()=>
+ {
+  setint(false);
+
+ }
+
+ const setExternal = ()=>
+ {
+   setint(true);
+
+ }
   let keywordsHandler2 = (e) => {
     e.preventDefault();
     let input = document.getElementById("keywordsInput2");
-    let newKeywords = [...coustommails, input.value];
-    if (!coustommails.includes(input.value) && input!="") {
+    console.log(input.value.trim());
+    if(input.value.trim() == "")
+    {
+      toast.error("Empty Custom Mail", {
+        autoClose: 2000, 
+      });
+      return;
+    }
+    let newKeywords = [...coustommails, input.value.trim()];
+    if (!coustommails.includes(input.value.trim())) {
       setcoustommails(newKeywords);
+    }
+    else{
+      toast.warning("Mail already present", {
+        autoClose: 2000, 
+      });
+      
     }
     input.value = "";
   };
@@ -64,42 +91,50 @@ export default function Form() {
     setAddonError("");
     setcoustommails([...p]);
   };
+ const clearAllmails = () => 
+ {
+   setcoustommails([]);
+   }
 
   let optionsmails = coustommails.map((addon) => (
     <li className={styles.addons} className={styles.tagsselli}>
       {addon}
-      <span id={addon} className={styles.cross} onClick={removeAddonmails}>
+      {/* <span id={addon} className={styles.cross} onClick={removeAddonmails}>
         <AiOutlineClose />
-      </span>
+      </span> */}
     </li>
   ));
 
-  const coustomhtml = <div className={styles.coustom}> <h3 className={styles.h3}>Add Coustom Mails</h3>
+  const coustomhtml = <div className={styles.coustom}> <h3 className={styles.h3}>Coustom Mail Addresses</h3>
   <div className={styles.hundred1}>
     <input
       type="text"
       id="keywordsInput2"
-      placeholder="Add Coustom Mails"
+      placeholder="Add Custom Mails"
       className={styles.namei}
     />
 
     <button onClick={keywordsHandler2} className={styles.btn}>
       Manually Add
     </button>
-  </div>
-
-  
-
-  <div className={styles.tagsel}>
+  </div>  
+            {coustommails.length != 0 &&  
+    <div className={styles.tagsel}>
             {optionsmails ? optionsmails : <p>Keywords will be added</p>}
-            <p className={styles.err}>{addonError}</p>
-          </div> </div>; 
+              <p className={styles.err}>{addonError}</p>
+            </div>
+            
+          }
+          <div></div>
+          {coustommails.length != 0 &&  
+    (
+      <div style={{ display:'flex' , alignItems:"center" }}><button type="reset" onClick={removeAddonmails} className={styles.binbutton} title="Clear the last Keyword" ><BsTrash   style={{ fontSize:"18px" , fontWeight:"800" , color:"White" }}/></button>
+      <button type="reset" onClick={clearAllmails} className={styles.binbutton} title="Clear ALl">Clear All</button>
+      </div>)
+            
+          }
+          </div>; 
   
-  
-  
-  
-
-
 
   const coustomhandler = () => {
     setcoustom(!coustom);
@@ -210,21 +245,68 @@ export default function Form() {
       var dd = String(today.getDate()).padStart(2, "0");
       var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
       var yyyy = today.getFullYear();
+      const customIdt = "custom-id-title"; 
+      const customIdv = "custom-id-vis"; 
+      const customIdk = "custom-id-keyword"; 
+      const customIdu = "custom-id-upload"; 
 
       today = mm + "/" + dd + "/" + yyyy;
       if (title.length === 0) {
-        alert("Please Enter Title!");
+        toast.error("Provide a Subject", {
+          toastId: customIdt,
+          theme : "colored"
+        });
         return;
       }
-      if (visibility.length === 0) {
-        alert("Please Enter Visibility!");
+      
+      if (visibility.length === 0 && visibilitycount) {
+        toast.info("You can also add custom visibility!", {
+          toastId: "2",
+          theme : "colored"
+        });
+        toast.info("The Orders will only be visible to Registrar!", {
+          toastId: customIdv,
+          theme : "colored"
+        });
+        
+        setvc(false);
         return;
       }
       if (keywords.length === 0) {
-        alert("Please Enter keywords!");
+        toast.error("Attach Suitable Keywords", {
+          toastId: customIdk,
+          theme : "colored"
+        });
+        
+        return;
+
+        
+      }
+      if (file == undefined || file.name == null) {
+        toast.error("Attach a PDF file", {
+          toastId: "file",
+          theme : "colored"
+        });
+        
         return;
       }
-    
+      if (file.type != 'application/pdf') {
+        toast.error("You can attach only a PDF file", {
+          toastId: "file",
+          theme : "colored"
+        });
+        return;
+
+
+      }
+
+      if (familyName.trim() == '' ) {
+        toast.error("Family Name is missing", {
+          toastId: "familyname",
+          theme : "colored"
+        });
+        return;
+      }
       console.log(file);
       const formData = new FormData();
       formData.append("title", title);
@@ -233,10 +315,14 @@ export default function Form() {
       formData.append("type", type);
       formData.append("keywords", keywords);
       formData.append("file", file);
+      console.log(file);
       formData.append("date", today);
       formData.append("newFamily", newFamily);
       formData.append("inex", int);
       formData.append("familyName", familyName);
+      console.log(familyName);
+      console.log(int);
+
 
       let str = "";
 
@@ -264,7 +350,16 @@ export default function Form() {
         )
         .then(async (res) => {
           console.log(res);
-
+          const uploadid = "upload";
+         
+             toast.success("Order Uploaded successfully", {
+               toastId: uploadid,
+               theme : "colored"
+             });
+            
+          
+           
+          
           setLoding(false);
           setShowModal(true);
           setRedirect(true);
@@ -273,12 +368,20 @@ export default function Form() {
           setLoding(false);
           setError(true);
           setShowModal(true);
+          const uploadid = "upload";
+         
+             toast.error("Failed to Upload Order", {
+               toastId: uploadid,
+               theme : "colored"
+             });
+            
         });
 
       setOrderUploaded(true);
       setTitle("");
       setFile({});
       setKeywords([]);
+      // setVisibility()
       console.log("order added to ORDER collection");
     } catch (error) {
       console.log(error);
@@ -301,10 +404,16 @@ export default function Form() {
   const radioHandler = (e) => {
     setType(e.target.value);
   };
+ const clearAll = () => 
+ {
+  setKeywords([]);
+ }
 
   const removeAddon = (e) => {
     let p = keywords;
-    let index = p.indexOf(e.target.id);
+    let index = p.indexOf(e);
+    console.log( e.target);
+
     p.splice(index, 1);
     setAddonError("");
     setKeywords([...p]);
@@ -313,9 +422,9 @@ export default function Form() {
   let options = keywords.map((addon) => (
     <li className={styles.addons} className={styles.tagsselli}>
       {addon}
-      <span id={addon} className={styles.cross} onClick={removeAddon}>
+      {/* <span id={addon} className={styles.cross} onClick={removeAddon}>
         <AiOutlineClose />
-      </span>
+      </span> */}
     </li>
   ));
 
@@ -334,9 +443,23 @@ export default function Form() {
   let keywordsHandler = (e) => {
     e.preventDefault();
     let input = document.getElementById("keywordsInput");
-    let newKeywords = [...keywords, input.value];
-    if (!keywords.includes(input.value)) {
+    console.log(input.value.trim());
+    if(input.value.trim() == "")
+    {
+      toast.error("Empty keyword", {
+        autoClose: 2000, 
+      });
+      return;
+    }
+    let newKeywords = [...keywords, input.value.trim()];
+    if (!keywords.includes(input.value.trim())) {
       setKeywords(newKeywords);
+    }
+    else{
+      toast.warning("Keyword already present", {
+        autoClose: 2000, 
+      });
+    
     }
     input.value = "";
   };
@@ -352,7 +475,19 @@ export default function Form() {
     setVisibility([...visibility, addFiled]);
     setAddField("");
   };
-
+//   const uploadid = "upload";
+//  const successupload = () => 
+//  {
+//    if(success)
+//    {
+//     toast.success("Order Uploaded successfully", {
+//       toastId: uploadid,
+//       theme : "colored"
+//     });
+//    }
+ 
+  
+//  }
   return (
     <div>
       {redirect ? <Redirect to="prevorder" /> : null}
@@ -377,7 +512,7 @@ export default function Form() {
             </div>
             <input
               type="text"
-              placeholder="Regarding Issue"
+              placeholder="Subject"
               onChange={(e) => setTitle(e.target.value)}
               className={styles.namei}
             />
@@ -389,7 +524,7 @@ export default function Form() {
 
         <div className={styles.one}>
           <h1 className={styles.h2}>Internal/External</h1>
-
+{/* 
           <span>
             <input
               checked={!int && "checked"}
@@ -414,7 +549,12 @@ export default function Form() {
               onClick={external}
             />
             <label for="external">External</label>
-          </span>
+          </span> */}
+
+          <div className = {styles.io}>
+          <div className = {!int ? styles.selected : styles.unselected} onClick={setInternal}>Internal</div>
+          <div className = {int ? styles.selected : styles.unselected} onClick={setExternal}>External</div>
+          </div>
           <br></br>
         </div>
 
@@ -437,7 +577,7 @@ export default function Form() {
             />
             <label for="registrar"> Registrar</label>
           </span>
-{!coustom &&  <span>
+ <span>
             <input
               type="checkbox"
               id="faculty"
@@ -447,9 +587,9 @@ export default function Form() {
               onChange={checkboxHandler}
             />
             <label for="faculty"> Faculty</label>
-          </span>}
+          </span>
          
-         {!coustom &&  <span>
+       <span>
             <input
               type="checkbox"
               id="staff"
@@ -459,8 +599,8 @@ export default function Form() {
               onChange={checkboxHandler}
             />
             <label for="staff"> Staff</label>
-          </span>} 
-         {!coustom && <span>
+          </span>
+         <span>
             <input
               type="checkbox"
               id="student"
@@ -470,7 +610,7 @@ export default function Form() {
               onChange={checkboxHandler}
             />
             <label for="student"> Student</label>
-          </span>}
+          </span>
           
 
 
@@ -499,10 +639,12 @@ export default function Form() {
               id="keywordsInput"
               placeholder="Add Keywords"
               className={styles.namei}
+              
+              
             />
 
             <button onClick={keywordsHandler} className={styles.btn}>
-              Manually Add.
+              Manually Add
             </button>
           </div>
 
@@ -512,12 +654,25 @@ export default function Form() {
             </option>
             {keywordList}
           </select>
-
-          <div className={styles.tagsel}>
-            {options ? options : <p>Keywords will be added</p>}
+{keywords.length != 0 &&  
+  <div className={styles.tagsel}>
+            {options ? options : "<p>Keywords will be added</p>"}
             <p className={styles.err}>{addonError}</p>
           </div>
-        </div>
+          
+        }
+        <div></div>
+        {keywords.length != 0 &&  
+  (
+    <div style={{ display:'flex' , alignItems:"center" }}><button type="reset" onClick={removeAddon} className={styles.binbutton} title="Clear the last Keyword" ><BsTrash   style={{ fontSize:"18px" , fontWeight:"800" , color:"White" }}/></button>
+    <button type="reset" onClick={clearAll} className={styles.binbutton} title="Clear ALl">Clear All</button>
+    </div>)
+          
+        }
+        
+          
+</div>
+
         <div className={styles.line}></div>
 
         <div className={styles.one}>
@@ -549,7 +704,9 @@ export default function Form() {
         </div>
         <div className={styles.line}></div>
 
-        <button className={styles.button} onClick={() => toast.info("Office Order Uploaded!")}>Upload Order </button>
+        <button className={styles.button} 
+      onCLick={() => toast.promise('Uploading Document')}
+        >Upload Order </button>
       </form>
     </div>
   );
