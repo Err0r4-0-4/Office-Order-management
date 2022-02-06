@@ -1,7 +1,28 @@
 .member {
   cursor: pointer;
-  margin: 10px 0;
-  border-bottom: 0.5px solid rgb(204, 204, 204);
-  padding-left: 10px;
-  margin-left: 10px;
+  margin: 10px;
+  background-color: rgb(56, 55, 55);
+  color: white;
+  /* flex: 15%; */
+  border: 0.5px solid #a8a8a8;
+  flex-grow: 0;
+  text-align: center;
+  position: relative;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 14px; 
+  word-break: keep-all;
+  letter-spacing: 0.1px;
+  transition: all ease 0.25s;
+
+}
+.member:hover
+{
+  transition: all ease 0.25s;
+  background-color: rgb(0, 0, 0);
+  letter-spacing: 1px;
+  -webkit-transition: all ease 0.25s;
+  -moz-transition: all ease 0.25s;
+  -ms-transition: all ease 0.25s;
+  -o-transition: all ease 0.25s;
 }

@@ -7,7 +7,7 @@ import Footer from "../../UI/Footer";
 import Home from "../../Home/Home";
 import styles from "./Auth.module.css";
 import { FaUserCircle } from "react-icons/fa";
-import { FcSupport } from "react-icons/fc";
+import { FcSupport , FcRefresh } from "react-icons/fc";
 import { FcAbout } from "react-icons/fc";
 import cx from "classnames";
 import Image from "../../Images/inst.png";
@@ -23,8 +23,46 @@ import "firebase/firestore";
 
 var storage = firebase.storage();
 var storageRef = firebase.storage().ref();
+var faculty = [
+  "ashish@iiitvadodara.ac.in",
+  "antriksh_goswami@iiitvadodara.ac.in",
+  "jaishree_mayank@iiitvadodara.ac.in",
+  "manasi_kulkarni@iiitvadodara.ac.in",
+  "novarun_deb@iiitvadodara.ac.in",
+  "pramit.majumdar@iiitvadodara.ac.in",
+  "pratik@iiitvadodara.ac.in",
+  "bhupendra_kumar@iiitvadodara.ac.in",
+  "jignesh.bhatt@iiitvadodara.ac.in",
+  "kamal@iiitvadodara.ac.in",
+  "sunandita_debnath@iiitvadodara.ac.in",
+  "barnali@iiitvadodara.ac.in",
+  "dibyendu.roy@iiitvadodara.ac.in",
+  "swapnil@iiitvadodara.ac.in",
+  "ajay.nath@iiitvadodara.ac.in",
+  "vivek.vyas@iiitvadodara.ac.in",
+  "naveen@iiitvadodara.ac.in",
+  ]
 
+  var staff=["ashish@iiitvadodara.ac.in",
+  "antriksh_goswami@iiitvadodara.ac.in",
+  "jaishree_mayank@iiitvadodara.ac.in",
+  "manasi_kulkarni@iiitvadodara.ac.in",
+  "novarun_deb@iiitvadodara.ac.in",
+  "pramit.majumdar@iiitvadodara.ac.in",
+  "pratik@iiitvadodara.ac.in",
+  "bhupendra_kumar@iiitvadodara.ac.in",
+  "jignesh.bhatt@iiitvadodara.ac.in",
+  "kamal@iiitvadodara.ac.in",
+  "sunandita_debnath@iiitvadodara.ac.in",
+  "barnali@iiitvadodara.ac.in",
+  "dibyendu.roy@iiitvadodara.ac.in",
+  "swapnil@iiitvadodara.ac.in",
+  "ajay.nath@iiitvadodara.ac.in",
+  "vivek.vyas@iiitvadodara.ac.in",
+  "naveen@iiitvadodara.ac.in",
+"201952202@iiitvadodara.ac.in"]
 const Auth = () => {
+  
   const [ok, setOk] = useState(false);
   const con = useSelector((state) => state.isSignedIn);
   console.log(con);
@@ -36,7 +74,7 @@ const Auth = () => {
   const [file, setFile] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [redirect, setRedirect] = useState(false);
-
+ var roleof = "student";
   const hideHandler = () => {
     setShowModal(false);
   };
@@ -77,25 +115,42 @@ const Auth = () => {
           if (user.emailVerified) {
             localStorage.setItem("token", user.Aa);
             dispatch(Authactions.assignToken(user.Aa));
+            
             if (
               user.email.includes("@iiitvadodara.ac.in") ||
               user.email.includes("@iiitv.ac.in")
             ) {
               setOk(true);
               dispatch(Authactions.toggle());
-              console.log("heey");
-              if (
-                
-                user.email.includes("201951073") ||
-                user.email.includes("201952234")
-              )
-                dispatch(Authactions.allocation("registrar"));
-              else if (user.email.includes("201951056"))
-                dispatch(Authactions.allocation("director"));
-              else if (user.email.includes("201952233"))
-                dispatch(Authactions.allocation("student"));
-              else dispatch(Authactions.allocation("faculty"));
+              console.log("Safe User");
+              staff.forEach(e => {
+                if(e == user.email)
+                {
+                  roleof="staff";
+                  // console.log(roleof);
+                  console.log("I found a staff memeber");
+                }
+              })
 
+              faculty.forEach(e => {
+                if(e == user.email)
+                {
+                  roleof="faculty"
+                  console.log("I found a faculty memeber")
+                }
+              })
+
+              if(user.email == 'registrar@iiitvadodara.ac.in' )
+              roleof = "registrar"
+              if (roleof == 'registrar')
+                dispatch(Authactions.allocation("registrar"));
+              
+              else if (roleof == 'faculty')
+                dispatch(Authactions.allocation("faculty"));
+              else if (roleof == 'staff')
+                dispatch(Authactions.allocation("staff"));
+              else dispatch(Authactions.allocation("student"));
+              console.log("Role : " , roleof);
               setRedirect(true);
             } else {
               setShowModal(true);
@@ -151,7 +206,7 @@ const Auth = () => {
                   style={{ cursor: "pointer" }}
                   onClick={() => window.location.reload()}
                 >
-                  Trouble Logging In ?
+                  <FcRefresh/> Refresh
                 </a>
               </div>
             </div>

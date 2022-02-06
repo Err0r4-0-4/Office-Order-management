@@ -41,9 +41,9 @@ const Header = () => {
       .then(async (res) => {
         console.log(res.data.isRegistrar);
         ////////////////////////////////////////////////////////////////////
-        dispatch(Authactions.assignRole(true
+        dispatch(Authactions.assignRole( res.data.isRegistrar
           ));
-        console.log(role);
+        console.log("res" , res.data.isRegistrar);
       })
       .catch((err) => {
         console.log(err);
@@ -85,8 +85,9 @@ const Header = () => {
               Home
             </NavLink>
           </li>
+          {role ?
           <li>
-            {role ? (
+             
               <NavLink
                 to="/neworder"
                 activeClassName={styles.active}
@@ -95,9 +96,9 @@ const Header = () => {
                 New Order
                 {console.log(role)}
               </NavLink>
-            ) : null}
+            
           </li>
-
+ : null}
           <li>
             <NavLink
               to="/prevorder"

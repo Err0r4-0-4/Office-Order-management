@@ -1,8 +1,7 @@
 .form {
   box-sizing: border-box;
   border: 0.5px solid rgb(202, 202, 202);
-  width: 100%;
-
+  width: 95%;
   font-family: "Nunito", sans-serif;
   padding: 30px 20px;
   font-size: 16px;
@@ -52,10 +51,12 @@
   flex: 100%;
   position: relative;
   margin-bottom: 5px;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
 }
 .h3
 {
-  font-size: 17px;
+  font-size: 16px;
   font-family: "Nunito", sans-serif;
   font-weight: 500;
   flex: 100%;
@@ -251,7 +252,7 @@ li {
   padding: 10px;
   border: 0.5px solid #a7a7a7;
   background-color: #faf8f8;
-  min-height: 70px;
+  min-height: 45px;
   position: relative;
   margin-bottom: 10px;
   border-radius: 6px;
@@ -259,40 +260,60 @@ li {
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 205px;
+
 }
 .tagsel{
-  overflow: hidden;
   word-break: break-all;
   
 }
 .array {
-  min-height: 120px;
   max-height: 180px;
-
   overflow-y: scroll;
   margin: 10px auto;
   padding: 0 10px;
+  
 }
 
 .hundredw {
-  width: 100%;
-  flex: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-top: 10px;
+  flex-grow: 0;
 }
 
-.tagsselli {
+.tagsselli,.taggreen,.tagred {
   margin: 10px;
   background-color: rgb(56, 55, 55);
   color: white;
   /* flex: 15%; */
   border: 0.5px solid #a8a8a8;
   flex-grow: 0;
-  text-align: center;
   position: relative;
   padding: 5px 12px;
   border-radius: 6px;
   font-size: 14px;
+    user-select:none;
 }
+.taggreen,.tagred
+{
+  background-color: #0f9b27;
+  margin: 0 0 0 10px;
+  padding: 5px 10px !important;
+  display: block;
+  width: auto !important;
+  display: inline-block;
+  overflow: hidden;
+  max-width: 100%;
+  word-break: break-all;
+}
+.tagred{
+  background-color: rgb(202, 11, 11);
+}
+
 
 .cross {
   position: absolute;
@@ -387,11 +408,11 @@ li {
   margin: 0 0 0 15px;
   border: none;
   outline: none;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
   box-shadow: 3px 3px 10px rgb(218, 216, 216);
   letter-spacing: 1px;
   font-size: 14px;
@@ -450,9 +471,21 @@ cursor: pointer;
 
 
 }
+@media all and (max-width: 1440px) 
+{
+  .form
+  {
+ width: 100%;
+  }
+}
 @media all and (max-width: 900px) {
   .iiit {
     font-size: 16px;
+  }
+  .form
+  {
+    width: 100%;
+    padding: 20px 8px;
   }
 }
 @media all and (max-width: 750px) {

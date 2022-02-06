@@ -110,12 +110,12 @@ export default function Form() {
     <input
       type="text"
       id="keywordsInput2"
-      placeholder="Add Custom Mails"
+      placeholder="Add custom mail addresses"
       className={styles.namei}
     />
 
     <button onClick={keywordsHandler2} className={styles.btn}>
-      Manually Add
+      Add Address
     </button>
   </div>  
             {coustommails.length != 0 &&  
@@ -129,7 +129,7 @@ export default function Form() {
           {coustommails.length != 0 &&  
     (
       <div style={{ display:'flex' , alignItems:"center" }}><button type="reset" onClick={removeAddonmails} className={styles.binbutton} title="Clear the last Keyword" ><BsTrash   style={{ fontSize:"18px" , fontWeight:"800" , color:"White" }}/></button>
-      <button type="reset" onClick={clearAllmails} className={styles.binbutton} title="Clear ALl">Clear All</button>
+      <button type="reset" onClick={clearAllmails} className={styles.binbutton} title="Clear all">Clear all</button>
       </div>)
             
           }
@@ -209,7 +209,7 @@ export default function Form() {
   }, []);
 
   const setNew = (n) => {
-    setmessage("");
+    setmessage(n);
     setFamilyName(n);
     setNewFamily(true);
   };
@@ -220,18 +220,19 @@ export default function Form() {
     setName(familyId);
     setNewFamily(false);
 
-    setmessage(`Family Selected : ${familyName}`);
+    setmessage(familyName);
   };
 
   console.log(members);
 
   let memberArray = (
-    <div className={styles.hundredw}>
+    <div className={styles.array}>
       {members.map((m) => (
         <Member
-          name={m.lastOrder.familyName}
+          name={m.lastOrder.familyName.trim()}
           id={m.lastOrder.familyId}
           setFamily={setFamilyHandler}
+          className={styles.tagsselli}
         />
       ))}
     </div>
@@ -264,10 +265,7 @@ export default function Form() {
           toastId: "2",
           theme : "colored"
         });
-        toast.info("The Orders will only be visible to Registrar!", {
-          toastId: customIdv,
-          theme : "colored"
-        });
+       
         
         setvc(false);
         return;
@@ -319,7 +317,7 @@ export default function Form() {
       formData.append("date", today);
       formData.append("newFamily", newFamily);
       formData.append("inex", int);
-      formData.append("familyName", familyName);
+      formData.append("familyName", familyName.trim());
       console.log(familyName);
       console.log(int);
 
@@ -489,7 +487,7 @@ export default function Form() {
   
 //  }
   return (
-    <div>
+    <>
       {redirect ? <Redirect to="prevorder" /> : null}
       <Modal show={showModal} switch={hideHandler}>
         {error ? "Error in uploading" : "Successfully uploaded"}
@@ -512,7 +510,7 @@ export default function Form() {
             </div>
             <input
               type="text"
-              placeholder="Subject"
+              placeholder="Subject/Issue"
               onChange={(e) => setTitle(e.target.value)}
               className={styles.namei}
             />
@@ -633,21 +631,23 @@ export default function Form() {
 
         <div className={styles.one}>
           <h2 className={styles.h2}>Add keywords</h2>
+          <h3 className={styles.h3}>Coustom Keywords</h3>
           <div className={styles.hundred1}>
+            
             <input
               type="text"
               id="keywordsInput"
-              placeholder="Add Keywords"
+              placeholder="Add keywords"
               className={styles.namei}
               
               
             />
 
             <button onClick={keywordsHandler} className={styles.btn}>
-              Manually Add
+              Add Keyword
             </button>
           </div>
-
+          <h3 className={styles.h3}>Previously Saved Keywords</h3>
           <select className={styles.sel} onChange={addKeyWords}>
             <option selected value disabled>
               --Select Keywords--
@@ -665,7 +665,7 @@ export default function Form() {
         {keywords.length != 0 &&  
   (
     <div style={{ display:'flex' , alignItems:"center" }}><button type="reset" onClick={removeAddon} className={styles.binbutton} title="Clear the last Keyword" ><BsTrash   style={{ fontSize:"18px" , fontWeight:"800" , color:"White" }}/></button>
-    <button type="reset" onClick={clearAll} className={styles.binbutton} title="Clear ALl">Clear All</button>
+    <button type="reset" onClick={clearAll} className={styles.binbutton} title="Clear all">Clear all</button>
     </div>)
           
         }
@@ -677,17 +677,23 @@ export default function Form() {
 
         <div className={styles.one}>
           <h1 className={styles.h2}>Family</h1>
-          <div className={styles.array}>{memberArray}</div>
-          <div style={{ color: "green", display: "block", flex: "100%" }}>
-            {message}
-          </div>
-          <div style={{ margin: "0 auto 0", display: "block" }}>Or</div>
+          <h3 className={styles.h3}>Previously Saved Families</h3>
+
+          {memberArray}
+          
+          <h3 className={styles.h3}>Custom Family</h3>
+
           <input
             placeholder="Add a New Family"
             onChange={(e) => setNew(e.target.value)}
             className={styles.inp}
+            value={message}
           />
+          <div style={{ color: "green", marginTop : "18px" , display:"flex" , alignItems : "center" ,fontSize:"18px"}}>
+            Family:<span className={message ? styles.taggreen : styles.tagred}>{message ? message : "Not Selected"}</span>
+          </div>
         </div>
+        
         <div className={styles.line}></div>
 
         <div className={styles.one}>
@@ -708,6 +714,6 @@ export default function Form() {
       onCLick={() => toast.promise('Uploading Document')}
         >Upload Order </button>
       </form>
-    </div>
+    </>
   );
 }

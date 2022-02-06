@@ -47,10 +47,27 @@ const New = () => {
           </ul>
         </div>
       </div>
+      <div className={styles.div3}>
+        <div className={styles.link}>
+          <p className={styles.links}>Links</p>
+          <ul>
+            <li>
+              <a href="http://www.iiitvadodara.ac.in/">IIIT Vadodara Website</a>
+            </li>
+            <li>
+              <a href="https://betamoodle.iiitvadodara.ac.in/">
+                Moodle IIIT Vadodara
+              </a>
+            </li>
+            <li>
+              <a href="http://nptel.iiitv.ac.in/">NPTEL@ IIIT Vadodara</a>
+            </li>
+          </ul>
+        </div>
+        </div>
       <div className={styles.add}>
           <Form />
-          {/* <TodoList />
-          //<UploadImage /> */}
+         
       </div>
     </div>
   );

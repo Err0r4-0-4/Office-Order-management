@@ -13,7 +13,7 @@ const Homepage = () => {
   const role = useSelector((state) => state.member);
   const tkn = useSelector((state) => state.token);
   const [orders, setOrders] = useState([]);
-
+// console.log("Role",role);
   let s = "Student";
   let config = {
     headers: {
